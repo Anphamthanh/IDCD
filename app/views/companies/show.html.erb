@@ -1,55 +1,39 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Company -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @company.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:semester_id) %>:</strong></dt>
+  <dd><%= @company.semester_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:technical_name) %>:</strong></dt>
+  <dd><%= @company.technical_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:technical_designation) %>:</strong></dt>
+  <dd><%= @company.technical_designation %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:technical_email) %>:</strong></dt>
+  <dd><%= @company.technical_email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:technical_phone) %>:</strong></dt>
+  <dd><%= @company.technical_phone %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:director_name) %>:</strong></dt>
+  <dd><%= @company.director_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:director_designation) %>:</strong></dt>
+  <dd><%= @company.director_designation %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:director_email) %>:</strong></dt>
+  <dd><%= @company.director_email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:director_phone) %>:</strong></dt>
+  <dd><%= @company.director_phone %></dd>
+</dl>
 
-<p>
-  <b>Semester:</b>
-  <%= @company.semester_id %>
-</p>
-
-<p>
-  <b>Technical name:</b>
-  <%= @company.technical_name %>
-</p>
-
-<p>
-  <b>Technical designation:</b>
-  <%= @company.technical_designation %>
-</p>
-
-<p>
-  <b>Technical email:</b>
-  <%= @company.technical_email %>
-</p>
-
-<p>
-  <b>Technical phone:</b>
-  <%= @company.technical_phone %>
-</p>
-
-<p>
-  <b>Director name:</b>
-  <%= @company.director_name %>
-</p>
-
-<p>
-  <b>Director designation:</b>
-  <%= @company.director_designation %>
-</p>
-
-<p>
-  <b>Director email:</b>
-  <%= @company.director_email %>
-</p>
-
-<p>
-  <b>Director phone:</b>
-  <%= @company.director_phone %>
-</p>
-
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              companies_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_company_path(@company), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              company_path(@company),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
