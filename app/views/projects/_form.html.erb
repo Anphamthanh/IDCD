@@ -1,50 +1,41 @@
-<%= form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :background, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :background, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :concept, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :concept, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :design, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :design, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :skills, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :skills, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :solutions, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :solutions, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :company_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :company_id, :class => 'number_field' %>
-    </div>
-  </div>
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                projects_path, :class => 'btn' %>
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :background %><br />
+    <%= f.text_area :background %>
+  </div>
+  <div class="field">
+    <%= f.label :concept %><br />
+    <%= f.text_area :concept %>
+  </div>
+  <div class="field">
+    <%= f.label :design %><br />
+    <%= f.text_area :design %>
+  </div>
+  <div class="field">
+    <%= f.label :skills %><br />
+    <%= f.text_area :skills %>
+  </div>
+  <div class="field">
+    <%= f.label :solutions %><br />
+    <%= f.text_area :solutions %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
   </div>
 <% end %>

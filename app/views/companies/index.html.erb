@@ -1,54 +1,41 @@
-<%- model_class = Company -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:semester_id) %></th>
-      <th><%= model_class.human_attribute_name(:technical_name) %></th>
-      <th><%= model_class.human_attribute_name(:technical_designation) %></th>
-      <th><%= model_class.human_attribute_name(:technical_email) %></th>
-      <th><%= model_class.human_attribute_name(:technical_phone) %></th>
-      <th><%= model_class.human_attribute_name(:director_name) %></th>
-      <th><%= model_class.human_attribute_name(:director_designation) %></th>
-      <th><%= model_class.human_attribute_name(:director_email) %></th>
-      <th><%= model_class.human_attribute_name(:director_phone) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @companies.each do |company| %>
-      <tr>
-        <td><%= link_to company.id, company_path(company) %></td>
-        <td><%= company.name %></td>
-        <td><%= company.semester_id %></td>
-        <td><%= company.technical_name %></td>
-        <td><%= company.technical_designation %></td>
-        <td><%= company.technical_email %></td>
-        <td><%= company.technical_phone %></td>
-        <td><%= company.director_name %></td>
-        <td><%= company.director_designation %></td>
-        <td><%= company.director_email %></td>
-        <td><%= company.director_phone %></td>
-        <td><%=l company.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_company_path(company), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      company_path(company),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+<h1>Listing companies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Semester</th>
+    <th>Technical name</th>
+    <th>Technical designation</th>
+    <th>Technical email</th>
+    <th>Technical phone</th>
+    <th>Director name</th>
+    <th>Director designation</th>
+    <th>Director email</th>
+    <th>Director phone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= company.semester_id %></td>
+    <td><%= company.technical_name %></td>
+    <td><%= company.technical_designation %></td>
+    <td><%= company.technical_email %></td>
+    <td><%= company.technical_phone %></td>
+    <td><%= company.director_name %></td>
+    <td><%= company.director_designation %></td>
+    <td><%= company.director_email %></td>
+    <td><%= company.director_phone %></td>
+    <td><%= link_to 'Show', company %></td>
+    <td><%= link_to 'Edit', edit_company_path(company) %></td>
+    <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_company_path,
-            :class => 'btn btn-primary' %>
+<br />
+
+<%= link_to 'New Company', new_company_path %>
