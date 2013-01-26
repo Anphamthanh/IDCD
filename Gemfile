@@ -9,6 +9,10 @@ gem 'pg'
 
 gem 'high_voltage'
 
+gem 'carrierwave'
+gem 'sqlite3'
+gem 'RedCloth'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

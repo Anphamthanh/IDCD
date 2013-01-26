@@ -1,4 +1,16 @@
 IDCD::Application.routes.draw do
+
+  
+  resources :homes do
+    member do
+      get :show
+    end
+
+    collection do
+    end
+  end
+
+
   resources :projects
 
 
@@ -6,6 +18,8 @@ IDCD::Application.routes.draw do
 
 
   resources :semesters
+
+
 
 
   # The priority is based upon order of creation:
