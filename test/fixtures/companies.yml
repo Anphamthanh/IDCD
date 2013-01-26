@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  semester_id: 1
+  technical_name: MyString
+  technical_designation: MyString
+  technical_email: MyString
+  technical_phone: MyString
+  director_name: MyString
+  director_designation: MyString
+  director_email: MyString
+  director_phone: MyString
+
+two:
+  name: MyString
+  semester_id: 1
+  technical_name: MyString
+  technical_designation: MyString
+  technical_email: MyString
+  technical_phone: MyString
+  director_name: MyString
+  director_designation: MyString
+  director_email: MyString
+  director_phone: MyString

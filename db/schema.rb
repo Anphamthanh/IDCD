@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123232340) do
+ActiveRecord::Schema.define(:version => 20130126165935) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.integer  "semester_id"
+    t.string   "technical_name"
+    t.string   "technical_designation"
+    t.string   "technical_email"
+    t.string   "technical_phone"
+    t.string   "director_name"
+    t.string   "director_designation"
+    t.string   "director_email"
+    t.string   "director_phone"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.text     "background"
+    t.text     "concept"
+    t.text     "design"
+    t.text     "skills"
+    t.text     "solutions"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "semesters", :force => true do |t|
     t.string   "name"

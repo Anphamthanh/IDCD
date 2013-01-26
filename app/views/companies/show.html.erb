@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Semester:</b>
+  <%= @company.semester_id %>
+</p>
+
+<p>
+  <b>Technical name:</b>
+  <%= @company.technical_name %>
+</p>
+
+<p>
+  <b>Technical designation:</b>
+  <%= @company.technical_designation %>
+</p>
+
+<p>
+  <b>Technical email:</b>
+  <%= @company.technical_email %>
+</p>
+
+<p>
+  <b>Technical phone:</b>
+  <%= @company.technical_phone %>
+</p>
+
+<p>
+  <b>Director name:</b>
+  <%= @company.director_name %>
+</p>
+
+<p>
+  <b>Director designation:</b>
+  <%= @company.director_designation %>
+</p>
+
+<p>
+  <b>Director email:</b>
+  <%= @company.director_email %>
+</p>
+
+<p>
+  <b>Director phone:</b>
+  <%= @company.director_phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  background: MyText
+  concept: MyText
+  design: MyText
+  skills: MyText
+  solutions: MyText
+
+two:
+  name: MyString
+  background: MyText
+  concept: MyText
+  design: MyText
+  skills: MyText
+  solutions: MyText
