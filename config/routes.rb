@@ -1,14 +1,8 @@
 IDCD::Application.routes.draw do
 
   
-  resources :homes do
-    member do
-      get :show
-    end
-
-    collection do
-    end
-  end
+  resources :homes 
+  
 
 
   resources :projects
