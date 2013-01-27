@@ -12,6 +12,9 @@
       <th><%= model_class.human_attribute_name(:design) %></th>
       <th><%= model_class.human_attribute_name(:skills) %></th>
       <th><%= model_class.human_attribute_name(:solutions) %></th>
+      <th><%= model_class.human_attribute_name(:nda_required) %></th>
+      <th><%= model_class.human_attribute_name(:funding_commitment) %></th>
+      <th><%= model_class.human_attribute_name(:company_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -26,6 +29,9 @@
         <td><%= project.design %></td>
         <td><%= project.skills %></td>
         <td><%= project.solutions %></td>
+        <td><%= project.nda_required %></td>
+        <td><%= project.funding_commitment %></td>
+        <td><%= project.company_id %></td>
         <td><%=l project.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

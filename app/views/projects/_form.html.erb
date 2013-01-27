@@ -35,6 +35,24 @@
       <%= f.text_area :solutions, :class => 'text_area' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :nda_required, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :nda_required, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :funding_commitment, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :funding_commitment, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :company_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :company_id, :class => 'number_field' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
