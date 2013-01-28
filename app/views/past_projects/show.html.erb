@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<table border="1">
+<tr>
+<td>
 
 <p>
   <b>Title1:</b>
@@ -7,14 +9,15 @@
 
 <p>
   <b>Picture1:</b>
-  <%= @past_project.picture1 %>
+    <%= image_tag(@past_project.picture1, :width => 600) if @past_project.picture1.present? %>
 </p>
 
 <p>
   <b>Description1:</b>
   <%= @past_project.description1 %>
 </p>
-
+</td>
+<td>
 <p>
   <b>Title2:</b>
   <%= @past_project.title2 %>
@@ -22,43 +25,55 @@
 
 <p>
   <b>Picture2:</b>
-  <%= @past_project.picture2 %>
+    <%= image_tag(@past_project.picture2, :width => 600) if @past_project.picture2.present? %>
 </p>
 
 <p>
   <b>Description2:</b>
   <%= @past_project.description2 %>
-</p>
-
-<p>
+</p></td>
+</tr>
+<tr>
+<td><p>
   <b>Title3:</b>
   <%= @past_project.title3 %>
 </p>
 
 <p>
   <b>Picture3:</b>
-  <%= @past_project.picture3 %>
+      <%= image_tag(@past_project.picture3, :width => 600) if @past_project.picture3.present? %>
+
 </p>
 
 <p>
   <b>Description3:</b>
   <%= @past_project.description3 %>
 </p>
-
-<p>
+</td>
+<td><p>
   <b>Title4:</b>
   <%= @past_project.title4 %>
 </p>
 
 <p>
   <b>Picture4:</b>
-  <%= @past_project.picture4 %>
+      <%= image_tag(@past_project.picture4, :width => 600) if @past_project.picture4.present? %>
+
 </p>
 
 <p>
   <b>Description4:</b>
   <%= @past_project.description4 %>
-</p>
+</p></td>
+</tr>
+</table>
+
+
+
+
+
+
+
 
 <p>
   <b>Links:</b>
