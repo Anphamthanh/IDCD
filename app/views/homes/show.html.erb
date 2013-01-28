@@ -1,18 +1,9 @@
-<p id="notice"><%= notice %></p>
 
-<p>
   <%= image_tag(@home.picture_url, :width => 600) if @home.picture.present? %>
-</p>
+  <%= textilize @home.title%>
+  <%= RedCloth.new(@home.description) %>
 
 <p>
-
-  <%=  @home.title%>
-</p>
-
-<p>
-  <%= @home.description %>
-</p>
-
-
 <%= link_to 'Edit', edit_home_path(@home) %> |
 <%= link_to 'Back', homes_path %>
+</p>

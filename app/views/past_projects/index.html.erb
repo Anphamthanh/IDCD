@@ -1,0 +1,47 @@
+<h1>Listing past_projects</h1>
+
+<table>
+  <tr>
+    <th>Title1</th>
+    <th>Picture1</th>
+    <th>Description1</th>
+    <th>Title2</th>
+    <th>Picture2</th>
+    <th>Description2</th>
+    <th>Title3</th>
+    <th>Picture3</th>
+    <th>Description3</th>
+    <th>Title4</th>
+    <th>Picture4</th>
+    <th>Description4</th>
+    <th>Links</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @past_projects.each do |past_project| %>
+  <tr>
+    <td><%= past_project.title1 %></td>
+    <td><%= past_project.picture1 %></td>
+    <td><%= past_project.description1 %></td>
+    <td><%= past_project.title2 %></td>
+    <td><%= past_project.picture2 %></td>
+    <td><%= past_project.description2 %></td>
+    <td><%= past_project.title3 %></td>
+    <td><%= past_project.picture3 %></td>
+    <td><%= past_project.description3 %></td>
+    <td><%= past_project.title4 %></td>
+    <td><%= past_project.picture4 %></td>
+    <td><%= past_project.description4 %></td>
+    <td><%= past_project.links %></td>
+    <td><%= link_to 'Show', past_project %></td>
+    <td><%= link_to 'Edit', edit_past_project_path(past_project) %></td>
+    <td><%= link_to 'Destroy', past_project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Past project', new_past_project_path %>
