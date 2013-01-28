@@ -1,71 +1,56 @@
-<table border="1">
-<tr>
-<td>
+<table border="0" >
+  <tr>
+    <td>
 
-<p>
-  <b>Title1:</b>
-  <%= @past_project.title1 %>
-</p>
+        <%= image_tag(@past_project.picture1, :width => 250, :height=> 250) if @past_project.picture1.present? %>
+      </br>
+      
+        <b>Title:</b>
+        <%= @past_project.title1 %>
+      </br>
 
-<p>
-  <b>Picture1:</b>
-    <%= image_tag(@past_project.picture1, :width => 600) if @past_project.picture1.present? %>
-</p>
+        <b>Description1:</b>
+        <%= @past_project.description1 %>
+    </td>
+    <td width="100">
+    </td>
+    <td>
+     
+        <%= image_tag(@past_project.picture2, :width => 250, :height=> 250) if @past_project.picture2.present? %>
+      </br>
 
-<p>
-  <b>Description1:</b>
-  <%= @past_project.description1 %>
-</p>
-</td>
-<td>
-<p>
-  <b>Title2:</b>
-  <%= @past_project.title2 %>
-</p>
+        <b>Title:</b>
+        <%= @past_project.title2 %>
+            </br>
+        <b>Description:</b>
+        <%= @past_project.description2 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= image_tag(@past_project.picture3, :width => 250, :height=> 250) if @past_project.picture3.present? %>
 
-<p>
-  <b>Picture2:</b>
-    <%= image_tag(@past_project.picture2, :width => 600) if @past_project.picture2.present? %>
-</p>
+           </br>
 
-<p>
-  <b>Description2:</b>
-  <%= @past_project.description2 %>
-</p></td>
-</tr>
-<tr>
-<td><p>
-  <b>Title3:</b>
-  <%= @past_project.title3 %>
-</p>
-
-<p>
-  <b>Picture3:</b>
-      <%= image_tag(@past_project.picture3, :width => 600) if @past_project.picture3.present? %>
-
-</p>
-
-<p>
-  <b>Description3:</b>
-  <%= @past_project.description3 %>
-</p>
-</td>
-<td><p>
-  <b>Title4:</b>
-  <%= @past_project.title4 %>
-</p>
-
-<p>
-  <b>Picture4:</b>
-      <%= image_tag(@past_project.picture4, :width => 600) if @past_project.picture4.present? %>
-
-</p>
-
-<p>
-  <b>Description4:</b>
-  <%= @past_project.description4 %>
-</p></td>
-</tr>
+         <b>Title:</b>
+        <%= @past_project.title3 %>
+      </br>
+        <b>Description:</b>
+        <%= @past_project.description3 %>
+     
+    </td>
+    <td width="100">
+    </td>
+    <td>
+      <%= image_tag(@past_project.picture4, :width => 250, :height=> 250) if @past_project.picture4.present? %>
+    </br>
+       <b>Title:</b>
+      <%= @past_project.title4 %>
+    </br>
+      <b>Description4:</b>
+      <%= @past_project.description4 %>
+    </td>
+  </tr>
 </table>
 
 
