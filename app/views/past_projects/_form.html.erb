@@ -1,0 +1,69 @@
+<%= form_for(@past_project) do |f| %>
+  <% if @past_project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@past_project.errors.count, "error") %> prohibited this past_project from being saved:</h2>
+
+      <ul>
+      <% @past_project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title1 %><br />
+    <%= f.text_field :title1 %>
+  </div>
+  <div class="field">
+    <%= f.label :picture1 %><br />
+    <%= f.file_field :picture1 %>
+  </div>
+  <div class="field">
+    <%= f.label :description1 %><br />
+    <%= f.text_area :description1 %>
+  </div>
+  <div class="field">
+    <%= f.label :title2 %><br />
+    <%= f.text_field :title2 %>
+  </div>
+  <div class="field">
+    <%= f.label :picture2 %><br />
+    <%= f.file_field :picture2 %>
+  </div>
+  <div class="field">
+    <%= f.label :description2 %><br />
+    <%= f.text_area :description2 %>
+  </div>
+  <div class="field">
+    <%= f.label :title3 %><br />
+    <%= f.text_field :title3 %>
+  </div>
+  <div class="field">
+    <%= f.label :picture3 %><br />
+    <%= f.file_field :picture3 %>
+  </div>
+  <div class="field">
+    <%= f.label :description3 %><br />
+    <%= f.text_area :description3 %>
+  </div>
+  <div class="field">
+    <%= f.label :title4 %><br />
+    <%= f.text_field :title4 %>
+  </div>
+  <div class="field">
+    <%= f.label :picture4 %><br />
+    <%= f.file_field :picture4 %>
+  </div>
+  <div class="field">
+    <%= f.label :description4 %><br />
+    <%= f.text_area :description4 %>
+  </div>
+  <div class="field">
+    <%= f.label :links %><br />
+    <%= f.text_area :links %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title1: MyString
+  picture1: MyString
+  description1: MyText
+  title2: MyString
+  picture2: MyString
+  description2: MyText
+  title3: MyString
+  picture3: MyString
+  description3: MyText
+  title4: MyString
+  picture4: MyString
+  description4: MyText
+  links: MyText
+
+two:
+  title1: MyString
+  picture1: MyString
+  description1: MyText
+  title2: MyString
+  picture2: MyString
+  description2: MyText
+  title3: MyString
+  picture3: MyString
+  description3: MyText
+  title4: MyString
+  picture4: MyString
+  description4: MyText
+  links: MyText

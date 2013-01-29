@@ -1,0 +1,70 @@
+<table border="0" >
+  <tr>
+    <td>
+
+        <%= image_tag(@past_project.picture1, :width => 250, :height=> 250) if @past_project.picture1.present? %>
+      </br>
+      
+        <b>Title:</b>
+        <%= @past_project.title1 %>
+      </br>
+
+        <b>Description1:</b>
+        <%= @past_project.description1 %>
+    </td>
+    <td width="100">
+    </td>
+    <td>
+     
+        <%= image_tag(@past_project.picture2, :width => 250, :height=> 250) if @past_project.picture2.present? %>
+      </br>
+
+        <b>Title:</b>
+        <%= @past_project.title2 %>
+            </br>
+        <b>Description:</b>
+        <%= @past_project.description2 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= image_tag(@past_project.picture3, :width => 250, :height=> 250) if @past_project.picture3.present? %>
+
+           </br>
+
+         <b>Title:</b>
+        <%= @past_project.title3 %>
+      </br>
+        <b>Description:</b>
+        <%= @past_project.description3 %>
+     
+    </td>
+    <td width="100">
+    </td>
+    <td>
+      <%= image_tag(@past_project.picture4, :width => 250, :height=> 250) if @past_project.picture4.present? %>
+    </br>
+       <b>Title:</b>
+      <%= @past_project.title4 %>
+    </br>
+      <b>Description4:</b>
+      <%= @past_project.description4 %>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+<p>
+  <b>Links:</b>
+  <%= @past_project.links %>
+</p>
+
+
+<%= link_to 'Edit', edit_past_project_path(@past_project) %> |
+<%= link_to 'Back', past_projects_path %>
