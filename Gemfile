@@ -8,9 +8,7 @@ gem 'rails', '3.2.11'
 gem 'pg'
 
 gem 'high_voltage'
-
 gem 'carrierwave'
-gem 'sqlite3'
 gem 'RedCloth'
 
 # Gems used only for assets and not required
