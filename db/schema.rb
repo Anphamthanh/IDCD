@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128224559) do
+ActiveRecord::Schema.define(:version => 20130131053034) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130128224559) do
     t.boolean  "nda_required"
     t.boolean  "funding_commitment"
     t.integer  "company_id"
+    t.string   "form"
   end
 
   create_table "semesters", :force => true do |t|
