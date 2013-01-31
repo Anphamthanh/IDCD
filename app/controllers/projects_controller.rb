@@ -41,6 +41,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @company = Company.create(params[:company])
+    @project.company_id = @company.id    
 
     respond_to do |format|
       if @project.save
