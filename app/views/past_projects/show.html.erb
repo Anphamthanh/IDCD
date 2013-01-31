@@ -1,70 +1,27 @@
-<table border="0" >
-  <tr>
-    <td>
+<%- model_class = PastProject -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-        <%= image_tag(@past_project.picture1, :width => 250, :height=> 250) if @past_project.picture1.present? %>
-      </br>
-      
-        <b>Title:</b>
-        <%= @past_project.title1 %>
-      </br>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @past_project.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:picture) %>:</strong></dt>
+  <dd><%= @past_project.picture %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @past_project.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:links) %>:</strong></dt>
+  <dd><%= @past_project.links %></dd>
+</dl>
 
-        <b>Description1:</b>
-        <%= @past_project.description1 %>
-    </td>
-    <td width="100">
-    </td>
-    <td>
-     
-        <%= image_tag(@past_project.picture2, :width => 250, :height=> 250) if @past_project.picture2.present? %>
-      </br>
-
-        <b>Title:</b>
-        <%= @past_project.title2 %>
-            </br>
-        <b>Description:</b>
-        <%= @past_project.description2 %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= image_tag(@past_project.picture3, :width => 250, :height=> 250) if @past_project.picture3.present? %>
-
-           </br>
-
-         <b>Title:</b>
-        <%= @past_project.title3 %>
-      </br>
-        <b>Description:</b>
-        <%= @past_project.description3 %>
-     
-    </td>
-    <td width="100">
-    </td>
-    <td>
-      <%= image_tag(@past_project.picture4, :width => 250, :height=> 250) if @past_project.picture4.present? %>
-    </br>
-       <b>Title:</b>
-      <%= @past_project.title4 %>
-    </br>
-      <b>Description4:</b>
-      <%= @past_project.description4 %>
-    </td>
-  </tr>
-</table>
-
-
-
-
-
-
-
-
-<p>
-  <b>Links:</b>
-  <%= @past_project.links %>
-</p>
-
-
-<%= link_to 'Edit', edit_past_project_path(@past_project) %> |
-<%= link_to 'Back', past_projects_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              past_projects_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_past_project_path(@past_project), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              past_project_path(@past_project),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
