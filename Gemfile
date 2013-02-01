@@ -11,6 +11,10 @@ gem 'high_voltage'
 gem 'carrierwave'
 gem 'RedCloth'
 
+group :test, :development do
+  gem 'pry-rails'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
