@@ -19,7 +19,9 @@
       <tr>
         <td><%= link_to past_project.id, past_project_path(past_project) %></td>
         <td><%= past_project.title %></td>
-        <td><%= past_project.picture %></td>
+        <td><%=image_tag(past_project.picture, :width => 100) if past_project.picture.present?%></td>
+
+        
         <td><%= past_project.description %></td>
         <td><%= past_project.links %></td>
         <td><%=l past_project.created_at %></td>

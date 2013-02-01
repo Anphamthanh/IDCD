@@ -1,5 +1,6 @@
 class PastProject < ActiveRecord::Base
-  attr_accessible :description, :picture, :title
+	  mount_uploader :picture, PictureUploader
+
+  attr_accessible :description, :picture, :title, :links
   
-  mount_uploader :picture, PictureUploader
 end

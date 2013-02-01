@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @past_project.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:picture) %>:</strong></dt>
-  <dd><%= @past_project.picture %></dd>
+  <dd><%= image_tag(@past_project.picture, :width => 100) if @past_project.picture.present? %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @past_project.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:links) %>:</strong></dt>
