@@ -1,7 +1,9 @@
 
-  <%= image_tag(@home.picture_url, :width => 600) if @home.picture.present? %>
-  <%= textilize @home.title%>
-  <%= RedCloth.new(@home.description) %>
+<%= image_tag(@home.picture_url, :height => 800) if @home.picture.present? %>
+<%= RedCloth.new(@home.title).to_html %>
+
+<%= RedCloth.new(@home.description).to_html %>
+
 
 <p>
 <%= link_to 'Edit', edit_home_path(@home) %> |
