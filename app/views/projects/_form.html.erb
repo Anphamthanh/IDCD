@@ -1,6 +1,10 @@
 <%= form_for @project, :html => { :class => 'form-horizontal', :multipart => :true } do |f| %>
 
   <div class="row-fluid">
+    <%= link_to "Printable Project Submission Form", root_url+"/forms_and_files/Capstone_Project_Submission_Form.doc" %>
+  </div>
+
+  <div class="row-fluid">
 
     <div class="span5">
       <div class="well">
@@ -131,7 +135,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit "Submit Project", :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
       projects_path, :class => 'btn' %>
     </div>
