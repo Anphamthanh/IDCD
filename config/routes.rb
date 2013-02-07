@@ -9,20 +9,13 @@ IDCD::Application.routes.draw do
 
   resources :past_projects
 
-
   resources :homes 
-  
 
   resources :projects
 
-
   resources :companies
 
-
   resources :semesters
-
-
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
