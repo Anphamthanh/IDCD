@@ -1,6 +1,12 @@
 IDCD::Application.routes.draw do
 
   
+  devise_for :faculties
+
+  devise_for :admins
+
+  devise_for :students
+
   resources :past_projects
 
 
