@@ -12,3 +12,8 @@ Company.create(:name => "Boeing", :technical_name => "Survy")
 Project.create(:name => "Jet Packs")
 Home.create(:picture =>"/uploads/home/picture/1/CapstoneLogo.png", :title => "Fall 2013 GT 4983", :description => "Coming soon");
 PastProject.create(:title => "NASA Space Trains", :description => "Coming soon");
+
+ProjectStatus.create(:name => "Incomplete");
+ProjectStatus.create(:name => "Submitted");
+ProjectStatus.create(:name => "Accepted");
+ProjectStatus.create(:name => "Rejected");
