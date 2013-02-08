@@ -41,8 +41,18 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-    @company = Company.create(params[:company])
-    @project.company_id = @company.id    
+
+    if params[:online]
+      # If submitted online, the project will have a company associated with it
+      @company = Company.create(params[:company])
+      @project.company_id = @company.id
+      @project.status_id = 2
+    elsif params[:manual]
+      # If submitted by uploading a form, mark project as incomplete
+      @project.status_id = 1
+    else
+      render action: "new"
+    end
 
     respond_to do |format|
       if @project.save
