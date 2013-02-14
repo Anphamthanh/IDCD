@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:picture) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
@@ -16,8 +15,7 @@
   <tbody>
     <% @past_projects.each do |past_project| %>
       <tr>
-        <td><%= link_to past_project.id, past_project_path(past_project) %></td>
-        <td><%= past_project.title %></td>
+        <td><%= link_to  past_project.title, past_project_path(past_project) %></td>
         <td><%=image_tag(past_project.picture, :width => 100) if past_project.picture.present?%></td>
 
         
