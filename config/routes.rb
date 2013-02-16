@@ -3,7 +3,6 @@ IDCD::Application.routes.draw do
   
   resources :project_statuses
 
-
   devise_for :faculties
 
   devise_for :admins
@@ -11,8 +10,6 @@ IDCD::Application.routes.draw do
   devise_for :students
 
   resources :past_projects
-
-  resources :homes 
 
   resources :projects
 

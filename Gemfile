@@ -7,7 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'pg'
 
-gem 'high_voltage'
+
 gem 'carrierwave'
 gem 'RedCloth'
 
