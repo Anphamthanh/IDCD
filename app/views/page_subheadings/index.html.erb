@@ -1,0 +1,23 @@
+<h1>Listing page_subheadings</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @page_subheadings.each do |page_subheading| %>
+  <tr>
+    <td><%= page_subheading.title %></td>
+    <td><%= link_to 'Show', page_subheading %></td>
+    <td><%= link_to 'Edit', edit_page_subheading_path(page_subheading) %></td>
+    <td><%= link_to 'Destroy', page_subheading, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Page subheading', new_page_subheading_path %>

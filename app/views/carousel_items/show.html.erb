@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Page carousel:</b>
+  <%= @carousel_item.page_carousel_id %>
+</p>
+
+<p>
+  <b>Page picture:</b>
+  <%= @carousel_item.page_picture_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @carousel_item.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @carousel_item.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_carousel_item_path(@carousel_item) %> |
+<%= link_to 'Back', carousel_items_path %>

@@ -1,6 +1,30 @@
 IDCD::Application.routes.draw do
 
   
+  resources :carousel_items
+
+
+  resources :page_items
+
+
+  resources :page_pictures
+
+
+  resources :page_carousels
+
+
+  resources :pages
+
+
+  resources :page_subheadings
+
+
+  resources :page_headings
+
+
+  resources :page_texts
+
+
   resources :project_statuses
 
   devise_for :faculties

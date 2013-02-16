@@ -1,0 +1,23 @@
+<h1>Listing page_carousels</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @page_carousels.each do |page_carousel| %>
+  <tr>
+    <td><%= page_carousel.name %></td>
+    <td><%= link_to 'Show', page_carousel %></td>
+    <td><%= link_to 'Edit', edit_page_carousel_path(page_carousel) %></td>
+    <td><%= link_to 'Destroy', page_carousel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Page carousel', new_page_carousel_path %>

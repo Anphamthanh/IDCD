@@ -1,0 +1,2 @@
+module PageCarouselsHelper
+end

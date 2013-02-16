@@ -1,0 +1,33 @@
+<%= form_for(@carousel_item) do |f| %>
+  <% if @carousel_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@carousel_item.errors.count, "error") %> prohibited this carousel_item from being saved:</h2>
+
+      <ul>
+      <% @carousel_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :page_carousel_id %><br />
+    <%= f.number_field :page_carousel_id %>
+  </div>
+  <div class="field">
+    <%= f.label :page_picture_id %><br />
+    <%= f.number_field :page_picture_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
