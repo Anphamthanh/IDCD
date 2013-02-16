@@ -10,7 +10,6 @@
 Semester.create(:name => "Spring 2013", :start => Time.local(2013, 1, 10), :end => Time.local(2013, 5, 2))
 Company.create(:name => "Boeing", :technical_name => "Survy")
 Project.create(:name => "Jet Packs", status_id: 1)
-Home.create(:picture =>"/uploads/home/picture/1/CapstoneLogo.png", :title => "Fall 2013 GT 4983", :description => "Coming soon");
 PastProject.create(:title => "NASA Space Trains", :description => "Coming soon");
 
 ProjectStatus.create(:name => "Incomplete");
