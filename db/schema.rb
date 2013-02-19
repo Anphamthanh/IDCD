@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216173926) do
+ActiveRecord::Schema.define(:version => 20130216183452) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(:version => 20130216173926) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+
+  create_table "carousel_items", :force => true do |t|
+    t.integer  "page_carousel_id"
+    t.integer  "page_picture_id"
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -62,6 +71,50 @@ ActiveRecord::Schema.define(:version => 20130216173926) do
 
   add_index "faculties", ["email"], :name => "index_faculties_on_email", :unique => true
   add_index "faculties", ["reset_password_token"], :name => "index_faculties_on_reset_password_token", :unique => true
+
+  create_table "page_carousels", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "page_headings", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "page_items", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "item_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "page_pictures", :force => true do |t|
+    t.string   "name"
+    t.string   "picture"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "page_subheadings", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "page_texts", :force => true do |t|
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "past_projects", :force => true do |t|
     t.string   "title"
