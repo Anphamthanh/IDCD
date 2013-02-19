@@ -46,15 +46,15 @@
               <li class="nav-header">As a Student, you can:</li>
               <li><%= link_to "Login as a Student", new_student_session_path %></li>
               <li><%= link_to "Signup as a Student", new_student_registration_path %></li>
-              <li><%= link_to "Logout as a Student", destroy_student_session_path %></li>
+              <li><%= link_to "Logout as a Student", destroy_student_session_path, :method => :delete %></li>
               <li class="nav-header">As an Admin, you can:</li>
               <li><%= link_to "Login as an Admin", new_admin_session_path %></li>
               <li><%= link_to "Signup as an Admin", new_admin_registration_path %></li>
-              <li><%= link_to "Logout as an Admin", destroy_admin_session_path %></li>
+              <li><%= link_to "Logout as an Admin", destroy_admin_session_path, :method => :delete %></li>
               <li class="nav-header">As a Faculty Member, you can:</li>
               <li><%= link_to "Login as Faculty", new_faculty_session_path %></li>
               <li><%= link_to "Signup as Faculty", new_faculty_registration_path %></li>
-              <li><%= link_to "Logout as Faculty", destroy_faculty_session_path %></li>
+              <li><%= link_to "Logout as Faculty", destroy_faculty_session_path, :method => :delete %></li>
               <li class="nav-header">As a Sponsor, you can:</li>
               <li><%= link_to "Submit A Project", new_project_path  %></li>
             </ul>
