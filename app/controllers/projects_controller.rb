@@ -1,5 +1,16 @@
 class ProjectsController < ApplicationController
-  # GET /projects
+  # GET /projects/1/confirmation
+  # GET /projects/1/confirmation.json
+  def confirmation
+    @project = Project.find(params[:id])
+
+    respond_to do |format|
+      format.html # confirmation.html.erb
+      format.json { render json: @projects }
+    end
+  end
+
+   # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
@@ -56,7 +67,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to :action => "confirmation", :id => @project.id, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
