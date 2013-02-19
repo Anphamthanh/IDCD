@@ -67,6 +67,11 @@
 
       <footer>
         <p>&copy;2013 Georgia Institute of Technology </p>
+        <% if user_present %>
+          <p>User currently logged in (using current_user_type method) - <%= type_of_user %></p>
+        <% else %>
+          <p>No Logged In User</p>
+        <% end %>
       </footer>
 
     </div> <!-- /container -->
