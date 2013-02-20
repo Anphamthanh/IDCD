@@ -1,4 +1,54 @@
 class ProjectsController < ApplicationController
+  # GET /projects/1/complete
+  # GET /projects/1/complete.json
+  def complete
+    @project = Project.find(params[:id])
+    if @project.incomplete?
+      @company = Company.new
+    else
+      @company = Company.find(@project.company_id)
+    end
+
+    respond_to do |format|
+      format.html # complete.html.erb
+      format.json { render json: @projects }
+    end
+  end
+
+  # GET /projects/1/accept
+  # GET /projects/1/accept.json
+  def accept
+    @project = Project.find(params[:id])
+    @project.status_id = 3
+
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to :action => "index", notice: 'Project was successfully marked as Accepted.' }
+        format.json { render json: @projects }
+      else
+        format.html { redirect_to :action => "index", notice: 'Project could NOT be marked as Accepted.' }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # GET /projects/1/rejected
+  # GET /projects/1/rejected.json
+  def reject
+    @project = Project.find(params[:id])
+    @project.status_id = 4
+
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to :action => "index", notice: 'Project was successfully marked as Rejected.' }
+        format.json { render json: @projects }
+      else
+        format.html { redirect_to :action => "index", notice: 'Project could NOT be marked as Rejected.' }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /projects/1/confirmation
   # GET /projects/1/confirmation.json
   def confirmation
