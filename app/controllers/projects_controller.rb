@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
+    @company = Company.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,6 +47,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    if @project.incomplete?
+      @company = Company.new
+    else
+      @company = Company.find(@project.company_id)
+    end
   end
 
   # POST /projects
@@ -80,6 +86,15 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    # if project was previously incomplete. 
+    if @project.incomplete?
+      @company = Company.create(params[:company])
+      @project.company_id = @company.id
+      @project.status_id = 2
+    else
+      @company = Company.find(@project.company_id)
+      @company.update_attributes(params[:company])
+    end
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

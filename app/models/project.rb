@@ -5,4 +5,9 @@ class Project < ActiveRecord::Base
 
   mount_uploader :form, ProjectFormUploader
 
+  def incomplete?
+    return true if status_id == 1
+    return false
+  end
+
 end
