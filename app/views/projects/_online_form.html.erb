@@ -5,65 +5,68 @@
     <div class="span6">
       <div class="well">
 
-        <h3>Company Information</h3>
-        <div class="control-group">
-          <%= label_tag 'name', 'Company Name', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :name, :class => 'number_field', :required => true %>
+        <%= fields_for @company, :html => { :class => 'form-horizontal', :multipart => :true } do |c| %>
+          <h3>Company Information</h3>
+          
+          <div class="control-group">
+            <%= c.label :name, 'Company Name', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :name, :class => 'number_field', :required => true %>
+            </div>
           </div>
-        </div>
 
-        <h5>Technical Contact</h5>
-        <div class="control-group">
-          <%= label_tag 'technical_name', 'Name', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :technical_name, :class => 'number_field', :required => true %>
+          <h5>Technical Contact</h5>
+          <div class="control-group">
+            <%= c.label :technical_name, 'Name', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :technical_name, :class => 'number_field', :required => true %>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <%= label_tag 'technical_designation', 'Designation', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :technical_designation, :class => 'number_field', :required => true %>
+          <div class="control-group">
+            <%= c.label :technical_designation, 'Designation', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :technical_designation, :class => 'number_field', :required => true %>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <%= label_tag 'technical_email', 'Email', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :technical_email, :class => 'number_field', :required => true %>
+          <div class="control-group">
+            <%= c.label :technical_email, 'Email', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :technical_email, :class => 'number_field', :required => true, :type => "email"%>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <%= label_tag 'technical_phone', 'Phone Number', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :technical_phone, :class => 'number_field', :required => true %>
+          <div class="control-group">
+            <%= c.label :technical_phone, 'Phone Number', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :technical_phone, :class => 'number_field', :required => true %>
+            </div>
           </div>
-        </div>
 
-        <h5>Director Contact</h5>
-        <div class="control-group">
-          <%= label_tag 'director_name', 'Name', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :director_name, :class => 'number_field', :required => true %>
+          <h5>Director Contact</h5>
+          <div class="control-group">
+            <%= c.label :director_name, 'Name', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :director_name, :class => 'number_field', :required => true %>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <%= label_tag 'director_designation', 'Designation', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :director_designation, :class => 'number_field', :required => true %>
+          <div class="control-group">
+            <%= c.label :director_designation, 'Designation', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :director_designation, :class => 'number_field', :required => true %>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <%= label_tag 'director_email', 'Email', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :director_email, :class => 'number_field', :required => true %>
+          <div class="control-group">
+            <%= c.label :director_email, 'Email', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :director_email, :class => 'number_field', :required => true, :type => "email" %>
+            </div>
           </div>
-        </div>
-        <div class="control-group">
-          <%= label_tag 'director_phone', 'Phone Number', :class => 'control-label' %>
-          <div class="controls">
-            <%= text_field :company, :director_phone, :class => 'number_field', :required => true %>
+          <div class="control-group">
+            <%= c.label :director_phone, 'Phone Number', :class => 'control-label' %>
+            <div class="controls">
+              <%= c.text_field :director_phone, :class => 'number_field', :required => true %>
+            </div>
           </div>
-        </div>
+        <% end %>
 
       </div>
     </div>

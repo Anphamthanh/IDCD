@@ -30,6 +30,9 @@ IDCD::Application.routes.draw do
   resources :projects do
     member do
       get 'confirmation'
+      get 'complete'
+      get 'accept'
+      get 'reject'
     end
   end
 

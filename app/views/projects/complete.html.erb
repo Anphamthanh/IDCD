@@ -5,6 +5,14 @@
 
 <div class="row-fluid">
   <div class="span12">
+    <%= link_to "Open Submitted Form", @project.form.url, :target => "_blank", :class => "btn btn-primary" %>
+  </div>
+</div>
+
+<br />
+
+<div class="row-fluid">
+  <div class="span12">
     <%= render :partial => 'online_form' %>
   </div>
 </div>
