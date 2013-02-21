@@ -5,17 +5,17 @@ IDCD::Application.routes.draw do
 
   resources :page_items
 
-  resources :page_pictures
-
-  resources :page_carousels
-
-  resources :pages
+  resources :pages 
 
   resources :page_subheadings
 
   resources :page_headings
 
   resources :page_texts
+
+  resources :page_pictures
+
+  resources :page_carousels
 
   resources :project_statuses
 

@@ -2,7 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'New Page Text', new_page_text_path,  :class => 'btn btn-primary' %>
+<%= link_to 'New Page Text', new_page_text_path(page_id: params[:id]),  :class => 'btn btn-primary' %>
 
 
 <%= link_to 'New Page Subheading', new_page_subheading_path,  :class => 'btn btn-primary'  %>
