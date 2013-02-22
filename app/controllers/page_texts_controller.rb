@@ -41,6 +41,7 @@ class PageTextsController < ApplicationController
   # POST /page_texts.json
   def create
     @page_text = PageText.new(params[:page_text])
+  #  @page_item.create(params[:id], params[:page_id], "PageText")
 
     respond_to do |format|
       if @page_text.save
