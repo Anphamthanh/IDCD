@@ -42,7 +42,7 @@ class PageTextsController < ApplicationController
   def create
     @page_text = PageText.new(params[:page_text])
     @page_item = PageItem.create(:item_id => @page_text.id, :page_id => params[:page_id], :type => "PageText")
-
+    
     respond_to do |format|
       if @page_text.save
         format.html { redirect_to @page_text, notice: 'Page text was successfully created.' }
