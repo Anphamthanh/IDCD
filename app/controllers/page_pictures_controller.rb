@@ -44,7 +44,9 @@ class PagePicturesController < ApplicationController
 
     respond_to do |format|
       if @page_picture.save
-        format.html { redirect_to @page_picture, notice: 'Page picture was successfully created.' }
+        PageItem.create(:item_id => @page_picture.id, :page_id => params[:page][:page_id], :type => "PagePicture")
+
+        format.html { redirect_to :controller => 'pages', :action => 'edit', :id => params[:page][:page_id], notice: 'Page picture was successfully created.' }
         format.json { render json: @page_picture, status: :created, location: @page_picture }
       else
         format.html { render action: "new" }
