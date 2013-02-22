@@ -11,9 +11,19 @@
     </div>
   <% end %>
 
+  <% if params[:page_id].to_i == 1%>
+    <p>This text belongs to the Home Page</p>
+  <%end %>
+
+   <% if params[:page_id].to_i == 2%>
+    <p>This text belongs to the Expo Page</p>
+  <%end %>
+
+   <% if params[:page_id].to_i == 3%>
+    <p>This text belongs to Industry Page</p>
+  <%end %>
 
   <div class="field">
-    <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
   <div class="actions">
@@ -24,5 +34,4 @@
 
   </div>
 
-  <%= params[:page_id] %>
 <% end %>
