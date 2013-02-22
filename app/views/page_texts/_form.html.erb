@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= Page.find(params[:page_id]).name %>
+
   <% if params[:page_id].to_i == 1%>
     <p>This text belongs to the Home Page</p>
   <%end %>
@@ -23,16 +25,19 @@
     <p>This text belongs to Industry Page</p>
   <%end %>
 
+  <%= params[:page_id] %>
+
+  <div class="field">
+    <%= hidden_field(:page, :page_id, :value => params[:page_id]) %> 
+  </div>
+ 
   <div class="field">
     <%= f.text_area :description %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 
-  <!--   <div class="field">
-      <%= f.hidden_field :page_id, value: params[:page_id] %> 
-  </div>
-   -->
 
 <% end %>

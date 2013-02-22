@@ -41,11 +41,11 @@ class PageTextsController < ApplicationController
   # POST /page_texts.json
   def create
     @page_text = PageText.new(params[:page_text])
-    @page_item = PageItem.create(:item_id => @page_text.id, :page_id => params[:page_id], :type => "PageText")
-    
+
     respond_to do |format|
       if @page_text.save
-        format.html { redirect_to @page_text, notice: 'Page text was successfully created.' }
+        PageItem.create(:item_id => @page_text.id, :page_id => params[:page][:page_id], :type => "PageText")
+        format.html { redirect_to :controller => 'pages', :action => 'edit', :id => params[:page][:page_id], notice: 'Page text was successfully created.' }
         format.json { render json: @page_text, status: :created, location: @page_text }
       else
         format.html { render action: "new" }
