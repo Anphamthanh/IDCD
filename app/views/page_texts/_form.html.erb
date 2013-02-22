@@ -11,22 +11,10 @@
     </div>
   <% end %>
 
-  <%= Page.find(params[:page_id]).name %>
 
-  <% if params[:page_id].to_i == 1%>
-    <p>This text belongs to the Home Page</p>
-  <%end %>
+  <%=  Page.find(params[:page_id]).name %>
 
-   <% if params[:page_id].to_i == 2%>
-    <p>This text belongs to the Expo Page</p>
-  <%end %>
-
-   <% if params[:page_id].to_i == 3%>
-    <p>This text belongs to Industry Page</p>
-  <%end %>
-
-  <%= params[:page_id] %>
-
+  
   <div class="field">
     <%= hidden_field(:page, :page_id, :value => params[:page_id]) %> 
   </div>

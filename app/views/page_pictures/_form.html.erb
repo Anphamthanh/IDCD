@@ -10,17 +10,9 @@
       </ul>
     </div>
   <% end %>
- <% if params[:page_id].to_i == 1%>
-    <p>This picture belongs to the Home Page</p>
-  <%end %>
 
-   <% if params[:page_id].to_i == 2%>
-    <p>This picture belongs to the Expo Page</p>
-  <%end %>
+    <%= Page.find(params[:page_id]).name %>
 
-   <% if params[:page_id].to_i == 3%>
-    <p>This picture belongs to Industry Page</p>
-  <%end %>
 
   <div class="field">
     <%= f.label :name %><br />
