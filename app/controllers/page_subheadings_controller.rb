@@ -44,7 +44,8 @@ class PageSubheadingsController < ApplicationController
 
     respond_to do |format|
       if @page_subheading.save
-        format.html { redirect_to @page_subheading, notice: 'Page subheading was successfully created.' }
+        PageItem.create(:item_id => @page_subheading.id, :page_id => params[:page][:page_id], :type => "PageSubheading")
+        format.html { redirect_to :controller => 'pages', :action => 'edit', :id => params[:page][:page_id], notice: 'Page subheading was successfully created.' }
         format.json { render json: @page_subheading, status: :created, location: @page_subheading }
       else
         format.html { render action: "new" }

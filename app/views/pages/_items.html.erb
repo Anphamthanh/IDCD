@@ -10,12 +10,11 @@
   </tr>
 
 <!--   take out the line below and add to controller. but where?-->
-  <% @page_items = PageItem.all %>
 
 
 <% @page_items.each do |page_item| %>
   <tr>
-<% if page_item.item_id == params[:id] %>
+<% if page_item.page_id == params[:id] %>
     <td><%= page_item.page_id %></td>
     <td><%= page_item.item_id %></td>
     <td><%= page_item.type %></td>

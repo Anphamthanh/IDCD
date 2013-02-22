@@ -10,11 +10,14 @@
       </ul>
     </div>
   <% end %>
-  <%=  Page.find(params[:page_id]).name %>
 
+<%=  Page.find(params[:page_id]).name %>
+
+  <div class="field">
+   <%= hidden_field(:page, :page_id, :value => params[:page_id]) %> 
+  </div>
   
   <div class="field">
-    <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
   <div class="actions">
