@@ -1,4 +1,4 @@
-<h1>Listing page_items</h1>
+<h4>Items Related to This Page</h4>
 
 <table>
   <tr>
@@ -8,6 +8,10 @@
     <th></th>
     <th></th>
   </tr>
+
+<!--   take out the line below and add to controller. but where?-->
+  <% @page_items = PageItem.all %>
+
 
 <% @page_items.each do |page_item| %>
   <tr>

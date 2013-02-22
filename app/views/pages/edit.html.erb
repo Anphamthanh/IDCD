@@ -14,10 +14,10 @@
 
 <%= link_to 'New Page Carousel', new_page_carousel_path(page_id: params[:id]) ,  :class => 'btn btn-primary' %>
 
-<h4>Items Related to This Page</h4>
 
 <p>show all the items related to this page so they can be edited/deleted</p>
 
+ <%= render 'items' %>
 
 <%= link_to 'Show', @page %> |
 <%= link_to 'Back', pages_path %>
