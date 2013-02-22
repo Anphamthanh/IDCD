@@ -1,19 +1,22 @@
-<h1>Listing Page Itemes</h1>
+<h1>Listing page_items</h1>
 
 <table>
   <tr>
-    <th>Description</th>
+    <th>Page</th>
+    <th>Item</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @page_items.each do |page_text| %>
+<% @page_items.each do |page_item| %>
   <tr>
-    <td><%= page_text.description %></td>
-    <td><%= link_to 'Show', page_text %></td>
-    <td><%= link_to 'Edit', edit_page_text_path(page_text) %></td>
-    <td><%= link_to 'Destroy', page_text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= page_item.page_id %></td>
+    <td><%= page_item.item_id %></td>
+    <td><%= page_item.type %></td>
+    <td><%= link_to 'Show', page_item %></td>
+    <td><%= link_to 'Edit', edit_page_item_path(page_item) %></td>
+    <td><%= link_to 'Destroy', page_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

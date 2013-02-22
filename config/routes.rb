@@ -92,7 +92,7 @@ IDCD::Application.routes.draw do
   # root :to => 'welcome#index'
 #  root :to => 'high_voltage/pages#show', :id => 'about'
 
-  root :to =>'projects#index' 
+  root :to =>'pages#index' 
 
   # See how all your routes lay out with "rake routes"
 

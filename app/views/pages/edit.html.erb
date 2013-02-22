@@ -1,4 +1,7 @@
-<h1>Editing page</h1>
+<h1>Edit Your Page</h1>
+
+<h4>Edit the page name and add items you want to display</h4>
+
 
 <%= render 'form' %>
 
@@ -10,6 +13,8 @@
 <%= link_to 'New Page Picture', new_page_picture_path(page_id: params[:id]),  :class => 'btn btn-primary'  %>
 
 <%= link_to 'New Page Carousel', new_page_carousel_path(page_id: params[:id]) ,  :class => 'btn btn-primary' %>
+
+<h4>Items Related to This Page</h4>
 
 <p>show all the items related to this page so they can be edited/deleted</p>
 
