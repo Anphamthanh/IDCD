@@ -1,0 +1,19 @@
+<h1>Listing Page Items</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @page_items.each do |page_text| %>
+  <tr>
+    <td><%= if page_text.item_id %></td>
+    <td><%= link_to 'Show', page_text %></td>
+    <td><%= link_to 'Edit', edit_page_text_path(page_text) %></td>
+    <td><%= link_to 'Destroy', page_text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

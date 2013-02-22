@@ -7,4 +7,10 @@
 
 
 <%= link_to 'Edit', edit_page_text_path(@page_text) %> |
-<%= link_to 'Back', page_texts_path %>
+<!--<%= link_to 'Back', page_texts_path %>
+-->
+<%pt ="/pages/#{params[:page_id]}/edit"%> 
+
+
+<%= link_to 'Back', pt %>
+
