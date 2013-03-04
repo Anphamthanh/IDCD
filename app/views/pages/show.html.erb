@@ -13,7 +13,8 @@
  		<%end%>
 
  		<%if item.type == "PageSubheading" %>
-			<p>there is a subheading for you!</p>
+			<%= render partial: 'subheadings', locals: { subheading: PageSubheading.find(item.item_id) }%>
+
  		<%end%>
 
  		<%if item.type == "PageCarousel" %>
@@ -25,10 +26,11 @@
  		<%end%>
 
  		<%if item.type == "PageText" %>
-			<p>there is a text for you!</p>
+		<%= render partial: 'texts', locals: { text: PageText.find(item.item_id) }%>
  		<%end%>
 
 <% end%>
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+</br>
+<%= link_to 'Edit', edit_page_path(@page),:class => 'btn btn-primary' %> |
+<%= link_to 'Back', pages_path , :class => 'btn btn-primary'%>
