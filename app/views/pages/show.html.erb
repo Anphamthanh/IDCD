@@ -6,5 +6,29 @@
 </p>
 
 
+<% @page.page_items.each do |item| %>
+
+		<%if item.type == "PageHeading" %>
+		<%= render partial: 'headings', locals: { heading: PageHeading.find(item.item_id) }%>
+ 		<%end%>
+
+ 		<%if item.type == "PageSubheading" %>
+			<p>there is a subheading for you!</p>
+ 		<%end%>
+
+ 		<%if item.type == "PageCarousel" %>
+			<p>there is a carousel for you!</p>
+ 		<%end%>
+
+ 		<%if item.type == "PagePicture" %>
+			<p>there is a picture for you!</p>
+ 		<%end%>
+
+ 		<%if item.type == "PageText" %>
+			<p>there is a text for you!</p>
+ 		<%end%>
+
+<% end%>
+
 <%= link_to 'Edit', edit_page_path(@page) %> |
 <%= link_to 'Back', pages_path %>

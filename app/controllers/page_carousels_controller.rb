@@ -44,6 +44,8 @@ class PageCarouselsController < ApplicationController
 
     respond_to do |format|
       if @page_carousel.save
+        PageItem.create(:item_id => @page_carousel.id, :page_id => params[:page][:page_id], :type => "PageCarousel")
+
         format.html { redirect_to @page_carousel, notice: 'Page carousel was successfully created.' }
         format.json { render json: @page_carousel, status: :created, location: @page_carousel }
       else
