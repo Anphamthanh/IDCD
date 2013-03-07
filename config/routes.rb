@@ -43,7 +43,7 @@ IDCD::Application.routes.draw do
 
   resources :companies
 
-  resources :semesters do
+  resources :semesters, :path => "/semester_settings/" do
     resources :sections
   end
 
