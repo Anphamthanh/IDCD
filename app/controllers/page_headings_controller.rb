@@ -45,7 +45,7 @@ class PageHeadingsController < ApplicationController
     respond_to do |format|
       if @page_heading.save
         PageItem.create(:item_id => @page_heading.id, :page_id => params[:page][:page_id], :type => "PageHeading")
-        format.html { redirect_to @page_heading, notice: 'Page heading was successfully created.' }
+        format.html { redirect_to edit_page_path(params[:page][:page_id]), notice: 'Page heading was successfully created.' }
         format.json { render json: @page_heading, status: :created, location: @page_heading }
       else
         format.html { render action: "new" }

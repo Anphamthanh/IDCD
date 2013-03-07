@@ -17,7 +17,9 @@
     <td><%= page_item.item_id %></td>
     <td><%= page_item.type %></td>
     <td><%= link_to 'Show', page_item %></td>
-    <td><%= link_to 'Edit', edit_page_item_path(page_item) %></td>
+   
+ <td><%= link_to 'Edit', edit_item_page_item_path(page_item.id) %></td>
+
     <td><%= link_to 'Destroy', page_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <%end %>
   </tr>
