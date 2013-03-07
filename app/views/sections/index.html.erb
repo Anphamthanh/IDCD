@@ -13,8 +13,8 @@
   <tr>
     <td><%= section.name %></td>
     <td><%= section.semester_id %></td>
-    <td><%= link_to 'Show', semester_sections_path(@semester) %></td>
-    <td><%= link_to 'Edit', edit_semester_sections_path(@semester, section) %></td>
+    <td><%= link_to 'Show', semester_section_path(@semester, section) %></td>
+    <td><%= link_to 'Edit', edit_semester_section_path(@semester, section) %></td>
     <td><%# link_to 'Destroy', semester_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>

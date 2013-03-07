@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @section %> |
-<%= link_to 'Back', sections_path %>
+<%= link_to 'Show', semester_section_path(@semester, @section) %> |
+<%= link_to 'Back', semester_sections_path(@semester) %>
