@@ -61,7 +61,7 @@ class PageHeadingsController < ApplicationController
 
     respond_to do |format|
       if @page_heading.update_attributes(params[:page_heading])
-        format.html { redirect_to @page_heading, notice: 'Page heading was successfully updated.' }
+        format.html { redirect_to edit_page_path(params[:page][:page_id]), notice: 'Page heading was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,9 +75,9 @@ class PageHeadingsController < ApplicationController
   def destroy
     @page_heading = PageHeading.find(params[:id])
     @page_heading.destroy
-
+  
     respond_to do |format|
-      format.html { redirect_to page_headings_url }
+      format.html { redirect_to page_headings_url}
       format.json { head :no_content }
     end
   end

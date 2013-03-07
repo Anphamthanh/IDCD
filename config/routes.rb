@@ -11,6 +11,7 @@ IDCD::Application.routes.draw do
   resources :page_items do
     member do
       get 'edit_item'
+      delete 'delete_item'
     end
   end
 

@@ -27,6 +27,23 @@ def edit_item
     end
 end
 
+def delete_item
+    @page_item = PageItem.find(params[:id])
+
+    if @page_item.type == "PageHeading" 
+     PageHeading.destroy_all(@page_item.item_id)
+    end
+
+    if @page_item.type == "PageSubheading" 
+    end
+
+    if @page_item.type == "PageText" 
+    end
+
+    @page_item.destroy
+
+end
+
   # GET /page_items/1
   # GET /page_items/1.json
   def show
