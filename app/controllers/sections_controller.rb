@@ -50,7 +50,7 @@ class SectionsController < ApplicationController
 
     respond_to do |format|
       if @section.save
-        format.html { redirect_to semester_section_path(@semester, @section), notice: 'Section was successfully created.' }
+        format.html { redirect_to semester_path(@semester), notice: 'Section was successfully created.' }
         format.json { render json: @section, status: :created, location: @section }
       else
         format.html { render action: "new" }
@@ -80,11 +80,11 @@ class SectionsController < ApplicationController
   # DELETE /sections/1.json
   def destroy
     @semester = Semester.find(params[:semester_id])
-    @section = @semester.section.find(params[:id])
+    @section = @semester.sections.find(params[:id])
     @section.destroy
 
     respond_to do |format|
-      format.html { redirect_to sections_url }
+      format.html { redirect_to semester_path(@semester) }
       format.json { head :no_content }
     end
   end

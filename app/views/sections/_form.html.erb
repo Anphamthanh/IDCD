@@ -16,8 +16,9 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :semester_id %><br />
-    <%= f.number_field :semester_id %>
+    <%# f.label :semester_id %><br />
+    <%# f.number_field :semester_id %>
+    <%= f.hidden_field :semester_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
