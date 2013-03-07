@@ -1,11 +1,6 @@
 IDCD::Application.routes.draw do
 
   
-  resources :sections
-
-
-  get "project_setup/index"
-
   resources :carousel_items
 
   resources :page_items do
@@ -48,7 +43,10 @@ IDCD::Application.routes.draw do
 
   resources :companies
 
-  resources :semesters
+  resources :semesters do
+    resources :sections
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,7 +2,8 @@ class SectionsController < ApplicationController
   # GET /sections
   # GET /sections.json
   def index
-    @sections = Section.all
+    @semester = Semester.find(params[:semester_id])
+    @sections = @semester.sections
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +14,7 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
+    @semester = Semester.find(params[:semester_id])
     @section = Section.find(params[:id])
 
     respond_to do |format|
@@ -24,7 +26,9 @@ class SectionsController < ApplicationController
   # GET /sections/new
   # GET /sections/new.json
   def new
+    @semester = Semester.find(params[:semester_id])
     @section = Section.new
+    @section.semester_id = @semester.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +38,19 @@ class SectionsController < ApplicationController
 
   # GET /sections/1/edit
   def edit
-    @section = Section.find(params[:id])
+    @semester = Semester.find(params[:semester_id])
+    @section = @semester.section.find(params[:id])
   end
 
   # POST /sections
   # POST /sections.json
   def create
+    @semester = Semester.find(params[:semester_id])
     @section = Section.new(params[:section])
 
     respond_to do |format|
       if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
+        # format.html { redirect_to @section, notice: 'Section was successfully created.' }
         format.json { render json: @section, status: :created, location: @section }
       else
         format.html { render action: "new" }
@@ -56,7 +62,8 @@ class SectionsController < ApplicationController
   # PUT /sections/1
   # PUT /sections/1.json
   def update
-    @section = Section.find(params[:id])
+    @semester = Semester.find(params[:semester_id])
+    @section = @semester.section.find(params[:id])
 
     respond_to do |format|
       if @section.update_attributes(params[:section])
@@ -72,7 +79,8 @@ class SectionsController < ApplicationController
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
-    @section = Section.find(params[:id])
+    @semester = Semester.find(params[:semester_id])
+    @section = @semester.section.find(params[:id])
     @section.destroy
 
     respond_to do |format|
