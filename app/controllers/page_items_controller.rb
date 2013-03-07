@@ -10,6 +10,23 @@ class PageItemsController < ApplicationController
     end
   end
 
+def edit_item
+    @page_item = PageItem.find(params[:id])
+
+    if @page_item.type == "PageHeading" 
+       respond_to do |format|
+      format.html { redirect_to edit_page_heading_path(@page_item.item_id) }
+      format.json { head :no_content }
+    end
+    end
+
+    if @page_item.type == "PageSubheading" 
+    end
+
+    if @page_item.type == "PageText" 
+    end
+end
+
   # GET /page_items/1
   # GET /page_items/1.json
   def show

@@ -3,7 +3,11 @@ IDCD::Application.routes.draw do
   
   resources :carousel_items
 
-  resources :page_items
+  resources :page_items do
+    member do
+      get 'edit_item'
+    end
+  end
 
   resources :pages 
 
