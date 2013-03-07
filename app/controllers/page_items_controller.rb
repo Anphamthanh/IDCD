@@ -31,7 +31,8 @@ def delete_item
     @page_item = PageItem.find(params[:id])
 
     if @page_item.type == "PageHeading" 
-     PageHeading.destroy_all(@page_item.item_id)
+        @page_heading = PageHeading.find(@page_item.item_id)
+        @page_heading.destroy
     end
 
     if @page_item.type == "PageSubheading" 
