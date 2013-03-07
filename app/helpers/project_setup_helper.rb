@@ -1,0 +1,2 @@
+module ProjectSetupHelper
+end

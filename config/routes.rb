@@ -1,6 +1,11 @@
 IDCD::Application.routes.draw do
 
   
+  resources :sections
+
+
+  get "project_setup/index"
+
   resources :carousel_items
 
   resources :page_items
