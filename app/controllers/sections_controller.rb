@@ -63,11 +63,11 @@ class SectionsController < ApplicationController
   # PUT /sections/1.json
   def update
     @semester = Semester.find(params[:semester_id])
-    @section = @semester.section.find(params[:id])
+    @section = @semester.sections.find(params[:id])
 
     respond_to do |format|
       if @section.update_attributes(params[:section])
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
+        format.html { redirect_to semester_path(@semester), notice: 'Section was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
