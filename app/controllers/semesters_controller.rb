@@ -14,6 +14,7 @@ class SemestersController < ApplicationController
   # GET /semesters/1.json
   def show
     @semester = Semester.find(params[:id])
+    @faculty = Faculty.all
 
     respond_to do |format|
       format.html # show.html.erb
