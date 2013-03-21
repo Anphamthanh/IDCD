@@ -8,7 +8,7 @@
 
 
 # Stuff that needs to set up by an admin
-Semester.create(:name => "Spring 2013", :start => Time.local(2013, 1, 10), :end => Time.local(2013, 5, 2))
+Semester.create(:name => "Spring 2013", :start_date => Time.local(2013, 1, 10), :end_date => Time.local(2013, 5, 2))
 
 
 # Examples and demos
