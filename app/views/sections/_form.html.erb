@@ -1,26 +1,39 @@
-<%= form_for [@semester, @section] do |f| %>
-  <% if @section.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
+<%= form_for [@semester, @section], :html => { :class => 'form-horizontal' } do |f| %>
+    <% if @section.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
 
-      <ul>
-      <% @section.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% @section.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+
+    <div class="control-group">
+        <%= f.label :name, :class => 'control-label' %>
+        <div class="controls">
+            <%= f.text_field :name, :class => 'text_field' %>
+        </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%# f.label :semester_id %><br />
-    <%# f.number_field :semester_id %>
     <%= f.hidden_field :semester_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+    <div class="control-group">
+        <%= f.label :college_id, :class => 'control-label' %>
+        <div class="controls">
+            <%= f.select "college_id", College.find(:all).collect {|u| [u.name, u.id]}, :selected => @section.college_id %>
+        </div>
+    </div>
+
+
+    <div class="form-actions">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            semester_path(@semester), :class => 'btn' %>
+        </div>
+    <% end %>
+
+
