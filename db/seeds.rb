@@ -16,6 +16,11 @@ Page.create(:name => "Home")
 Page.create(:name => "Expo")
 Page.create(:name => "Industry")
 
+College.create(:name => "ECE")
+College.create(:name => "ID")
+College.create(:name => "ME")
+College.create(:name => "BME")
+
 Company.create(:name => "Boeing", :technical_name => "Survy")
 Project.create(:name => "Jet Packs", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", status_id: 1, :company_id => 1)
 PastProject.create(:title => "NASA Space Trains", :description => "Coming soon")

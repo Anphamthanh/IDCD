@@ -1,6 +1,9 @@
 IDCD::Application.routes.draw do
 
   
+  resources :colleges
+
+
   resources :carousel_items
 
   resources :page_items do
