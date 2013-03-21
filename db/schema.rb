@@ -159,13 +159,13 @@ ActiveRecord::Schema.define(:version => 20130321204251) do
     t.text     "design"
     t.text     "skills"
     t.text     "solutions"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
     t.boolean  "nda_required"
     t.boolean  "funding_commitment"
     t.integer  "company_id"
     t.string   "form"
     t.integer  "status_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "sections", :force => true do |t|
