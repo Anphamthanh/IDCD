@@ -14,6 +14,7 @@ class SemestersController < ApplicationController
   # GET /semesters/1.json
   def show
     @semester = Semester.find(params[:id])
+    @faculty = Faculty.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +45,7 @@ class SemestersController < ApplicationController
 
     respond_to do |format|
       if @semester.save
-        format.html { redirect_to @semester, notice: 'Semester was successfully created.' }
+        format.html { redirect_to semesters_path, notice: 'Semester was successfully created.' }
         format.json { render json: @semester, status: :created, location: @semester }
       else
         format.html { render action: "new" }

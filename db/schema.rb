@@ -78,6 +78,13 @@ ActiveRecord::Schema.define(:version => 20130319181306) do
   add_index "faculties", ["email"], :name => "index_faculties_on_email", :unique => true
   add_index "faculties", ["reset_password_token"], :name => "index_faculties_on_reset_password_token", :unique => true
 
+  create_table "faculty_sections", :force => true do |t|
+    t.integer  "faculty_id"
+    t.integer  "section_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "page_carousels", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
