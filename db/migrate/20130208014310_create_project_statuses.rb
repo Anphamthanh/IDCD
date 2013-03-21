@@ -1,6 +1,6 @@
 class CreateProjectStatuses < ActiveRecord::Migration
   def change
-    create_table :project_statuses do |t|
+    create_table :project_status_types do |t|
       t.string :name
 
       t.timestamps

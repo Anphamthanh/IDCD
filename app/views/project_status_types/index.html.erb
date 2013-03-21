@@ -1,0 +1,23 @@
+<h1>Listing project_statuses</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @project_status_types.each do |project_status_type| %>
+  <tr>
+    <td><%= project_status_type.name %></td>
+    <td><%= link_to 'Show', project_status %></td>
+    <td><%= link_to 'Edit', edit_project_status_type_path(project_status_type) %></td>
+    <td><%= link_to 'Destroy', project_status_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project status', new_project_status_type_path %>

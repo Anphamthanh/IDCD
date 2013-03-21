@@ -27,9 +27,9 @@ PastProject.create(:title => "NASA Space Trains", :description => "Coming soon")
 
 
 # Stuff that will not change without a significant code impact
-ProjectStatus.create(:name => "Incomplete")
-ProjectStatus.create(:name => "Submitted")
-ProjectStatus.create(:name => "Accepted")
-ProjectStatus.create(:name => "Rejected")
+ProjectStatusType.create(:name => "Incomplete")
+ProjectStatusType.create(:name => "Submitted")
+ProjectStatusType.create(:name => "Accepted")
+ProjectStatusType.create(:name => "Rejected")
 
 
