@@ -1,32 +1,74 @@
 <%- model_class = Project -%>
 <div class="page-header">
-  <h1>List of Projects</h1>
+    <h1>List of Projects</h1>
 </div>
 
-<% @projects.each do |project| %>
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="well">
-        <h4><%= project.name %></h4>
-        <hr />
 
-        <p><%= project.background %></p>
-        <% if not project.incomplete? %>
-          <p><strong>Submitted by: </strong><%= Company.find(project.company_id).name %></p>
-        <% end %>
-        <p><strong>Current status: </strong><%= ProjectStatus.find(project.status_id).name %></p>
-        <hr />
+<!--  ADMIN  -->
+<% if type_of_user == "admin" %>
+    <% @projects.each do |project| %>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="well">
+                    <h4><%= project.name %></h4>
+                    <hr />
 
-        <% if project.incomplete? %>
-          <%= link_to "Complete Details", complete_project_path(project), :class => 'btn btn-info' %>
-        <% else %>
-          <%= link_to "Edit Details", edit_project_path(project), :class => 'btn' %>
-          <%= link_to "Accept", accept_project_path(project), :class => 'btn btn-success' %>
-          <%= link_to "Reject", reject_project_path(project), :class => 'btn btn-danger' %>
+                    <p><%= project.background %></p>
+                    <% if not project.incomplete? %>
+                        <p><strong>Submitted by: </strong><%= Company.find(project.company_id).name %></p>
+                    <% end %>
+
+                    <p><strong>Current status: </strong><%= ProjectStatus.find(project.status_id).name %></p>
+                    <hr />
+
+                    <% if project.incomplete? %>
+                        <%= link_to "Complete Details", complete_project_path(project), :class => 'btn btn-info' %>
+                    <% else %>
+                        <%= link_to "Edit Details", edit_project_path(project), :class => 'btn' %>
+                        <%= link_to "Accept", accept_project_path(project), :class => 'btn btn-success' %>
+                        <%= link_to "Reject", reject_project_path(project), :class => 'btn btn-danger' %>
+                    <% end %>
+
+
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% end %>
+
+
+
+<!--  FACULTY  -->
+<% if type_of_user == "faculty" %>
+    <% @projects.each do |project| %>
+        <% if project.accepted? %>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="well">
+                        <h4><%= project.name %></h4>
+                        <hr />
+
+                        <p><%= project.background %></p>
+                        <% if not project.incomplete? %>
+                            <p><strong>Submitted by: </strong><%= Company.find(project.company_id).name %></p>
+                        <% end %>
+
+                        <p><strong>Current status: </strong><%= ProjectStatus.find(project.status_id).name %></p>
+                        <hr />
+
+                        <% if project.incomplete? %>
+                            <%= link_to "Complete Details", complete_project_path(project), :class => 'btn btn-info' %>
+                        <% else %>
+                            <%= link_to "Approve", faculty_approve_project_path(project, :faculty_id => current_faculty.id), :class => 'btn btn-success' %>
+                            <%= link_to "Reject", faculty_reject_project_path(project, :faculty_id => current_faculty.id), :class => 'btn btn-danger' %>
+                        <% end %>
+
+
+                    </div>
+                </div>
+            </div>
         <% end %>
-      </div>
-    </div>
-  </div>
+    <% end %>
 <% end %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")), new_project_path, :class => 'btn btn-primary' %>

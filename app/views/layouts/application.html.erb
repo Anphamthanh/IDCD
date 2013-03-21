@@ -45,7 +45,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">As an Admin, you can:</li>
-              <li><%= link_to "Manage Semester Settings (NEW)", semesters_path %></li>
+              <li><strong><%= link_to "Manage Semester Settings", semesters_path %></strong></li>
               <li><%= link_to "View Summary of Projects", projects_path %></li>
               <li><%= link_to "Login as an Admin", new_admin_session_path %></li>
               <li><%= link_to "Signup as an Admin", new_admin_registration_path %></li>
@@ -55,6 +55,7 @@
               <li><%= link_to "Signup as a Student", new_student_registration_path %></li>
               <li><%= link_to "Logout as a Student", destroy_student_session_path, :method => :delete %></li>
               <li class="nav-header">As a Faculty Member, you can:</li>
+              <strong><li><%= link_to "Approve Projects", projects_path %></li></strong>
               <li><%= link_to "Login as Faculty", new_faculty_session_path %></li>
               <li><%= link_to "Signup as Faculty", new_faculty_registration_path %></li>
               <li><%= link_to "Logout as Faculty", destroy_faculty_session_path, :method => :delete %></li>
@@ -71,7 +72,7 @@
       <footer>
         <p>&copy;2013 Georgia Institute of Technology </p>
         <% if user_present %>
-          <p>User currently logged in (using current_user_type method) - <%= type_of_user %></p>
+          <p>User currently logged in (using type_of_user method) - <%= type_of_user %></p>
         <% else %>
           <p>No Logged In User</p>
         <% end %>

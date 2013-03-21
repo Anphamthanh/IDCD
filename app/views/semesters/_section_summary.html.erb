@@ -27,7 +27,9 @@
                     <strong>Approved Projects</strong>
                     <ul>
                         <% section.faculties.each do |faculty| %>
-                            <li><%= faculty.email %></li>
+                            <% faculty.approved_projects.each do |p| %>
+                                <li><%= p.name %></li>
+                            <% end %>
                         <% end %>
                     </ul>
                 </div>

@@ -11,6 +11,8 @@ class Faculty < ActiveRecord::Base
 
   has_many :faculty_sections
   has_many :sections, :through => :faculty_sections
+  has_many :approvals
+  has_many :approved_projects, :through => :approvals, :source => "project"
 
   # find sections the faculty has been assigned to for the semester being passed
   def assigned_sections_for_semester(semester)
