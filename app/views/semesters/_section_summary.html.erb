@@ -1,0 +1,40 @@
+<% @semester.sections.sort { |a,b| a.name <=> b.name}.each do |section| %>
+
+    <div class="row-fluid">
+        <div class="span12 well">
+
+            <div class="row-fluid">
+                <div class="span10">
+                    <h4><%= "#{section.name}" %></h4>
+                </div>
+                <div class="span2">
+                    <h4><%= " " %><h6><%= "(#{section.college.name})" %></h6><h4>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row-fluid">
+                <div class="span6">
+                    <strong>Assigned Faculty</strong>
+                    <ul>
+                        <% section.faculties.each do |faculty| %>
+                            <li><%= faculty.email %></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="span6">
+                    <strong>Approved Projects</strong>
+                    <ul>
+                        <% section.faculties.each do |faculty| %>
+                            <li><%= faculty.email %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<% end %>
+

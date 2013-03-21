@@ -3,4 +3,7 @@ class Section < ActiveRecord::Base
 
   belongs_to :semester
   belongs_to :college
+
+  has_many :faculty_sections
+  has_many :faculties, :through => :faculty_sections
 end

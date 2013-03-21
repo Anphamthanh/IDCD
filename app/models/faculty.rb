@@ -9,6 +9,8 @@ class Faculty < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  has_many :faculty_sections
+  has_many :sections, :through => :faculty_sections
 
   # find sections the faculty has been assigned to for the semester being passed
   def assigned_sections_for_semester(semester)

@@ -1,0 +1,15 @@
+<div class="row-fluid">
+    <div class="span12">
+
+        <%= form_for @semester, :url => add_faculty_to_section_semester_path(@semester), :method => 'post' do |f| %>
+            <span><%= "Assign " %></span>
+            <%= select_tag 'faculty_id', options_for_select(Faculty.all.collect{ |u| [u.email, u.id] }), :class => "span4", :style => "margin-top:10px" %>
+            <span><%= " to " %></span>
+            <%= select_tag 'section_id', options_for_select(@semester.sections.collect{ |u| [u.name, u.id] }), :class => "span4", :style => "margin-top:10px" %>
+            <span><%= f.submit 'Save', :class => 'btn btn-primary' %></span>
+
+        <% end %>
+
+    </div>
+</div>
+

@@ -1,4 +1,18 @@
 class SemestersController < ApplicationController
+  # POST /semesters/1
+  # POST /semesters/1.json
+  def add_faculty_to_section
+    @semester = Semester.find(params[:id])
+    @section = Section.find(params[:section_id])
+    @faculty = Faculty.find(params[:faculty_id])
+    @section.faculties << @faculty
+
+    respond_to do |format|
+      format.html { redirect_to semester_path(@semester), notice: 'Semester was successfully created.' }
+      format.json { render json: @semester, status: :created, location: @semester }
+    end
+  end
+
   # GET /semesters
   # GET /semesters.json
   def index
