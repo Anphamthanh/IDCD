@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
   has_many :approvals
   has_many :approving_faculty, :through => :approvals, :source => "faculty"
   has_one :project_status
+  has_many :project_schools
+  has_many :schools, :through => :project_schools
 
   mount_uploader :form, ProjectFormUploader
 
