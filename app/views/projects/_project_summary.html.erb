@@ -1,0 +1,21 @@
+<div class="row-fluid">
+    <div class="span12">
+        <%= project.background %>
+    </div>
+</div>
+
+<% if not project.incomplete? %>
+    <div class="row-fluid">
+        <div class="span12">
+            <strong>Submitted by: </strong>
+            <%= Company.find(project.company_id).name %>
+        </div>
+    </div>
+<% end %>
+
+<div class="row-fluid">
+    <div class="span12">
+        <strong>Current status: </strong>
+        <%= project.project_status_name %>
+    </div>
+</div>

@@ -15,8 +15,8 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/faculty_accept
-  # GET /projects/1/faculty_accept.json
+  # GET /projects/1/faculty_approve
+  # GET /projects/1/faculty_approve.json
   def faculty_approve
     @project = Project.find(params[:id])
     @faculty = Faculty.find(params[:faculty_id])
@@ -44,9 +44,9 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/accept
-  # GET /projects/1/accept.json
-  def accept
+  # GET /projects/1/admin_accept
+  # GET /projects/1/admin_accept.json
+  def admin_accept
     @project = Project.find(params[:id])
     @status = ProjectStatus.where("project_id = ? AND semester_id = ?", params[:id], session[:current_semester]).first
     @status.accepted!
@@ -62,9 +62,9 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/rejected
-  # GET /projects/1/rejected.json
-  def reject
+  # GET /projects/1/admin_reject
+  # GET /projects/1/admin_reject.json
+  def admin_reject
     @project = Project.find(params[:id])
     @status = ProjectStatus.where("project_id = ? AND semester_id = ?", params[:id], session[:current_semester]).first
     @status.rejected!

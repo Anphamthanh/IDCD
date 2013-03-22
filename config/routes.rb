@@ -44,8 +44,8 @@ IDCD::Application.routes.draw do
     member do
       get 'confirmation'
       get 'complete'
-      get 'accept'
-      get 'reject'
+      get 'admin_accept'
+      get 'admin_reject'
       get 'faculty_approve'
       get 'faculty_reject'
     end
