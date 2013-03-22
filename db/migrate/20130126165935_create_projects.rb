@@ -11,7 +11,6 @@ class CreateProjects < ActiveRecord::Migration
       t.boolean  "funding_commitment"
       t.integer  "company_id"
       t.string   "form"
-      t.integer :status_id
 
       t.timestamps
     end

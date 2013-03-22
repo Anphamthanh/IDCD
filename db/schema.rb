@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321204251) do
+ActiveRecord::Schema.define(:version => 20130321233335) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -152,6 +152,14 @@ ActiveRecord::Schema.define(:version => 20130321204251) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "project_statuses", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "project_status_type_id"
+    t.integer  "semester_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "background"
@@ -163,7 +171,6 @@ ActiveRecord::Schema.define(:version => 20130321204251) do
     t.boolean  "funding_commitment"
     t.integer  "company_id"
     t.string   "form"
-    t.integer  "status_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

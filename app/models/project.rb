@@ -1,19 +1,34 @@
 class Project < ActiveRecord::Base
-  attr_accessible :background, :concept, :design, :name, :skills, :solutions, :nda_required, :funding_commitment, :company_id, :form, :status_id
+  attr_accessible :background, :concept, :design, :name, :skills, :solutions, :nda_required, :funding_commitment, :company_id, :form
 
   belongs_to :company
   has_many :approvals
   has_many :approving_faculty, :through => :approvals, :source => "faculty"
+  has_one :project_status
 
   mount_uploader :form, ProjectFormUploader
 
+  def project_status_name
+    return ProjectStatusType.find(project_status.project_status_type_id).name
+  end
+
   def incomplete?
-    return true if status_id == 1
+    return true if project_status.project_status_type_id == 1
+    return false
+  end
+
+  def complete?
+    return true if project_status.project_status_type_id == 2
     return false
   end
 
   def accepted?
-    return true if status_id == 3
+    return true if project_status.project_status_type_id == 3
+    return false
+  end
+
+  def rejected?
+    return true if project_status.project_status_type_id == 4
     return false
   end
 

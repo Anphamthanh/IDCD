@@ -18,7 +18,7 @@
                         <p><strong>Submitted by: </strong><%= Company.find(project.company_id).name %></p>
                     <% end %>
 
-                    <p><strong>Current status: </strong><%= ProjectStatusType.find(project.status_id).name %></p>
+                    <p><strong>Current status: </strong><%= project.project_status_name %></p>
                     <hr />
 
                     <% if project.incomplete? %>
@@ -53,7 +53,7 @@
                             <p><strong>Submitted by: </strong><%= Company.find(project.company_id).name %></p>
                         <% end %>
 
-                        <p><strong>Current status: </strong><%= ProjectStatusType.find(project.status_id).name %></p>
+                        <p><strong>Current status: </strong><%= project.project_status_name %></p>
                         <hr />
 
                         <% if project.incomplete? %>

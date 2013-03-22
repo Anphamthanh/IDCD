@@ -32,7 +32,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1/faculty_reject.json
   def faculty_reject
     @project = Project.find(params[:id])
-    @project.status_id = 4
 
     respond_to do |format|
       if @project.save
@@ -49,7 +48,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1/accept.json
   def accept
     @project = Project.find(params[:id])
-    @project.status_id = 3
+    @status = ProjectStatus.where("project_id = ? AND semester_id = ?", params[:id], session[:current_semester]).first
+    @status.accepted!
 
     respond_to do |format|
       if @project.save
@@ -66,7 +66,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1/rejected.json
   def reject
     @project = Project.find(params[:id])
-    @project.status_id = 4
+    @status = ProjectStatus.where("project_id = ? AND semester_id = ?", params[:id], session[:current_semester]).first
+    @status.rejected!
 
     respond_to do |format|
       if @project.save
@@ -138,21 +139,26 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @status = ProjectStatus.new
 
     if params[:online]
       # If submitted online, the project will have a company associated with it
       @company = Company.create(params[:company])
       @project.company_id = @company.id
-      @project.status_id = 2
+      @status.complete!
     elsif params[:manual]
       # If submitted by uploading a form, mark project as incomplete
-      @project.status_id = 1
+      @status.incomplete!
     else
       render action: "new"
     end
 
     respond_to do |format|
       if @project.save
+        logger.info "=================================================="
+        logger.info "in Create - save successful"
+	@status.project_id = @project.id
+	@status.save
         format.html { redirect_to :action => "confirmation", :id => @project.id, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
@@ -170,7 +176,8 @@ class ProjectsController < ApplicationController
     if @project.incomplete?
       @company = Company.create(params[:company])
       @project.company_id = @company.id
-      @project.status_id = 2
+      @status = ProjectStatus.where("project_id = ?", params[:id]).first
+      @status.complete!
     else
       @company = Company.find(@project.company_id)
       @company.update_attributes(params[:company])
@@ -178,6 +185,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
+	@status.save
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else

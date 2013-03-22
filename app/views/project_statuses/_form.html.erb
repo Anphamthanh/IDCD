@@ -1,0 +1,29 @@
+<%= form_for(@project_status) do |f| %>
+  <% if @project_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_status.errors.count, "error") %> prohibited this project_status from being saved:</h2>
+
+      <ul>
+      <% @project_status.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_id %><br />
+    <%= f.number_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :project_status_type_id %><br />
+    <%= f.number_field :project_status_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :semester_id %><br />
+    <%= f.number_field :semester_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
