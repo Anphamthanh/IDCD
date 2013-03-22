@@ -1,5 +1,8 @@
 IDCD::Application.routes.draw do
   
+  resources :schools
+
+
   resource :session do
     post :set_current_semester
   end

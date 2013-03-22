@@ -22,9 +22,9 @@
     <%= f.hidden_field :semester_id %>
 
     <div class="control-group">
-        <%= f.label :college_id, :class => 'control-label' %>
+        <%= f.label :school_id, :class => 'control-label' %>
         <div class="controls">
-            <%= f.select "college_id", College.find(:all).collect {|u| [u.name, u.id]}, :selected => @section.college_id %>
+            <%= f.select "school_id", School.find(:all).collect {|u| [u.name, u.id]}, :selected => @section.school_id %>
         </div>
     </div>
 
