@@ -1,8 +1,8 @@
 <div class="row-fluid">
     <div class="span12">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
-            <li><a href="#actions" data-toggle="tab">Actions</a></li>
+            <li class="active"><a href="#summary<%= "#{project.id}" %>" data-toggle="tab">Summary</a></li>
+            <li><a href="#actions<%= "#{project.id}" %>" data-toggle="tab">Actions</a></li>
         </ul>
     </div>
 </div>
@@ -10,10 +10,10 @@
 <div class="row-fluid">
     <div class="span12">
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="summary">
+            <div class="tab-pane fade in active" id="summary<%= "#{project.id}" %>">
                 <%= render :partial => 'project_summary', :locals => {:project => project} %>
             </div>
-            <div class="tab-pane fade in" id="actions">
+            <div class="tab-pane fade in" id="actions<%= "#{project.id}" %>">
                 <%= render :partial => 'project_actions', :locals => {:project => project} %>
             </div>
         </div>

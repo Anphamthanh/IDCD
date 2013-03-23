@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :background, :concept, :design, :name, :skills, :solutions, :nda_required, :funding_commitment, :company_id, :form
+  attr_accessible :background, :concept, :design, :name, :skills, :solutions, :nda_required, :funding_commitment, :company_id, :form, :semester_id
 
   belongs_to :company
   has_many :approvals
@@ -9,6 +9,10 @@ class Project < ActiveRecord::Base
   has_many :schools, :through => :project_schools
 
   mount_uploader :form, ProjectFormUploader
+
+  def semester
+    return Semester.find(self.semester_id)
+  end
 
   def project_status_name
     return ProjectStatusType.find(project_status.project_status_type_id).name

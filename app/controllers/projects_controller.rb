@@ -48,12 +48,35 @@ class ProjectsController < ApplicationController
   # GET /projects/1/admin_accept.json
   def admin_accept
     @project = Project.find(params[:id])
-    @status = ProjectStatus.where("project_id = ? AND semester_id = ?", params[:id], session[:current_semester]).first
-    @status.accepted!
+    selectedSchools = params[:selectedSchools]
+    selectedSemester = params[:selectedSemester]
+
+    if selectedSchools.blank?
+      flash[:error] ||= []
+      flash[:error] << "Project must be assigned to at least one school."
+    end
+    if selectedSemester.blank?
+      flash[:error] ||= []
+      flash[:error] << "Project must be assigned to at least one semester."
+    end
+
+    if flash[:error]
+      respond_to do |format|
+        format.html { redirect_to project_path(@project) and return}
+        format.json { render json: @project }
+      end
+    end
+     
+    @status = @project.project_status
+    @status.accept!
+
+    @project.schools << School.find(params[:selectedSchools])
+    @project.semester_id = selectedSemester[0]
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to :action => "index", notice: 'Project was successfully marked as Accepted.' }
+        @status.save
+        format.html { redirect_to project_path(@project), notice: 'Project was successfully marked as Accepted.' }
         format.json { render json: @projects }
       else
         format.html { redirect_to :action => "index", notice: 'Project could NOT be marked as Accepted.' }
@@ -66,12 +89,15 @@ class ProjectsController < ApplicationController
   # GET /projects/1/admin_reject.json
   def admin_reject
     @project = Project.find(params[:id])
-    @status = ProjectStatus.where("project_id = ? AND semester_id = ?", params[:id], session[:current_semester]).first
-    @status.rejected!
+    @status = @project.project_status
+    @status.reject!
+    @project.schools.clear
+    @project.semester_id = nil
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to :action => "index", notice: 'Project was successfully marked as Rejected.' }
+        @status.save
+        format.html { redirect_to project_path(@project), notice: 'Project was successfully marked as Rejected.' }
         format.json { render json: @projects }
       else
         format.html { redirect_to :action => "index", notice: 'Project could NOT be marked as Rejected.' }
@@ -155,8 +181,6 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        logger.info "=================================================="
-        logger.info "in Create - save successful"
 	@status.project_id = @project.id
 	@status.save
         format.html { redirect_to :action => "confirmation", :id => @project.id, notice: 'Project was successfully created.' }
@@ -176,7 +200,7 @@ class ProjectsController < ApplicationController
     if @project.incomplete?
       @company = Company.create(params[:company])
       @project.company_id = @company.id
-      @status = ProjectStatus.where("project_id = ?", params[:id]).first
+      @status = @project.project_status
       @status.complete!
     else
       @company = Company.find(@project.company_id)

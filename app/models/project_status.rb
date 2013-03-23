@@ -13,11 +13,11 @@ class ProjectStatus < ActiveRecord::Base
     self.project_status_type_id = 2
   end
 
-  def accepted!
+  def accept!
     self.project_status_type_id = 3
   end
 
-  def rejected!
+  def reject!
     self.project_status_type_id = 4
   end
 end
