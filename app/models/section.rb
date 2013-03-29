@@ -6,4 +6,9 @@ class Section < ActiveRecord::Base
 
   has_many :faculty_sections
   has_many :faculties, :through => :faculty_sections
+
+  #TODO maybe can be done using :throughs
+  def projects
+    school.projects
+  end
 end

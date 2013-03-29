@@ -32,6 +32,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1/faculty_reject.json
   def faculty_reject
     @project = Project.find(params[:id])
+    @faculty = Faculty.find(params[:faculty_id])
+    @project.approving_faculty.delete(@faculty)
 
     respond_to do |format|
       if @project.save

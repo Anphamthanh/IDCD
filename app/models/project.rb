@@ -10,6 +10,14 @@ class Project < ActiveRecord::Base
 
   mount_uploader :form, ProjectFormUploader
 
+  def does_faculty_approve(test_faculty)
+		if approving_faculty.include? test_faculty
+			return true
+		else
+			return false
+		end
+  end
+
   def semester
     return Semester.find(self.semester_id)
   end

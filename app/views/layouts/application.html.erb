@@ -90,10 +90,14 @@
             <footer>
             <p>&copy;2013 Georgia Institute of Technology </p>
             <% if user_present %>
-                <p>User currently logged in (using type_of_user method) - <%= type_of_user %></p>
+                <p>User currently logged in (using type_of_user method) - <%= logged_in_user.email %></p>
             <% else %>
                 <p>No Logged In User</p>
             <% end %>
+            semester set to: <%= session[:current_semester].name %>
+            <br />
+            <br />
+            <br />
             </footer>
 
         </div> <!-- /container -->
