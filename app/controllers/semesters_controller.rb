@@ -16,7 +16,7 @@ class SemestersController < ApplicationController
   # GET /semesters
   # GET /semesters.json
   def index
-    @semesters = Semester.all
+	  @semesters = Semester.find(:all, :order => "end_date")
 
     respond_to do |format|
       format.html # index.html.erb

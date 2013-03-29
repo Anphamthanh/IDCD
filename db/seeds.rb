@@ -10,6 +10,7 @@
 # Stuff that needs to set up by an admin
 Semester.create(:name => "Spring 2013", :start_date => Time.local(2013, 1, 10), :end_date => Time.local(2013, 5, 2))
 Semester.create(:name => "Fall 2012", :start_date => Time.local(2012, 8, 10), :end_date => Time.local(2012, 12, 22))
+Semester.create(:name => "Fall 2013", :start_date => Time.local(2013, 8, 10), :end_date => Time.local(2013, 12, 22))
 
 
 # Examples and demos
