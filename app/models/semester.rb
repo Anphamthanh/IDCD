@@ -1,6 +1,5 @@
 class Semester < ActiveRecord::Base
-  attr_accessible :end_date, :name, :start_date
-  
+  attr_accessible :end, :name, :start
   has_many :sections
   has_many :project_statuses
 
