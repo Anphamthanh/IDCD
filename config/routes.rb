@@ -13,8 +13,8 @@ IDCD::Application.routes.draw do
     end
   end
 
-  resources :pages 
-
+  resources :pages
+  
   resources :page_subheadings
 
   resources :page_headings
