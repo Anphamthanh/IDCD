@@ -4,26 +4,7 @@ IDCD::Application.routes.draw do
 
   resources :colleges
 
-  resources :carousel_items
-
-  resources :page_items do
-    member do
-      get 'edit_item'
-      delete 'delete_item'
-    end
-  end
-
   resources :pages
-  
-  resources :page_subheadings
-
-  resources :page_headings
-
-  resources :page_texts
-
-  resources :page_pictures
-
-  resources :page_carousels
 
   resources :project_statuses
 
