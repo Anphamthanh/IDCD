@@ -6,31 +6,6 @@
 </p>
 
 
-<% @page.page_items.each do |item| %>
-
-		<%if item.type == "PageHeading" %>
-		<%= render partial: 'headings', locals: { heading: PageHeading.find(item.item_id) }%>
- 		<%end%>
-
- 		<%if item.type == "PageSubheading" %>
-			<%= render partial: 'subheadings', locals: { subheading: PageSubheading.find(item.item_id) }%>
-
- 		<%end%>
-
- 		<%if item.type == "PageCarousel" %>
-			<p>there is a carousel for you!</p>
- 		<%end%>
-
- 		<%if item.type == "PagePicture" %>
-			<p>there is a picture for you!</p>
- 		<%end%>
-
- 		<%if item.type == "PageText" %>
-		<%= render partial: 'texts', locals: { text: PageText.find(item.item_id) }%>
- 		<%end%>
-
-<% end%>
-
 </br>
 <%= link_to 'Edit', edit_page_path(@page),:class => 'btn btn-primary' %> |
 <%= link_to 'Back', pages_path , :class => 'btn btn-primary'%>

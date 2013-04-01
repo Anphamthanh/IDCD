@@ -6,18 +6,5 @@
 <%= render 'form' %>
 
 
-<%= link_to 'New Page Heading', new_page_heading_path(page_id: params[:id]),  :class => 'btn btn-primary'  %>
-
-<%= link_to 'New Page Text', new_page_text_path(page_id: params[:id]),  :class => 'btn btn-primary' %>
-
-
-<%= link_to 'New Page Subheading', new_page_subheading_path(page_id: params[:id]),  :class => 'btn btn-primary'  %>
-
-<%= link_to 'New Page Picture', new_page_picture_path(page_id: params[:id]),  :class => 'btn btn-primary'  %>
-
-<%= link_to 'New Page Carousel', new_page_carousel_path(page_id: params[:id]) ,  :class => 'btn btn-primary' %>
-
- <%= render 'items' %>
-
 <%= link_to 'Show', @page %> |
 <%= link_to 'Back', pages_path %>

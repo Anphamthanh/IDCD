@@ -14,7 +14,6 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = Page.find(params[:id])
-    @page_headings = PageHeading.all
 
 
     respond_to do |format|
