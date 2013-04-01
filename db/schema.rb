@@ -38,15 +38,6 @@ ActiveRecord::Schema.define(:version => 20130322164626) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "carousel_items", :force => true do |t|
-    t.integer  "page_carousel_id"
-    t.integer  "page_picture_id"
-    t.string   "title"
-    t.string   "description"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.string   "technical_name"
@@ -84,45 +75,6 @@ ActiveRecord::Schema.define(:version => 20130322164626) do
     t.integer  "section_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "page_carousels", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "page_headings", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "page_items", :force => true do |t|
-    t.integer  "page_id"
-    t.integer  "item_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "type"
-  end
-
-  create_table "page_pictures", :force => true do |t|
-    t.string   "name"
-    t.string   "picture"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "page_subheadings", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "page_texts", :force => true do |t|
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "pages", :force => true do |t|
