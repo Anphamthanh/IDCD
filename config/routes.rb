@@ -1,17 +1,14 @@
 IDCD::Application.routes.draw do
   
-
-  
   resources :schools
 
   resources :colleges
 
   resources :pages do
+    resources :subheadings
     resources :headings
     resources :pictures
     resources :texts
-    resources :subheadings
-
   end
 
   resources :project_statuses

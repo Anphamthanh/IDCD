@@ -1,4 +1,4 @@
-<%= form_for(@subheading) do |f| %>
+<%= form_for [@page, @subheading] do |f| %>
   <% if @subheading.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subheading.errors.count, "error") %> prohibited this subheading from being saved:</h2>
