@@ -11,13 +11,13 @@
 <% @texts.each do |text| %>
   <tr>
     <td><%= text.description %></td>
-    <td><%= link_to 'Show', text %></td>
-    <td><%= link_to 'Edit', edit_text_path(text) %></td>
-    <td><%= link_to 'Destroy', text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', page_text_path(@page,text) %></td>
+    <td><%= link_to 'Edit', edit_page_text_path(@page,text) %></td>
+    <td><%= link_to 'Destroy', page_text_path(@page, text), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Text', new_text_path %>
+<%= link_to 'New Text', new_page_text_path %>
