@@ -1,5 +1,8 @@
 IDCD::Application.routes.draw do
   
+  resources :groups
+
+
   resources :schools
 
   resources :colleges

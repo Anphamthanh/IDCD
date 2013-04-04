@@ -33,7 +33,12 @@
                             <li><%= link_to "Past Project", "/past_projects"  %></li>
                             <li><%= link_to "Industry", "/pages/3"  %></li>
                             <li><%= link_to "Faculty", "/faculties/sign_in"  %></li>
-                            <li><%= link_to "Student", "/students/sign_in"  %></li>
+
+                        <% if type_of_user == "student" %>
+                                 <li><%= link_to "Student", "/groups"  %></li>
+                             <% else %>
+                                <li><%= link_to "Student", "/students/sign_in"  %></li>
+                            <% end %>
                         </ul>
 
                         <ul class="nav pull-right">
