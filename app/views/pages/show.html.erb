@@ -6,18 +6,26 @@
 </p>
 
 
+ <% if type_of_user == "admin" %>
 
-<%= link_to 'New Heading', new_page_heading_path(@page) %>
+	<%= link_to 'New Heading', new_page_heading_path(@page) %>
 
-</br>
-<%= link_to 'New Subheading', new_page_subheading_path(@page) %>
+	</br>
+	<%= link_to 'New Subheading', new_page_subheading_path(@page) %>
 
-</br>
+	</br>
 
-<%= link_to 'New Text', new_page_text_path(@page) %>
+	<%= link_to 'New Text', new_page_text_path(@page) %>
 
+	</br>
 
+	<%= link_to 'New Picture', new_page_picture_path(@page) %>
 
-</br>
+	</br>
 <%= link_to 'Edit', edit_page_path(@page),:class => 'btn btn-primary' %> |
 <%= link_to 'Back', pages_path , :class => 'btn btn-primary'%>
+
+
+  <% end %>
+
+

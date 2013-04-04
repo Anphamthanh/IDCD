@@ -1,10 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @picture.name %>
+<%= image_tag(@picture.name, :width => 600) if @picture.name.present? %>
 </p>
 
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+<%= link_to 'Edit', edit_page_picture_path(@picture) %> |
+<%= link_to 'Back', page_pictures_path %>
