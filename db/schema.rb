@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410014636) do
+ActiveRecord::Schema.define(:version => 20130410012955) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -82,13 +82,6 @@ ActiveRecord::Schema.define(:version => 20130410014636) do
     t.integer  "student_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "group_proposals", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "proposal_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "groups", :force => true do |t|
@@ -169,8 +162,8 @@ ActiveRecord::Schema.define(:version => 20130410014636) do
 
   create_table "proposals", :force => true do |t|
     t.integer  "propsal_status_type_id"
-    t.integer  "group_id"
     t.integer  "project_id"
+    t.integer  "group_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
   end

@@ -3,6 +3,7 @@ class CreateProposals < ActiveRecord::Migration
     create_table :proposals do |t|
       t.integer :propsal_status_type_id
       t.integer :project_id
+      t.integer :group_id
 
       t.timestamps
     end
