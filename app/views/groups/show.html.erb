@@ -1,10 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @group.name %>
-</p>
+<h1><%= @group.name %></h1>
+
+<h3>Listing   <%= @group.name %> Members</h3>
+<%= @group.id %>
+
+<table>
+  <tr>
+    <th>Student Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gm.each do |group_member| %>
+  <tr>
+  	<% if group_member.group_id == @group.id %>
+
+    <td><%= group_member.student_id %></td>
+    <td><%= link_to 'Show', group_member %></td>
+    <td><%= link_to 'Edit', edit_group_member_path(group_member) %></td>
+    <td><%= link_to 'Destroy', group_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end%>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Join Group', "/group_members/new"%> |
+<%= link_to 'Create Project Proposal', "/proposals/new"%> |
 
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to 'Back', groups_path %> |
+<%= link_to 'Destroy', group_path, method: :delete, data: { confirm: 'Are you sure?' } %>
