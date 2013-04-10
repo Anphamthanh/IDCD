@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :company
   has_many :approvals
+  has_many :proposals
   has_many :approving_faculty, :through => :approvals, :source => "faculty"
   has_one :project_status
   has_many :project_schools
