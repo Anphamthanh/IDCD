@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  propsal_status_type_id: 1
+  group_id: 1
+  project_id: 1
+
+two:
+  propsal_status_type_id: 1
+  group_id: 1
+  project_id: 1

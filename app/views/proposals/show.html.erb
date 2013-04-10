@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Propsal status type:</b>
+  <%= @proposal.propsal_status_type_id %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @proposal.group_id %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @proposal.project_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_proposal_path(@proposal) %> |
+<%= link_to 'Back', proposals_path %>
