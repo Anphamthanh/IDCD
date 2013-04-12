@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @gm = GroupMember.all
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @group }

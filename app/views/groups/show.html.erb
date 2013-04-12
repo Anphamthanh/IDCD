@@ -2,14 +2,14 @@
 
 <h1><%= @group.name %></h1>
 
-<h3>Listing   <%= @group.name %> Members</h3>
-<%= @group.id %>
+<h3>Listing Members of <%= @group.name %> </h3>
+<p>Group ID: <%= @group.id %></p>
 
 <table>
   <tr>
-    <th>Student Name</th>
-    <th></th>
-    <th></th>
+    <th>Student ID</th>
+    <th>Name</th>
+    <th>Email</th>
     <th></th>
   </tr>
 
@@ -18,18 +18,27 @@
   	<% if group_member.group_id == @group.id %>
 
     <td><%= group_member.student_id %></td>
+
+     <% if type_of_user == "admin" %>
+
+
     <td><%= link_to 'Show', group_member %></td>
     <td><%= link_to 'Edit', edit_group_member_path(group_member) %></td>
     <td><%= link_to 'Destroy', group_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <%end%>
     <% end%>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Join Group', "/group_members/new"%> |
-<%= link_to 'Create Project Proposal', "/proposals/new"%> |
 
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %> |
-<%= link_to 'Destroy', group_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Join Group',new_group_member_path(:group => @group.id ), :class => 'btn btn-primary' %> |
+<%= link_to 'Create Project Proposal', "/proposals/new",:class => 'btn btn-primary' %> |
+
+
+<%= link_to 'Edit', edit_group_path(@group), :class => 'btn btn-primary'  %> |
+<%= link_to 'Back', groups_path, :class => 'btn btn-primary'  %> |
+<%= link_to 'Delete This Group', group_path, :class => 'btn btn-danger
+' ,method: :delete, data: { confirm: 'Are you sure?' } %>

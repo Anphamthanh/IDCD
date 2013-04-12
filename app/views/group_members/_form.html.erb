@@ -12,14 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :group_id %><br />
+    <%= f.label :group_id, "Enter the Group ID" %><br />
     <%= f.number_field :group_id %>
   </div>
   <div class="field">
-    <%= f.label :student_id %><br />
+    <%= f.label :student_id , "Enter Your Student ID (ex. 902555555)"%><br />
     <%= f.number_field :student_id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Join Group",:class => 'btn btn-primary'%>
   </div>
 <% end %>
+

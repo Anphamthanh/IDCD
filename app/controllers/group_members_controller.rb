@@ -25,6 +25,7 @@ class GroupMembersController < ApplicationController
   # GET /group_members/new.json
   def new
     @group_member = GroupMember.new
+    @group = Group.find(params[:group])
 
     respond_to do |format|
       format.html # new.html.erb
