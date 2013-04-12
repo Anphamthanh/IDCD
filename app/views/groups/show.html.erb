@@ -2,8 +2,9 @@
 
 <h1><%= @group.name %></h1>
 
-<h3>Listing Members of <%= @group.name %> </h3>
 <p>Group ID: <%= @group.id %></p>
+
+<h3>Listing Members of <%= @group.name %> </h3>
 
 <table>
   <tr>
@@ -32,10 +33,36 @@
 <% end %>
 </table>
 
+<h3>Listing Proposals of <%= @group.name %> </h3>
+
+<table>
+  <tr>
+    <th>Status </th>
+    <th>Project Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+<% @proposals.each do |proposal| %>
+  <tr>
+    <% if proposal.group_id == @group.id %>
+
+    <td><%= proposal.propsal_status_type_id %></td>
+    <td><%= Project.find(proposal.project_id).name %></td>
+    <td><%= link_to 'Show', proposal %></td>
+    <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
+    <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+  </tr>
+<% end %>
+</table>
+
 
 
 <%= link_to 'Join Group',new_group_member_path(:group => @group.id ), :class => 'btn btn-primary' %> |
-<%= link_to 'Create Project Proposal', "/proposals/new",:class => 'btn btn-primary' %> |
+<%= link_to 'Create Project Proposal', new_proposal_path(:group => @group.id),:class => 'btn btn-primary' %> |
 
 
 <%= link_to 'Edit', edit_group_path(@group), :class => 'btn btn-primary'  %> |

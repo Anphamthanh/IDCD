@@ -16,6 +16,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @gm = GroupMember.all
 
+    @proposals = Proposal.all
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @group }
