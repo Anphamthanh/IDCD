@@ -1,2 +1,0 @@
-module PageSubheadingsHelper
-end
