@@ -6,11 +6,12 @@
 
 <h3>Listing Members of <%= @group.name %> </h3>
 
-<table>
+<table  class="table table-striped">
   <tr>
-    <th>Student ID</th>
     <th>Name</th>
     <th>Email</th>
+    <th>Student ID</th>
+
     <th></th>
   </tr>
 
@@ -18,11 +19,13 @@
   <tr>
   	<% if group_member.group_id == @group.id %>
 
-    <td><%= group_member.student_id %></td>
+    <td><%= group_member.name %></td>
+    <td><%= group_member.email %></td>
+
 
      <% if type_of_user == "admin" %>
 
-
+    <td><%= group_member.student_id %></td>
     <td><%= link_to 'Show', group_member %></td>
     <td><%= link_to 'Edit', edit_group_member_path(group_member) %></td>
     <td><%= link_to 'Destroy', group_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,7 +38,7 @@
 
 <h3>Listing Proposals of <%= @group.name %> </h3>
 
-<table>
+<table  class="table table-striped">
   <tr>
     <th>Status </th>
     <th>Project Name</th>
