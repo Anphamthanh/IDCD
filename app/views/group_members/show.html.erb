@@ -6,10 +6,17 @@
 </p>
 
 <p>
-  <b>Student:</b>
+  <b>Student ID:</b>
   <%= @group_member.student_id %>
 </p>
 
-
+<p>
+  <b>Name:</b>
+  <%= @group_member.name %>
+</p>
+<p>
+  <b>Email:</b>
+  <%= @group_member.email %>
+</p>
 <%= link_to 'Edit', edit_group_member_path(@group_member) %> |
 <%= link_to 'Back',  group_path(@group_member.group_id )  %>

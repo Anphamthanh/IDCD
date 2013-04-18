@@ -18,8 +18,18 @@
   </div>
   <br />
   <div class="field">
-    <%= f.label :student_id , "Enter Your Student ID (ex. 902555555)"%><br />
+    <%= f.label :student_id , "Enter Your Student ID (ex. 902555555)"%>
     <%= f.number_field :student_id %>
+  </div>
+<br />
+  <div class="field">
+    <%= f.label :name, "Enter Your Full Name (ex. George P Burdell)" %>
+    <%= f.text_field :name %>
+  </div>
+  <br />
+  <div class="field">
+    <%= f.label :email, "Enter Your GT Email (ex gburdell3@gatech.edu)" %>
+    <%= f.text_field :email %>
   </div>
   <div class="actions">
     <%= f.submit "Join Group",:class => 'btn btn-primary'%>
