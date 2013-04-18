@@ -25,6 +25,8 @@ class ProposalsController < ApplicationController
   # GET /proposals/new.json
   def new
     @proposal = Proposal.new
+    @group = Group.find(params[:group])
+
 
     respond_to do |format|
       format.html # new.html.erb
