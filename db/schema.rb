@@ -171,11 +171,11 @@ ActiveRecord::Schema.define(:version => 20130418145051) do
   end
 
   create_table "proposals", :force => true do |t|
-    t.integer  "propsal_status_type_id"
+    t.integer  "proposal_status_type_id"
     t.integer  "project_id"
     t.integer  "group_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "schools", :force => true do |t|

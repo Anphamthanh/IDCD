@@ -43,6 +43,8 @@ class ProposalsController < ApplicationController
   # POST /proposals.json
   def create
     @proposal = Proposal.new(params[:proposal])
+    @proposal.proposal_status_type_id = 1
+
 
     respond_to do |format|
       if @proposal.save
