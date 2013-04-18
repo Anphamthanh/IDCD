@@ -12,17 +12,29 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :propsal_status_type_id %><br />
+    <%= f.label :propsal_status_type_id %>
     <%= f.number_field :propsal_status_type_id %>
   </div>
-  <div class="field">
-    <%= f.label :group_id %><br />
-    <%= f.number_field :group_id %>
+<br />
+   <div class="field">
+    <%= f.label :group_id %>
+    <%= params[:group]%>
+    <%= f.hidden_field :group_id , :value =>  params[:group] %>
   </div>
-  <div class="field">
-    <%= f.label :project_id %><br />
-    <%= f.number_field :project_id %>
-  </div>
+<br />
+
+
+<%= f.hidden_field :project_id %>
+
+    <div class="control-group">
+        <%= f.label :project_id, :class => 'control-label' %>
+        <div class="controls">
+            <%= f.select "project_id", Project.find(:all).collect {|u| [u.name, u.id]}, :selected => @proposal.project_id %>
+        </div>
+    </div>
+
+
+
   <div class="actions">
     <%= f.submit "Create Proposal",:class => 'btn btn-primary'%>
   </div>
