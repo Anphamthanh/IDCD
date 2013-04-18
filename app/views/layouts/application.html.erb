@@ -34,7 +34,7 @@
                             <li><%= link_to "Industry", "/pages/3"  %></li>
                             <li><%= link_to "Faculty", "/faculties/sign_in"  %></li>
 
-                            <% if type_of_user == "student" %>
+                            <% if type_of_user == "student" || type_of_user == "admin" %>
                                
                                 <li><%= link_to "Student", "/groups/"  %></li>
 
