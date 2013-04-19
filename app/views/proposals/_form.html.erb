@@ -29,7 +29,27 @@
         </div>
     </div>
 
+   <div class="control-group">
+          <%= f.label :what, " What is your understanding of the project? (Please use your own words, do not Copy from the project descriptions submitted by the sponsor)" %>
+          <div class="controls">
+            <%= f.text_area :what, :class => 'text_area', :rows => '3', :required => true %>
+          </div>
+    </div>
 
+     <div class="control-group">
+          <%= f.label :who,  "Tell us about yourself, your team skills/expertise, how it matches the project’s needs"%>
+          <div class="controls">
+            <%= f.text_area :who, :class => 'text_area', :rows => '3', :required => true %>
+          </div>
+    </div>
+
+
+   <div class="control-group">
+          <%= f.label :why,"Why this project for your team? (Sample answers: interested to work full-time with the company, prior co-op internship experience with sponsor, project is really exciting, any other reason)" %>
+          <div class="controls">
+            <%= f.text_area :why, :class => 'text_area', :rows => '3', :required => true %>
+          </div>
+    </div>
 
   <div class="actions">
     <%= f.submit "Create Proposal",:class => 'btn btn-primary'%>

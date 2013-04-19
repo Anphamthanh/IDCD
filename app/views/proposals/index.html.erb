@@ -1,8 +1,8 @@
 <h1>Listing proposals</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th>Propsal status type</th>
+    <th>Propsal Status</th>
     <th>Group</th>
     <th>Project</th>
     <th></th>
@@ -12,10 +12,10 @@
 
 <% @proposals.each do |proposal| %>
   <tr>
-    <td><%= proposal.proposal_status_type_id %></td>
-    <td><%= proposal.group_id %></td>
-    <td><%= proposal.project_id %></td>
-    <td><%= link_to 'Show', proposal %></td>
+    <td><%= ProposalStatusType.find(proposal.proposal_status_type_id).name %></td>
+    <td><%= Group.find(proposal.group_id).name %></td>
+    <td><%= Project.find(proposal.project_id).name %></td>
+    <td><%= link_to 'View Proposal', proposal%></td>
     <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
     <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

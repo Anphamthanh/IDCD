@@ -12,7 +12,13 @@ IDCD::Application.routes.draw do
   resources :proposal_status_types
 
 
-  resources :proposals
+  resources :proposals do
+    member do
+      get 'admin_accept'
+      get 'admin_reject'
+
+    end
+  end
 
 
   resources :groups

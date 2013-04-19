@@ -1,4 +1,38 @@
 class ProposalsController < ApplicationController
+
+    # GET /proposal/1/admin_accept
+  # GET /proposal/1/admin_accept.json
+  def admin_accept
+    @proposal = Proposal.find(params[:id])
+
+    @proposal.proposal_status_type_id = 2
+    respond_to do |format|
+      if @proposal.save
+        format.html { redirect_to proposal_path(@proposal), notice: 'Proposal was successfully marked as Accepted.' }
+        format.json { render json: @proposals }
+      else
+        format.html { redirect_to :action => "index", notice: 'Proposal could NOT be marked as Accepted.' }
+        format.json { render json: @proposal.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+     # GET /proposal/1/admin_reject
+  # GET /proposal/1/admin_reject.json
+  def admin_reject
+    @proposal = Proposal.find(params[:id])
+    @proposal.proposal_status_type_id = 3
+    respond_to do |format|
+      if @proposal.save
+        format.html { redirect_to proposal_path(@proposal), notice: 'Proposal was successfully marked as Rejected.' }
+        format.json { render json: @proposals }
+      else
+        format.html { redirect_to :action => "index", notice: 'Proposal could NOT be marked as Rejected.' }
+        format.json { render json: @proposal.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /proposals
   # GET /proposals.json
   def index
