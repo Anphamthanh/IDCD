@@ -20,7 +20,7 @@
 	    </div>
 		<div id="utilityBar">
 				<ul id="utilityNav">
-					<li id="search">
+					<!--<li id="search">
 						<form action="/search" method="get">
 						<input name="q" id="q" value="Search" type="text" />
 						<input name="x" value="0" type="hidden" />
@@ -31,7 +31,7 @@
 						<input name="proxystylesheet" value="default_frontend" type="hidden" />
 						<input name="proxyreload" value="1" type="hidden" />
 						</form>
-					</li>
+					</li>-->
 					<li>
 						<a href="/faculties/sign_in">Faculty</a>
 					</li>
@@ -91,7 +91,6 @@
 			            <li><%= link_to "Submit A Project", new_project_path  %></li>
 				</ul>
 			</div>
-        		<!--<h1>Title Here</h1>-->
 			<div id="content">
 				<a name="start"></a>
 				<div id="columnPrimary" class="t1 l1 w8 textEm tallestBlock">
@@ -99,24 +98,22 @@
                 		</div>
 			</div>
             	</div>
-	<center>
-            <footer>
-            <p>&copy;2013 Georgia Institute of Technology </p>
-            <% if user_present %>
-                <p>User currently logged in (using type_of_user method) - <%= logged_in_user.email %></p>
-            <% else %>
-                <p>No Logged In User</p>
-            <% end %>
-            semester set to: <%= session[:current_semester].name %>
-            <br />
-            <br />
-            <br />
-            </footer>
-	</center>
+	    	<div id="footer">
+			<center>
+	    		&copy;2013 Georgia Institute of Technology
+			<br>
+	    		<% if user_present %>
+			User currently logged in (using type_of_user method) - <%= logged_in_user.email %></p>
+	    		<% else %>
+			No Logged In User
+	    		<% end %>
+			<br>
+	    		semester set to: <%= session[:current_semester].name %>
+			</center>
+	    	</div>
         <!-- Javascripts
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <%= javascript_include_tag "application" %>
-
     </body>
 </html>
