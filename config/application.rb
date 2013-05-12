@@ -11,7 +11,11 @@ end
 
 module IDCD
   class Application < Rails::Application
+
     config.assets.initialize_on_precompile = false
+
+    # GT CAS login
+    config.rubycas.cas_base_url = "https://login.gatech.edu/cas/"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

@@ -107,6 +107,11 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.4)
+    rubycas-client (2.2.1)
+      activesupport
+    rubycas-client-rails (0.1.0)
+      rails (>= 3.0.0)
+      rubycas-client (>= 2.2.0)
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -150,6 +155,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 3.2.11)
+  rubycas-client-rails
   sass-rails (~> 3.2.3)
   therubyracer
   twitter-bootstrap-rails
