@@ -1,5 +1,8 @@
 IDCD::Application.routes.draw do
   
+  resources :users
+
+
   resources :proposal_statuses
 
   resources :group_proposals
