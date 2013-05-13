@@ -20,26 +20,9 @@
       </div>
       <div id="utilityBar">
         <ul id="utilityNav">
-          <!--<li id="search">
-          <form action="/search" method="get">
-            <input name="q" id="q" value="Search" type="text" />
-            <input name="x" value="0" type="hidden" />
-            <input name="y" value="0" type="hidden" />
-            <input name="site" value="default_collection" type="hidden" />
-            <input name="client" value="default_frontend" type="hidden" />
-            <input name="output" value="xml_no_dtd" type="hidden" />
-            <input name="proxystylesheet" value="default_frontend" type="hidden" />
-            <input name="proxyreload" value="1" type="hidden" />
-          </form>
-          </li>-->
           <li>
           <a href="/faculties/sign_in">Faculty</a>
           </li>
-          <% if type_of_user == "student" || type_of_user == "admin" %>
-            <li><%= link_to "Student", "/groups/"  %></li>
-          <% else %>
-            <li><%= link_to "Student", "/students/sign_in"  %></li>
-          <% end %>
           <li>
           <a href="/pages/3">Sponsors</a>
           </li>
@@ -75,18 +58,9 @@
             <li><%= link_to "Manage Semester Settings", semesters_path %></li>
             <li><%= link_to "View Summary of Projects", projects_path %></li>
             <li><%= link_to "View Summary of Proposals", proposals_path %></li>
-            <li><%= link_to "Login as an Admin", new_admin_session_path %></li>
-            <li><%= link_to "Signup as an Admin", new_admin_registration_path %></li>
-            <li><%= link_to "Logout as an Admin", destroy_admin_session_path, :method => :delete %></li>
             <h2>As a Student, you can:</h2>
-            <li><%= link_to "Login as a Student", new_student_session_path %></li>
-            <li><%= link_to "Signup as a Student", new_student_registration_path %></li>
-            <li><%= link_to "Logout as a Student", destroy_student_session_path, :method => :delete %></li>
             <h2>As a Faculty Member, you can:</h2>
             <li><%= link_to "Approve Projects", projects_path %></li>
-            <li><%= link_to "Login as Faculty", new_faculty_session_path %></li>
-            <li><%= link_to "Signup as Faculty", new_faculty_registration_path %></li>
-            <li><%= link_to "Logout as Faculty", destroy_faculty_session_path, :method => :delete %></li>
             <h2>As a Sponsor, you can:</h2>
             <li><%= link_to "Submit A Project", new_project_path  %></li>
           </ul>
@@ -99,7 +73,7 @@
         </div>
       </div>
 
-      
+
       <div id="footer">
         Current user:
         <% if session[:cas_user] %>
@@ -110,12 +84,6 @@
 
         <center>
           &copy;2013 Georgia Institute of Technology
-          <br>
-          <% if user_present %>
-            User currently logged in (using type_of_user method) - <%= logged_in_user.email %></p>
-          <% else %>
-            No Logged In User
-          <% end %>
           <br>
           semester set to: <%= session[:current_semester].name %>
         </center>
