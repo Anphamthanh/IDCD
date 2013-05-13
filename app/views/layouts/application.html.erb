@@ -33,6 +33,14 @@
 						</form>
 					</li>-->
 					<li>
+						<a href="/semester_settings">Select Semester</a>
+							<ul>
+								<li><a href="/semester_settings/3">Fall 2013</a></li>
+								<li><a href="/semester_settings/1">Spring 2013</a></li>
+								<li><a href="/semester_settings/2">Fall 2012</a></li>
+							</ul>
+					</li>
+					<li>
 						<a href="/faculties/sign_in">Faculty</a>
 					</li>
 					<% if type_of_user == "student" || type_of_user == "admin" %>
@@ -53,7 +61,7 @@
 						<a href="/pages/1">Home</a>
 					</li>
                 		</ul>
-                        	<ul class="nav pull-right">
+                        	<!--<ul class="nav pull-right">
                             	<% session[:current_semester] ||= Semester.first %>
                             	<div class="btn-group">
                                 	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -64,7 +72,7 @@
                                         	<li><%= link_to "#{semester.name}", "#" %></li>
                                     		<% end %>
                                 	</ul>
-                            	</div>
+                            	</div>-->
 			</div>
 		</div>
 		<div id="meat">
@@ -108,7 +116,7 @@
 			No Logged In User
 	    		<% end %>
 			<br>
-	    		semester set to: <%= session[:current_semester].name %>
+	    		Semester Set To: <%= session[:current_semester].name %>
 			</center>
 	    	</div>
         <!-- Javascripts

@@ -66,6 +66,15 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 #utilityNav li a { background: url('bgUtilityNavItem.gif') 2px no-repeat; color: #957b33; padding: 6px 5px 7px 10px; text-decoration: none; }
 #utilityNav li a:hover { color: #000; }
 
+#utilityNav ul {display: none;}
+#utilityNav li:hover > ul { display:block;}
+#utilityNav ul:after {content: ""; clear:both; display: block;}
+#utilityNav ul {background: #fafafa; padding: 0; position: absolute; top: 100%; left: -21px;}
+#utilityNav ul li {float: left; position: relative; width: 112px; border-bottom: 1px solid #999; border-left: 1px solid #999; border-right: 1px solid #999; padding: 5px 0 5px 0; text-align: center;}
+#utilityNav ul li a {padding: 5px 5px; background:#fafafa; color: #999;}
+#utilityNav ul li a:hover{background:#fafafa; color: #000;}
+
+
 #utilityNav #search { background: url('bgUtilityNavItem.gif') 2px no-repeat; padding: 0 0 0 16px; width: 194px; }
 #utilityNav #search form { display: inline; }
 #utilityNav #search input { background: #fff; border: 1px solid #d7b350; font-size: 10px; margin-top: 3px;  padding: 2px 2px 2px 5px; width: 165px; }
