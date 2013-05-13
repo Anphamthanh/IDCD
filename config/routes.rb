@@ -1,16 +1,16 @@
 IDCD::Application.routes.draw do
   
-  resources :proposal_statuses
+  resources :users
+  resources :students, :controller => 'users'
+  resources :faculties, :controller => 'users'
 
+  resources :proposal_statuses
 
   resources :group_proposals
 
-
   resources :group_members
 
-
   resources :proposal_status_types
-
 
   resources :proposals do
     member do
@@ -20,9 +20,7 @@ IDCD::Application.routes.draw do
     end
   end
 
-
   resources :groups
-
 
   resources :schools
 
@@ -36,12 +34,6 @@ IDCD::Application.routes.draw do
   end
 
   resources :project_statuses
-
-  devise_for :faculties
-
-  devise_for :admins
-
-  devise_for :students
 
   resources :past_projects
 
@@ -65,6 +57,8 @@ IDCD::Application.routes.draw do
     resources :sections
   end
 
+  match 'home/login_with_CAS' => 'home#login_with_CAS'
+  match 'home/logout' => 'home#logout'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
