@@ -10,121 +10,6 @@
     <%= stylesheet_link_tag "application", :media => "all" %>-->
     <link rel="stylesheet" href="/assets/application.css" media="screen" type="text/css">
 
-<<<<<<< HEAD
-</head>
-    <body>
-        <div id="header">
-            <div id="logoWrapper">
-		<h2 id="logo">
-			<a href="www.gatech.edu"> Georgia Institute of Technology</a>
-		</h2>
-	    </div>
-		<div id="utilityBar">
-				<ul id="utilityNav">
-					<!--<li id="search">
-						<form action="/search" method="get">
-						<input name="q" id="q" value="Search" type="text" />
-						<input name="x" value="0" type="hidden" />
-						<input name="y" value="0" type="hidden" />
-						<input name="site" value="default_collection" type="hidden" />
-						<input name="client" value="default_frontend" type="hidden" />
-						<input name="output" value="xml_no_dtd" type="hidden" />
-						<input name="proxystylesheet" value="default_frontend" type="hidden" />
-						<input name="proxyreload" value="1" type="hidden" />
-						</form>
-					</li>-->
-					<li>
-						<a href="/semester_settings">Select Semester</a>
-							<ul>
-								<li><a href="/semester_settings/3">Fall 2013</a></li>
-								<li><a href="/semester_settings/1">Spring 2013</a></li>
-								<li><a href="/semester_settings/2">Fall 2012</a></li>
-							</ul>
-					</li>
-					<li>
-						<a href="/faculties/sign_in">Faculty</a>
-					</li>
-					<% if type_of_user == "student" || type_of_user == "admin" %>
-                               	 		<li><%= link_to "Student", "/groups/"  %></li>
-                            		<% else %>
-                                		<li><%= link_to "Student", "/students/sign_in"  %></li>
-                            		<% end %>
-					<li>
-						<a href="/pages/3">Sponsors</a>
-					</li>
-					<li>
-						<a href="/past_projects">Past Projects</a>
-					</li>
-					<li>
-						<a href="/pages/2">Expo</a>
-					</li>
-					<li>
-						<a href="/pages/1">Home</a>
-					</li>
-                		</ul>
-                        	<!--<ul class="nav pull-right">
-                            	<% session[:current_semester] ||= Semester.first %>
-                            	<div class="btn-group">
-                                	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                    	<%= "#{session[:current_semester].name} " %><span class="caret"></span>
-                                	</a>
-                                	<ul class="dropdown-menu">
-                                    		<% Semester.active.each do |semester| %>
-                                        	<li><%= link_to "#{semester.name}", "#" %></li>
-                                    		<% end %>
-                                	</ul>
-                            	</div>-->
-			</div>
-		</div>
-		<div id="meat">
-			<div id="support">
-				<a name="navigation"></a>
-				<ul id="mainNav">
-			            <h2>As an Admin, you can:</h2>
-			            <li><%= link_to "Manage Semester Settings", semesters_path %></li>
-			            <li><%= link_to "View Summary of Projects", projects_path %></li>
-			             <li><%= link_to "View Summary of Proposals", proposals_path %></li>
-			            <li><%= link_to "Login as an Admin", new_admin_session_path %></li>
-			            <li><%= link_to "Signup as an Admin", new_admin_registration_path %></li>
-			            <li><%= link_to "Logout as an Admin", destroy_admin_session_path, :method => :delete %></li>
-			            <h2>As a Student, you can:</h2>
-			            <li><%= link_to "Login as a Student", new_student_session_path %></li>
-			            <li><%= link_to "Signup as a Student", new_student_registration_path %></li>
-			            <li><%= link_to "Logout as a Student", destroy_student_session_path, :method => :delete %></li>
-			            <h2>As a Faculty Member, you can:</h2>
-			            <li><%= link_to "Approve Projects", projects_path %></li>
-			            <li><%= link_to "Login as Faculty", new_faculty_session_path %></li>
-			            <li><%= link_to "Signup as Faculty", new_faculty_registration_path %></li>
-			            <li><%= link_to "Logout as Faculty", destroy_faculty_session_path, :method => :delete %></li>
-			            <h2>As a Sponsor, you can:</h2>
-			            <li><%= link_to "Submit A Project", new_project_path  %></li>
-				</ul>
-			</div>
-			<div id="content">
-				<a name="start"></a>
-				<div id="columnPrimary" class="t1 l1 w8 textEm tallestBlock">
-                    		<%= yield %>
-                		</div>
-			</div>
-            	</div>
-	    	<div id="footer">
-			<center>
-	    		&copy;2013 Georgia Institute of Technology
-			<br>
-	    		<% if user_present %>
-			User currently logged in (using type_of_user method) - <%= logged_in_user.email %></p>
-	    		<% else %>
-			No Logged In User
-	    		<% end %>
-			<br>
-	    		Semester Set To: <%= session[:current_semester].name %>
-			</center>
-	    	</div>
-        <!-- Javascripts
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <%= javascript_include_tag "application" %>
-=======
   </head>
   <body>
     <div id="header">
@@ -135,6 +20,14 @@
       </div>
       <div id="utilityBar">
         <ul id="utilityNav">
+	  <li>
+		<a href="/semester_settings">Select Semester</a>
+			<ul>
+				<li><a href="/semester_settings/3">Fall 2013</a></li>
+				<li><a href="/semester_settings/1">Spring 2013</a></li>
+				<li><a href="/semester_settings/2">Fall 2012</a></li>
+			</ul>
+	  </li>
           <li>
           <a href="/faculties/sign_in">Faculty</a>
           </li>
@@ -151,7 +44,7 @@
           <a href="/pages/1">Home</a>
           </li>
         </ul>
-        <ul class="nav pull-right">
+       <!-- <ul class="nav pull-right">
           <% session[:current_semester] ||= Semester.first %>
           <div class="btn-group">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -161,7 +54,7 @@
               <% Semester.active.each do |semester| %>
                 <li><%= link_to "#{semester.name}", "#" %></li>
               <% end %>
-            </ul>
+            </ul>-->
           </div>
         </div>
       </div>
@@ -209,6 +102,5 @@
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
       <%= javascript_include_tag "application" %>
->>>>>>> ec9e870cdd97139e509ea915de63659052d04290
     </body>
   </html>
