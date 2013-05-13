@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @students = Student.all
+    @faculty = Faculty.all
 
     respond_to do |format|
       format.html # index.html.erb

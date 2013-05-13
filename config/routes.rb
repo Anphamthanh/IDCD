@@ -1,6 +1,8 @@
 IDCD::Application.routes.draw do
   
   resources :users
+  resources :students, :controller => 'users'
+  resources :faculties, :controller => 'users'
 
   resources :proposal_statuses
 
