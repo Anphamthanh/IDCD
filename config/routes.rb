@@ -2,7 +2,6 @@ IDCD::Application.routes.draw do
   
   resources :users
 
-
   resources :proposal_statuses
 
   resources :group_proposals
@@ -33,12 +32,6 @@ IDCD::Application.routes.draw do
   end
 
   resources :project_statuses
-
-  devise_for :faculties
-
-  devise_for :admins
-
-  devise_for :students
 
   resources :past_projects
 
