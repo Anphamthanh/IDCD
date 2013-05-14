@@ -5,11 +5,11 @@
   </div>
   <div class="span6">
     <h5>Actions</h5>
-    <% if type_of_user == "admin" %>
+    <%# if type_of_user == "admin" %>
       <%= render :partial => 'project_actions_admin', :locals => {:project => project} %>
-    <% elsif type_of_user == "faculty" %>
+    <%# elsif type_of_user == "faculty" %>
       <%= render :partial => 'project_actions_faculty', :locals => {:project => project} %>
-    <% end %>
+    <%# end %>
   </div>
 </div>
 

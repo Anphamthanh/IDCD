@@ -1,63 +1,65 @@
 <div class="row-fluid">
-    <div class="page-header">
-        <h1>List of Projects</h1>
-	<br>
-        <%= link_to "Submit A New Project", new_project_path, :class => 'btn btn-primary' %>
-    </div>
+  <div class="page-header">
+    <h1>List of Projects</h1>
+    <br>
+    <%= link_to "Submit A New Project", new_project_path, :class => 'btn btn-primary' %>
+  </div>
 </div>
 
-<% if type_of_user == "admin" %>
+<%# if type_of_user == "admin" %>
+<% if true %>
 
-    <% @projects.each do |project| %>
+  <% @projects.each do |project| %>
+    <div class="row-fluid">
+      <div class="span12 well">
+
         <div class="row-fluid">
-            <div class="span12 well">
-
-                <div class="row-fluid">
-                    <div class="span12">
-                        <h4><%= project.name %></h4>
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="row-fluid">
-                    <div class="span12">
-                        <%= render :partial => "project_details", :locals => {:project => project} %>
-                    </div>
-                </div>
-
-            </div>
+          <div class="span12">
+            <h4><%= project.name %></h4>
+          </div>
         </div>
-    <% end %>
+
+        <hr />
+
+        <div class="row-fluid">
+          <div class="span12">
+            <%= render :partial => "project_details", :locals => {:project => project} %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
 
 
-<% elsif type_of_user == "faculty" %>
-    <% if logged_in_user.assigned_projects_for_semester(session[:current_semester]).count == 0 %>
-        <h4>No projects have been assigned to your lab's section</h4>
-    <% else %>
-        <% logged_in_user.assigned_projects_for_semester(session[:current_semester]).each do |project| %>
-            <div class="row-fluid">
-                <div class="span12 well">
+  <%# elsif type_of_user == "faculty" %>
+<% elsif true %>
+  <% if logged_in_user.assigned_projects_for_semester(session[:current_semester]).count == 0 %>
+    <h4>No projects have been assigned to your lab's section</h4>
+  <% else %>
+    <% logged_in_user.assigned_projects_for_semester(session[:current_semester]).each do |project| %>
+      <div class="row-fluid">
+        <div class="span12 well">
 
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <h4><%= project.name %></h4>
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <div class="row-fluid">
-                        <div class="span12">
-                            <%= render :partial => "project_details", :locals => {:project => project} %>
-                        </div>
-                    </div>
-
-                </div>
+          <div class="row-fluid">
+            <div class="span12">
+              <h4><%= project.name %></h4>
             </div>
-        <% end %>
+          </div>
+
+          <hr />
+
+          <div class="row-fluid">
+            <div class="span12">
+              <%= render :partial => "project_details", :locals => {:project => project} %>
+            </div>
+          </div>
+
+        </div>
+      </div>
     <% end %>
+  <% end %>
 
 <% else %>
-    <h4>Please log in to see projects.</h4>
+  <h4>Please log in to see projects.</h4>
 <% end %>
