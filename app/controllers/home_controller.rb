@@ -6,9 +6,9 @@ class HomeController < ApplicationController
     if User.find_by_gtusername(session[:cas_user]).nil?
       flash[:notice] = "Welcome new user! Please fill out these details to get started"
       
-      # create and save a new user
+      # create and save a new user -> default is student
       # pre-populate details received from CAS
-      @user = User.create(:gtusername => session[:cas_user])
+      @user = Student.create(:gtusername => session[:cas_user])
 
       redirect_to edit_user_path(@user)
       return

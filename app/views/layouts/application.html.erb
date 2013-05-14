@@ -56,8 +56,8 @@
           <ul id="mainNav">
             <h2>As an Admin, you can:</h2>
             <li><%= link_to "Manage Semester Settings", semesters_path %></li>
-            <li><%= link_to "View Summary of Projects", projects_path %></li>
-            <li><%= link_to "View Summary of Proposals", proposals_path %></li>
+            <li><%= link_to "Manage Users", users_path %></li>
+            <li><%= link_to "View Projects", projects_path %></li>
             <h2>As a Student, you can:</h2>
             <h2>As a Faculty Member, you can:</h2>
             <li><%= link_to "Approve Projects", projects_path %></li>
@@ -87,6 +87,8 @@
           <br>
           semester set to: <%= session[:current_semester].name %>
         </center>
+
+        <%= Rails.env.development? %>
       </div>
 
 
