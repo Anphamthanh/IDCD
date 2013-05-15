@@ -1,0 +1,17 @@
+<h3>Student List</h3>
+
+<% if Student.all.count == 0 %>
+  <div class="row-fluid">
+    <div class="span12">
+      No Students
+    </div>
+  </div>
+<% else %>
+  <% Student.all.each do |user| %>
+    <div class="row-fluid">
+      <div class="span12">
+        <%= link_to "#{user.firstname} #{user.lastname} (#{user.gtusername})", user_path(user) %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

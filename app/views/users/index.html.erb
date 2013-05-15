@@ -2,36 +2,35 @@
   <h1>User Management</h1>
 </div>
 
+<% if flash[:notice] %>
+  <div class="row-fluid">
+    <div class="span12 well">
+      <%= flash[:notice] %>
+    </div>
+  </div>
+<% end %>
+
 <div class="row-fluid">
-  <div class"span6">
-    <h3>Faculty</h3>
-
-    <div class="row-fluid">
-      <% @faculty.each do |user| %>
-        <div class="span11">
-          <%= link_to "#{user.firstname} #{user.lastname} (#{user.gtusername})", user_path(user) %>
-        </div>
-        <div class"span1">
-          <%= link_to "X", user_path(user) %>
-        </div>
-      <% end %>
-    </div>
+  <div class="span12 well">
+    <%= render "add_faculty" %>
   </div>
+</div>
 
-  <div class"span6">
-    <h3>Students</h3>
-
-    <div class="row-fluid">
-      <% @students.each do |user| %>
-        <div class="span11">
-          <%= link_to "#{user.firstname} #{user.lastname} (#{user.gtusername})", user_path(user) %>
-        </div>
-        <div class"span1">
-          <%= link_to "X", user_path(user) %>
-        </div>
-      <% end %>
-    </div>
+<div class="row-fluid">
+  <div class="span12 well">
+    <%= render "faculty_list" %>
   </div>
+</div>
 
+<div class="row-fluid">
+  <div class="span12 well">
+    <%= render "student_list" %>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span12 well">
+    <%= render "give_admin_status" %>
+  </div>
 </div>
 

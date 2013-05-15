@@ -1,4 +1,65 @@
 class UsersController < ApplicationController
+  def add_faculty
+    gtusername = params[:gtusername]
+    if Faculty.find_by_gtusername(gtusername)
+      flash[:notice] = "GTUsername \"#{gtusername}\" is already marked as Faculty"
+    elsif Student.find_by_gtusername(gtusername)
+      user = Student.find_by_gtusername(gtusername)
+      user.type = "Faculty"
+      user.save
+    else
+      Faculty.create(gtusername: gtusername)
+    end
+
+    redirect_to users_url
+  end
+
+  def delete_faculty
+    user = User.find(params[:id])
+    user.type = "Student"
+    user.save
+
+    flash[:notice] = "User \"#{user.gtusername}\" is now marked as a student"
+
+    redirect_to users_url
+  end
+
+  def give_admin_status
+    gtusername = params[:gtusername]
+    if User.find_by_gtusername(gtusername)
+      user = User.find_by_gtusername(gtusername)
+      user.admin = true
+      user.save
+      flash[:notice] = "User \"#{user.gtusername}\" is now an Admin"
+    else
+      flash[:notice] = "User \"#{gtusername}\" does not exist."
+    end
+
+    redirect_to users_url
+  end
+
+  def remove_admin_status
+    user = User.find(params[:id])
+    user.admin = false
+    user.save
+
+    flash[:notice] = "User \"#{user.gtusername}\" is no longer an Admin"
+
+    redirect_to users_url
+  end
+
+  def add_test_user
+
+    redirect_to users_url
+  end
+
+  def remove_test_user
+
+    redirect_to users_url
+  end
+
+
+
   # GET /users
   # GET /users.json
   def index
