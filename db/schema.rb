@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(:version => 20130513014158) do
     t.string   "lastname"
     t.boolean  "admin"
     t.string   "type"
+    t.boolean  "test"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,0 +1,18 @@
+<h3>Add Test User</h3>
+
+<%= form_tag controller: "users", action: "add_test_user" do %>
+  <%= text_field_tag 'gtusername' %>
+  <%= select_tag :test_user_type, "<option>Student</option><option>Faculty</option><option>Admin</option>".html_safe %>
+  <%= submit_tag %>
+<% end %>
+
+<% User.where(test: true).each do |user| %>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= link_to "#{user.firstname} #{user.lastname} (#{user.gtusername})", user_path(user) %>
+    </div>
+    <div class"span1">
+      <%= link_to "X", remove_test_user_user_path(user) %>
+    </div>
+  </div>
+<% end %>

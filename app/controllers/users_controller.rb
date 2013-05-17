@@ -49,11 +49,24 @@ class UsersController < ApplicationController
   end
 
   def add_test_user
+    gtusername = params[:gtusername]
+    if User.find_by_gtusername(gtusername)
+      flash[:notice] = "User \"#{gtusername}\" is an existing user. Please choose another GTUsername"
+    else
+      user = User.create(gtusername: gtusername, type: params[:test_user_type], test: true)
+      flash[:notice] = "User \"#{user.gtusername}\" is a #{user.type} test user. Use the links in the footer to log in as a Test User."
+    end
+    
 
     redirect_to users_url
   end
 
   def remove_test_user
+    user = User.find(params[:id])
+    gtusername = user.gtusername
+    user.destroy
+
+    flash[:notice] = "User \"#{gtusername}\" has been deleted"
 
     redirect_to users_url
   end
