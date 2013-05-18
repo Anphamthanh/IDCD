@@ -133,9 +133,14 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    if @user.is_a? Student
+      updated_params = params[:student]
+    elsif @user.is_a? Faculty
+      updated_params = params[:faculty]
+    end
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(updated_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else

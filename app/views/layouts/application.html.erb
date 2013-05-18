@@ -20,9 +20,9 @@
       </div>
       <div id="utilityBar">
         <ul id="utilityNav">
-	  <li>
-	  <a href="/semester_settings">Semester Settings</a>
-	  </li>
+          <li>
+          <a href="/semester_settings">Semester Settings</a>
+          </li>
           <li>
           <a href="/faculties/sign_in">Faculty</a>
           </li>
@@ -40,65 +40,72 @@
           </li>
         </ul>
         <!--<ul class="nav pull-right">
-       <!-- <ul class="nav pull-right">
-          <% session[:current_semester] ||= Semester.first %>
-          <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <%= "#{session[:current_semester].name} " %><span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <% Semester.active.each do |semester| %>
-                <li><%= link_to "#{semester.name}", "#" %></li>
+          <!-- <ul class="nav pull-right">
+            <% session[:current_semester] ||= Semester.first %>
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <%= "#{session[:current_semester].name} " %><span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <% Semester.active.each do |semester| %>
+                  <li><%= link_to "#{semester.name}", "#" %></li>
+                <% end %>
+              </ul>-->
+            </div>
+          </div>
+        </div>
+        <div id="meat">
+          <div id="support">
+            <a name="navigation"></a>
+            <ul id="mainNav">
+
+              <% if not session[:cas_user] %>
+                <h2><%= link_to "Login Using CAS", home_login_with_CAS_path %></h2>
+              <% else %>
+                <h2><%= link_to current_user.name, edit_user_path(current_user) %></h2>
+                <h2><%= link_to "Logout", home_logout_path %></h2>
               <% end %>
-            </ul>-->
+
+              <h2>As an Admin, you can:</h2>
+              <li><%= link_to "Manage Semester Settings", semesters_path %></li>
+              <li><%= link_to "Manage Users", users_path %></li>
+              <li><%= link_to "View Projects", projects_path %></li>
+              <h2>As a Student, you can:</h2>
+              <h2>As a Faculty Member, you can:</h2>
+              <li><%= link_to "Approve Projects", projects_path %></li>
+              <h2>As a Sponsor, you can:</h2>
+              <li><%= link_to "Submit A Project", new_project_path  %></li>
+            </ul>
+          </div>
+          <div id="content">
+            <a name="start"></a>
+            <div id="columnPrimary" class="t1 l1 w8 textEm tallestBlock">
+              <%= yield %>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="meat">
-        <div id="support">
-          <a name="navigation"></a>
-          <ul id="mainNav">
-            <h2>As an Admin, you can:</h2>
-            <li><%= link_to "Manage Semester Settings", semesters_path %></li>
-            <li><%= link_to "Manage Users", users_path %></li>
-            <li><%= link_to "View Projects", projects_path %></li>
-            <h2>As a Student, you can:</h2>
-            <h2>As a Faculty Member, you can:</h2>
-            <li><%= link_to "Approve Projects", projects_path %></li>
-            <h2>As a Sponsor, you can:</h2>
-            <li><%= link_to "Submit A Project", new_project_path  %></li>
-          </ul>
+
+        <div id="footer">
+          Current user:
+          <% if session[:cas_user] %>
+            <%= "#{session[:cas_user]}" %>
+          <% else %>
+            No CAS user
+          <% end %>
+
+          <center>
+            &copy;2013 Georgia Institute of Technology
+            <br>
+            semester set to: <%= session[:current_semester].name %>
+          </center>
+
+          <%= Rails.env.development? %>
         </div>
-        <div id="content">
-          <a name="start"></a>
-          <div id="columnPrimary" class="t1 l1 w8 textEm tallestBlock">
-            <%= yield %>
-          </div>
-        </div>
-      </div>
 
 
-      <div id="footer">
-        Current user:
-        <% if session[:cas_user] %>
-          <%= "#{session[:cas_user]}" %>
-        <% else %>
-          No CAS user
-        <% end %>
-
-        <center>
-          &copy;2013 Georgia Institute of Technology
-          <br>
-          semester set to: <%= session[:current_semester].name %>
-        </center>
-
-        <%= Rails.env.development? %>
-      </div>
-
-
-      <!-- Javascripts
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <%= javascript_include_tag "application" %>
-    </body>
-  </html>
+        <!-- Javascripts
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <%= javascript_include_tag "application" %>
+      </body>
+    </html>
