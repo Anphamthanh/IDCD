@@ -103,6 +103,43 @@
         </div>
 
 
+        <div id="admin_footer" class="container">
+
+          <div class="row-fluid page-header">
+            <div class="span12">
+              <h4>Admin Footer</h4>
+            </div>
+          </div>
+
+          <% if not test_user %>
+
+            <div class="row-fluid">
+              <div class="span12">
+                <%= form_tag controller: "users", action: "tester_login" do %>
+                  Login as: 
+                  <%= select_tag 'test_user_id', options_for_select(User.where(test: true).collect{ |u| [u.gtusername, u.id] }) %>
+                  <%= submit_tag %>
+                <% end %>
+              </div>
+            </div>
+
+          <% elsif test_user %>
+
+            <div class="row-fluid">
+              <div class="span12">
+                Viewing site as user "<%= "#{test_user.gtusername}" %>"
+                <%= link_to "Exit View", tester_logout_users_path %>
+              </div>
+            </div>
+
+          <% end %>
+
+        </div>
+
+        <div style="padding-bottom: 30px">
+        </div>
+
+
         <!-- Javascripts
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->

@@ -5,6 +5,8 @@ IDCD::Application.routes.draw do
       post :add_faculty
       post :give_admin_status
       post :add_test_user
+      post :tester_login
+      get :tester_logout
     end
     member do
       get :delete_faculty

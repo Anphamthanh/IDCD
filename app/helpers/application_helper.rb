@@ -8,4 +8,12 @@ module ApplicationHelper
     end
   end
 
+  def test_user
+    if session[:test_user]
+      return User.find_by_gtusername(session[:test_user])
+    else
+      return false
+    end
+  end
+
 end

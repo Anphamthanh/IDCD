@@ -1,10 +1,14 @@
 <h3>Add Test User</h3>
 
-<%= form_tag controller: "users", action: "add_test_user" do %>
-  <%= text_field_tag 'gtusername' %>
-  <%= select_tag :test_user_type, "<option>Student</option><option>Faculty</option><option>Admin</option>".html_safe %>
-  <%= submit_tag %>
-<% end %>
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_tag controller: "users", action: "add_test_user" do %>
+      <%= text_field_tag 'gtusername', nil, class: "span4" %>
+      <%= select_tag :test_user_type, "<option>Student</option><option>Faculty</option><option>Admin</option>".html_safe, class: "span4" %>
+      <%= submit_tag "Add", class: "span4" %>
+    <% end %>
+  </div>
+</div>
 
 <% User.where(test: true).each do |user| %>
   <div class="row-fluid">

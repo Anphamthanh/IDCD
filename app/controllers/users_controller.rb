@@ -1,4 +1,16 @@
 class UsersController < ApplicationController
+  def tester_login
+    session['test_user'] = User.find(params[:test_user_id]).gtusername
+
+    redirect_to users_url
+  end
+
+  def tester_logout
+    session.delete(:test_user)
+
+    redirect_to users_url
+  end
+
   def add_faculty
     gtusername = params[:gtusername]
     if Faculty.find_by_gtusername(gtusername)
@@ -70,7 +82,6 @@ class UsersController < ApplicationController
 
     redirect_to users_url
   end
-
 
 
   # GET /users
