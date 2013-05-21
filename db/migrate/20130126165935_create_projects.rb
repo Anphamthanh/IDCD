@@ -12,6 +12,7 @@ class CreateProjects < ActiveRecord::Migration
       t.integer  "company_id"
       t.string   "form"
       t.integer "semester_id"
+      t.integer "project_status_id"
 
       t.timestamps
     end

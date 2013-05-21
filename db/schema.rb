@@ -11,14 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513014158) do
-
-  create_table "approvals", :force => true do |t|
-    t.integer  "faculty_id"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130521071653) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -32,6 +25,13 @@ ActiveRecord::Schema.define(:version => 20130513014158) do
     t.string   "director_phone"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "faculty_project_decisions", :force => true do |t|
+    t.integer  "faculty_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "faculty_sections", :force => true do |t|
@@ -90,18 +90,10 @@ ActiveRecord::Schema.define(:version => 20130513014158) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "project_status_types", :force => true do |t|
+  create_table "project_statuses", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "project_statuses", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "project_status_type_id"
-    t.integer  "semester_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
   end
 
   create_table "projects", :force => true do |t|
@@ -116,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20130513014158) do
     t.integer  "company_id"
     t.string   "form"
     t.integer  "semester_id"
+    t.integer  "project_status_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

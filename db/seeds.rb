@@ -35,14 +35,6 @@ Project.create(:name => "Light Emitting Gate Analysis Board", :background => "Lo
 Project.create(:name => "LED Hose Down fixture", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", :company_id => 4)
 Project.create(:name => "Prevention of aircraft damage during loading", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", :company_id => 5)
 
-ProjectStatus.create(:project_id => 1, :project_status_type_id => 1)
-ProjectStatus.create(:project_id => 2, :project_status_type_id => 1)
-ProjectStatus.create(:project_id => 3, :project_status_type_id => 1)
-ProjectStatus.create(:project_id => 4, :project_status_type_id => 1)
-ProjectStatus.create(:project_id => 5, :project_status_type_id => 1)
-
-PastProject.create(:title => "NASA Space Trains", :description => "Coming soon")
-
 Group.create(:name => "Group 1")
 Group.create(:name => "Group 2")
 Group.create(:name => "Group 3")
@@ -51,10 +43,10 @@ Group.create(:name => "Group 3")
 # 
 # Incomplete and Submitted projects are not associated with a semester.
 # Only when a project is Accepted by an Admin is it assigned a semester.
-ProjectStatusType.create(:name => "Incomplete")
-ProjectStatusType.create(:name => "Completed")
-ProjectStatusType.create(:name => "Accepted")
-ProjectStatusType.create(:name => "Rejected")
+ProjectStatus.create(:name => "Incomplete")
+ProjectStatus.create(:name => "Completed")
+ProjectStatus.create(:name => "Accepted")
+ProjectStatus.create(:name => "Rejected")
 
 ProposalStatusType.create(:name => "Pending")
 ProposalStatusType.create(:name => "Accepted")

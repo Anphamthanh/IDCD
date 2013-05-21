@@ -1,13 +1,17 @@
 class Project < ActiveRecord::Base
-  attr_accessible :background, :concept, :design, :name, :skills, :solutions, :nda_required, :funding_commitment, :company_id, :form, :semester_id
+  attr_accessible :background, :concept, :design, :name, :skills, :solutions, :nda_required, :funding_commitment, :company_id, :form, :semester_id, :project_status_id
 
   belongs_to :company
-  has_many :approvals
-  has_many :proposals
-  has_many :approving_faculty, :through => :approvals, :source => "faculty"
-  has_one :project_status
+  belongs_to :semester
+  belongs_to :project_status
+
+  has_many :faculty_project_decisions
+  has_many :faculties, :through => :faculty_project_decisions
   has_many :project_schools
   has_many :schools, :through => :project_schools
+
+  #has_many :proposals
+  #has_many :approving_faculty, :through => :approvals, :source => "faculty"
 
   mount_uploader :form, ProjectFormUploader
 
