@@ -84,7 +84,7 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 #mainNav  { font-weight: bold; font-size: 13px; margin: -35px 0 0 0; }
 #mainNav h2 { font-size: 14px; line-height: 16px; margin: 7px 0; color: #C59353; }
 #mainNav a { color: #666; display: block; padding: 5px 5px 6px 5px; text-decoration: none; border-left: 1px solid #fff; border-right: 1px solid #fff; border-top: 1px solid #fff; border-bottom: 1px solid #fff }
-#mainNav a:hover { color: #c5a757; border-left: 1px solid #c5a757; border-right: 1px solid #c5a757; border-top: 1px solid #c5a757; border-bottom: 1px solid #c5a757; width: 200px; }
+#mainNav a:hover { color: #c5a757;}
 #mainNav li { color: #666; font-size: 13px; line-height: 12px; margin: 7px 0; }
 
 #content { /*float: right; position: relative; width: 780px;*/ min-height: 500px; z-index: 1; }
