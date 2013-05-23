@@ -6,7 +6,10 @@
 
     <!-- Read, Update, Delete -->
     <% @semesters.each do |semester| %>
-      <%= render partial: "shared/list_item", locals: { item: semester, options: [
+      <%= render partial: "shared/list_item", locals: { item: semester, 
+        main_link: 
+        { label: semester.name, controller: "semesters", action: "show", method: "get", confirm: false }, 
+        options: [
         { label: "Details", controller: "semesters", action: "show", method: "get", confirm: false }, 
         { label: "Edit", controller: "semesters", action: "edit", method: "get", confirm: false }, 
         { label: "Delete", controller: "semesters", action: "destroy", method: "delete", confirm: "Are you sure?" }

@@ -2,7 +2,11 @@
   <div class="span12 well well-small">
 
     <span>
-      <%= "#{item.name}" %>
+      <% if main_link %>
+        <%= link_to main_link[:label], {controller: main_link[:controller], action: main_link[:action], id: item.id}, method: main_link[:method], confirm: main_link[:confirm] %>
+      <% else %>
+        <%= "#{item.name}" %>
+      <% end %>
     </span>
 
     <span class="pull-right">
