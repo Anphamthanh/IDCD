@@ -6,27 +6,11 @@
 
     <!-- Read, Update, Delete -->
     <% @semesters.each do |semester| %>
-      <div class="row-fluid">
-        <div class="span12 well well-small">
-
-          <span>
-            <%= link_to semester.name, semester_path(semester) %>
-          </span>
-
-          <span class="pull-right">
-            <div class="btn-group">
-              <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu pull-right">
-                <li><%= link_to "Edit", {controller: "semesters", action: "edit", id: semester} %></li>
-                <li><%= link_to "Delete", {controller: "semesters", action: "destroy", id: semester}, :method => :delete, confirm: "Are you sure?" %></li>
-              </ul>
-            </div>
-          </span>
-
-        </div>
-      </div>
+      <%= render partial: "shared/list_item", locals: { item: semester, options: [
+        { label: "Details", controller: "semesters", action: "show", method: "get", confirm: false }, 
+        { label: "Edit", controller: "semesters", action: "edit", method: "get", confirm: false }, 
+        { label: "Delete", controller: "semesters", action: "destroy", method: "delete", confirm: "Are you sure?" }
+      ] } %>
     <% end %>
 
     <!-- Create -->
