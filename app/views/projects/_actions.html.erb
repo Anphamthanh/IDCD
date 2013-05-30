@@ -1,3 +1,13 @@
-<% if current_user and current_user.isAdmin? %>
-  ...
+<% if current_user %>
+
+  <% if current_user.isAdmin? %>
+    <%= render :partial => "actions_admin", :locals => {project: project} %>
+  
+  <% elsif current_user.isFaculty? %>
+    <%= render :partial => "actions_faculty", :locals => {project: project} %>
+  
+  <% elsif current_user.isStudent? %>
+    <%= render :partial => "actions_student", :locals => {project: project} %>
+  
+  <% end %>
 <% end %>

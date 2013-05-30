@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(:version => 20130521071653) do
     t.integer  "company_id"
     t.string   "form"
     t.integer  "semester_id"
-    t.integer  "project_status_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "project_status_id",  :default => 1
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "proposal_status_types", :force => true do |t|

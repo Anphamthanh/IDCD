@@ -27,36 +27,42 @@ class Project < ActiveRecord::Base
     return Semester.find(self.semester_id)
   end
 
-  def project_status_name
-    return ProjectStatusType.find(project_status.project_status_type_id).name
-  end
-
-  def incomplete?
-    return true if project_status.project_status_type_id == 1
-    return false
-  end
-
-  def completed?
-    return true if project_status.project_status_type_id == 2
-    return false
-  end
-
   def accepted?
     return true if project_status.project_status_type_id == 3
     return false
   end
 
+
+
   def rejected?
-    return true if project_status.project_status_type_id == 4
+    return true if self.project_status_id == ProjectStatus.find_by_name("Rejected").id
+    return false
+  end
+
+  def reject!
+    self.project_status_id = ProjectStatus.find_by_name("Rejected").id
+  end
+
+
+
+  def incomplete?
+    return true if self.project_status_id == ProjectStatus.find_by_name("Incomplete").id
+    return false
+  end
+
+  def incomplete!
+    self.project_status_id = ProjectStatus.find_by_name("Incomplete").id
+  end
+
+
+
+  def completed?
+    return true if self.project_status_id == ProjectStatus.find_by_name("Completed").id
     return false
   end
 
   def complete!
     self.project_status_id = ProjectStatus.find_by_name("Completed").id
-  end
-
-  def incomplete!
-    self.project_status_id = ProjectStatus.find_by_name("Incomplete").id
   end
 
 end

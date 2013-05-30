@@ -6,11 +6,18 @@ class User < ActiveRecord::Base
   end
 
   def isAdmin?
-    if self.admin 
-      return true
-    else
-      return false
-    end
+    return true if self.admin 
+    return false
+  end
+
+  def isFaculty?
+    return true if self.type == "Faculty"
+    return false
+  end
+
+  def isStudent?
+    return true if self.type == "Student"
+    return false
   end
 
 end

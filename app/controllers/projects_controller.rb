@@ -91,15 +91,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1/admin_reject.json
   def admin_reject
     @project = Project.find(params[:id])
-    @status = @project.project_status
-    @status.reject!
+    @project.reject!
     @project.schools.clear
     @project.semester_id = nil
 
     respond_to do |format|
       if @project.save
-        @status.save
-        format.html { redirect_to project_path(@project), notice: 'Project was successfully marked as Rejected.' }
+        format.html { redirect_to projects_path, notice: 'Project was successfully marked as Rejected.' }
         format.json { render json: @projects }
       else
         format.html { redirect_to :action => "index", notice: 'Project could NOT be marked as Rejected.' }
@@ -122,7 +120,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.order("updated_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -200,8 +198,7 @@ class ProjectsController < ApplicationController
     if @project.incomplete?
       @company = Company.create(params[:company])
       @project.company_id = @company.id
-      @status = @project.project_status
-      @status.complete!
+      @project.complete!
     else
       @company = Company.find(@project.company_id)
       @company.update_attributes(params[:company])
@@ -209,7 +206,6 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        @status.save
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
