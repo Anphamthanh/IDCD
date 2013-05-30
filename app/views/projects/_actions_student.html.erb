@@ -1,0 +1,83 @@
+<% options = [] %>
+
+<% options.push({ 
+  label: "Delete",  
+  controller: "projects",
+  action: "destroy",
+  id: project.id,
+  method: "delete",
+  confirm: "Are you sure?"}) 
+%>
+
+<% options.push({ 
+  label: "Edit",  
+  controller: "projects",
+  action: "edit",
+  id: project.id,
+  method: "get",
+  confirm: false}) 
+%>
+
+<% options.push({ 
+  label: "Details",  
+  controller: "projects",
+  action: "show",
+  id: project.id,
+  method: "get",
+  confirm: false}) 
+%>
+
+<% if project.incomplete? %>
+  <% options.push({ 
+    label: "Complete",  
+    controller: "projects",
+    action: "complete",
+    id: project.id,
+    method: "get",
+    confirm: false}) 
+  %>
+<% end %>
+
+<% if project.completed? %>
+  <% options.push({ 
+    label: "Reject",
+    controller: "projects",
+    action: "admin_reject",
+    id: project.id,
+    method: "get",
+    confirm: false}) 
+  %>
+  <% options.push({ 
+    label: "Accept",
+    controller: "projects",
+    action: "admin_accept",
+    id: project.id,
+    method: "get",
+    confirm: false}) 
+  %>
+<% end %>
+
+<% if project.accepted? %>
+  <% options.push({ 
+    label: "Reject",
+    controller: "projects",
+    action: "admin_reject",
+    id: project.id,
+    method: "get",
+    confirm: false}) 
+  %>
+<% end %>
+
+<% if project.rejected? %>
+  <% options.push({ 
+    label: "Accept",
+    controller: "projects",
+    action: "admin_accept",
+    id: project.id,
+    method: "get",
+    confirm: false}) 
+  %>
+<% end %>
+
+<%= render :partial => "shared/dropdown_actions", :locals => {options: options.reverse!} %>
+

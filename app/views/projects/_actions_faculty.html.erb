@@ -1,0 +1,36 @@
+<% options = [] %>
+
+<% options.push({ 
+  label: "Details",  
+  controller: "projects",
+  action: "show",
+  id: project.id,
+  method: "get",
+  confirm: false }) 
+%>
+
+<!-- #TODO faculty here being the current user -->
+<%# if project.faculty_approved? %>
+  <% options.push({ 
+    label: "Reject",
+    controller: "projects",
+    action: "faculty_reject",
+    id: project.id,
+    method: "get",
+    confirm: "Are you sure?"}) 
+  %>
+<%# end %>
+
+<%# if project.faculty_rejected? %>
+  <% options.push({ 
+    label: "Approve",
+    controller: "projects",
+    action: "faculty_approve",
+    id: project.id,
+    method: "get",
+    confirm: false }) 
+  %>
+<%# end %>
+
+<%= render :partial => "shared/dropdown_actions", :locals => {options: options.reverse!} %>
+

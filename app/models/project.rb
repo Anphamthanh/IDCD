@@ -15,58 +15,34 @@ class Project < ActiveRecord::Base
 
   mount_uploader :form, ProjectFormUploader
 
-  def does_faculty_approve(test_faculty)
-		if approving_faculty.include? test_faculty
-			return true
-		else
-			return false
-		end
-  end
-
-  def semester
-    return Semester.find(self.semester_id)
-  end
-
-
-
   def accepted?
     return true if self.project_status_id == ProjectStatus.find_by_name("Accepted").id
     return false
   end
-
   def accept!
     self.project_status_id = ProjectStatus.find_by_name("Accepted").id
   end
-
-
 
   def rejected?
     return true if self.project_status_id == ProjectStatus.find_by_name("Rejected").id
     return false
   end
-
   def reject!
     self.project_status_id = ProjectStatus.find_by_name("Rejected").id
   end
-
-
 
   def incomplete?
     return true if self.project_status_id == ProjectStatus.find_by_name("Incomplete").id
     return false
   end
-
   def incomplete!
     self.project_status_id = ProjectStatus.find_by_name("Incomplete").id
   end
-
-
 
   def completed?
     return true if self.project_status_id == ProjectStatus.find_by_name("Completed").id
     return false
   end
-
   def complete!
     self.project_status_id = ProjectStatus.find_by_name("Completed").id
   end
