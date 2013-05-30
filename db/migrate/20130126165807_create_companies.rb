@@ -2,7 +2,6 @@ class CreateCompanies < ActiveRecord::Migration
   def change
     create_table :companies do |t|
       t.string :name
-      t.integer :semester_id
       t.string :technical_name
       t.string :technical_designation
       t.string :technical_email

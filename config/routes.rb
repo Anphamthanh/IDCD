@@ -40,16 +40,7 @@ IDCD::Application.routes.draw do
 
   resources :colleges
 
-  resources :pages do
-    resources :subheadings
-    resources :headings
-    resources :pictures
-    resources :texts
-  end
-
   resources :project_statuses
-
-  resources :past_projects
 
   resources :projects do
     member do
@@ -126,7 +117,7 @@ IDCD::Application.routes.draw do
   # root :to => 'welcome#index'
 #  root :to => 'high_voltage/pages#show', :id => 'about'
 
-  root :to =>'pages#index' 
+  root :to =>'projects#new' 
 
   # See how all your routes lay out with "rake routes"
 

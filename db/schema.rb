@@ -56,33 +56,6 @@ ActiveRecord::Schema.define(:version => 20130521071653) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "headings", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "pages", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "past_projects", :force => true do |t|
-    t.string   "title"
-    t.string   "picture"
-    t.text     "description"
-    t.text     "links"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "pictures", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "project_schools", :force => true do |t|
     t.integer  "project_id"
     t.integer  "school_id"
@@ -158,18 +131,6 @@ ActiveRecord::Schema.define(:version => 20130521071653) do
     t.date     "end_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "subheadings", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "texts", :force => true do |t|
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

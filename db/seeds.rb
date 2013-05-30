@@ -14,10 +14,6 @@ Semester.create(:name => "Fall 2013", :start_date => Time.local(2013, 8, 10), :e
 
 
 # Examples and demos
-Page.create(:name => "Home")
-Page.create(:name => "Expo")
-Page.create(:name => "Industry")
-
 School.create(:name => "ECE")
 School.create(:name => "ID")
 School.create(:name => "ME")
