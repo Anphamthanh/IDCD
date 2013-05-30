@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(:version => 20130521071653) do
   create_table "faculty_project_decisions", :force => true do |t|
     t.integer  "faculty_id"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "decision",   :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "faculty_sections", :force => true do |t|
