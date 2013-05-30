@@ -1,0 +1,24 @@
+*cs 4649 - 87848
+*ece 3600 - 90259
+*ece 3550 - 90265
+*engl1102 - 88142/85097/85048
+*cs 4495 - 86653
+
+cs 4365 - 84980
+cs 4261 - 86153
+coe 2001 - 88959/83756/83611/83808
+
+----  cs 3750 - 84261
+
+
+CS 4365		Intro to Enterprise Computing 		CS 3210 or CS 4400
+-CS 4420	Database Sys Implement 				CS 4400 
+CS 4432		Information Systems Dsgn 			CS 3300 and CS 4400
+CS 4440		Database Technologies 				CS 4400 
+CS 4611		AI Problem Solving 					CS 3600 
+CS 4612		AI Planning 						CS 3600 
+CS 4613		Knowledge Systems Engr 				CS 3600 
+CS 4615		Knowledge Based Modeling & Design 	CS 3600 
+CS 4622		Case-Based Reasoning 				CS 3600 
+CS 4632		Adv Intelligent Robotics 			CS 3630 
+CS 4635		Knowledge Based AI 					CS 3600 

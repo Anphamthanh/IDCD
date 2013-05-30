@@ -4,60 +4,26 @@
 <br>
 <br>
 
-<%# if type_of_user == "admin" %>
-<% if true %>
+<% @projects.each do |project| %>
+  <div class="row-fluid">
+    <div class="span12 well">
 
-  <% @projects.each do |project| %>
-    <div class="row-fluid">
-      <div class="span12 well">
-
-        <div class="row-fluid">
-          <div class="span12">
-            <h4><%= project.name %></h4>
-          </div>
-        </div>
-
-        <hr />
-
-        <div class="row-fluid">
-          <div class="span12">
-            <%= render :partial => "project_details", :locals => {:project => project} %>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  <% end %>
-
-
-  <%# elsif type_of_user == "faculty" %>
-<% elsif true %>
-  <% if logged_in_user.assigned_projects_for_semester(session[:current_semester]).count == 0 %>
-    <h4>No projects have been assigned to your lab's section</h4>
-  <% else %>
-    <% logged_in_user.assigned_projects_for_semester(session[:current_semester]).each do |project| %>
       <div class="row-fluid">
-        <div class="span12 well">
-
-          <div class="row-fluid">
-            <div class="span12">
-              <h4><%= project.name %></h4>
-            </div>
-          </div>
-
-          <hr />
-
-          <div class="row-fluid">
-            <div class="span12">
-              <%= render :partial => "project_details", :locals => {:project => project} %>
-            </div>
-          </div>
-
+        <div class="span10">
+          <%= render :partial => "summary", :locals => {:project => project} %>
+        </div>
+        <div class="span2">
+          <%= render :partial => "actions", :locals => {:project => project} %>
         </div>
       </div>
-    <% end %>
-  <% end %>
 
-<% else %>
-  <h4>Please log in to see projects.</h4>
+      <div class="row-fluid">
+        <div class="span10">
+          <%= render :partial => "user_type_specific_info", :locals => {:project => project} %>
+        </div>
+      </div>
+
+    </div>
+  </div>
 <% end %>
+

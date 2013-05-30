@@ -65,10 +65,14 @@ class UsersController < ApplicationController
     if User.find_by_gtusername(gtusername)
       flash[:notice] = "User \"#{gtusername}\" is an existing user. Please choose another GTUsername"
     else
-      user = User.create(gtusername: gtusername, type: params[:test_user_type], test: true)
+      if params[:test_user_type] == "Admin"
+        user = User.create(gtusername: gtusername, test: true, admin: true)
+      else
+        user = User.create(gtusername: gtusername, type: params[:test_user_type], test: true)
+      end
       flash[:notice] = "User \"#{user.gtusername}\" is a #{user.type} test user. Use the links in the footer to log in as a Test User."
     end
-    
+
 
     redirect_to users_url
   end

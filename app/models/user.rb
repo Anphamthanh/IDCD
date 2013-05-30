@@ -5,4 +5,12 @@ class User < ActiveRecord::Base
     return "#{firstname} #{lastname}"
   end
 
+  def isAdmin?
+    if self.admin 
+      return true
+    else
+      return false
+    end
+  end
+
 end
