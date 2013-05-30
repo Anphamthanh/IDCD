@@ -12,6 +12,7 @@ gem 'RedCloth'
 
 group :test, :development do
   gem 'pry-rails'
+  gem "rails-erd"
 end
 
 # Gems used only for assets and not required
