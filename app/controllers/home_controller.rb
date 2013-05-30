@@ -15,7 +15,7 @@ class HomeController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to :controller => 'pages', :action => 'index' }
+      format.html { redirect_to :controller => 'projects', :action => 'index' }
       format.json { render json: @events }
     end
   end

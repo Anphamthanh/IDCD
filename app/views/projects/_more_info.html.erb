@@ -1,0 +1,14 @@
+<% if current_user %>
+
+  <% if current_user.isAdmin? %>
+    <%= render :partial => "more_info_admin", :locals => {project: project} %>
+
+  <% elsif current_user.isFaculty? %>
+    <%= render :partial => "more_info_faculty", :locals => {project: project} %>
+
+  <% elsif current_user.isStudent? %>
+    <%= render :partial => "more_info_student", :locals => {project: project} %>
+
+  <% end %>
+<% end %>
+

@@ -27,9 +27,15 @@ class Project < ActiveRecord::Base
     return Semester.find(self.semester_id)
   end
 
+
+
   def accepted?
-    return true if project_status.project_status_type_id == 3
+    return true if self.project_status_id == ProjectStatus.find_by_name("Accepted").id
     return false
+  end
+
+  def accept!
+    self.project_status_id = ProjectStatus.find_by_name("Accepted").id
   end
 
 

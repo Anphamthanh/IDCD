@@ -1,0 +1,79 @@
+<div class="row-fluid">
+  <div class"span12">
+    <strong>Current Status: </strong><%= ProjectStatus.find(project.project_status_id).name %>
+  </div>
+</div>
+
+
+
+<% if project.completed? %>
+  <div class="row-fluid">
+    <div class="span12">
+
+      <%= form_for project, :url => admin_accept_project_path(project), :method => "get" do |f| %>
+        <div class="row-fluid">
+          <div class="span6">
+            <h5>Assign Schools</h5>
+            <div class="control-group">
+              <div class="controls">
+                <% School.all.each do |s| %>
+                  <label class="checkbox">
+                    <%= check_box_tag 'selectedSchools[]', s.id, false, :type => "checkbox" %><%= s.name %><br />
+                  </label>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="span6">
+            <h5>Assign Semester</h5>
+            <div class="control-group">
+              <div class="controls">
+                <% Semester.active.each do |s| %>
+                  <label class="radio">
+                    <%= radio_button_tag 'selectedSemester[]', s.id, false, :type => "radio" %><%= s.name %><br />
+                  </label>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= submit_tag "Accept", :class => 'btn btn-success' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>
+
+
+
+<% if project.accepted? %>
+  <div class="row-fluid">
+    <div class="span12">
+
+      <div class="row-fluid">
+        <div class="span6">
+          <h5>Assigned Schools</h5>
+          <ul>
+            <% project.schools.each do |s| %>
+              <li><%= s.name %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="span6">
+          <h5>Assigned Semester</h5>
+          <%= project.semester.name %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= link_to "Reject", admin_reject_project_path(project), :class => 'btn btn-danger' %>
+        <h6>This will delete all documents and settings associated with this project</h6>
+      </div>
+
+    </div>
+  </div>
+<% end %>

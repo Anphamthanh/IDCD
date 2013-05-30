@@ -50,6 +50,18 @@ class ProjectsController < ApplicationController
   # GET /projects/1/admin_accept.json
   def admin_accept
     @project = Project.find(params[:id])
+
+    # if the project is currently "rejected" mark it as "completed" so that the
+    # user can select the appropriate terms and schools
+    if @project.rejected?
+      @project.complete!
+      @project.save
+      respond_to do |format|
+        format.html { redirect_to project_path(@project) and return}
+        format.json { render json: @project }
+      end
+    end
+
     selectedSchools = params[:selectedSchools]
     selectedSemester = params[:selectedSemester]
 
@@ -69,15 +81,12 @@ class ProjectsController < ApplicationController
       end
     end
 
-    @status = @project.project_status
-    @status.accept!
-
     @project.schools << School.find(params[:selectedSchools])
     @project.semester_id = selectedSemester[0]
+    @project.accept!
 
     respond_to do |format|
       if @project.save
-        @status.save
         format.html { redirect_to project_path(@project), notice: 'Project was successfully marked as Accepted.' }
         format.json { render json: @projects }
       else
@@ -97,7 +106,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_path, notice: 'Project was successfully marked as Rejected.' }
+        format.html { redirect_to project_path(@project), notice: 'Project was successfully marked as Rejected.' }
         format.json { render json: @projects }
       else
         format.html { redirect_to :action => "index", notice: 'Project could NOT be marked as Rejected.' }
