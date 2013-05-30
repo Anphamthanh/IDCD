@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
     return false
   end
 
-  def complete?
+  def completed?
     return true if project_status.project_status_type_id == 2
     return false
   end
@@ -49,6 +49,14 @@ class Project < ActiveRecord::Base
   def rejected?
     return true if project_status.project_status_type_id == 4
     return false
+  end
+
+  def complete!
+    self.project_status_id = ProjectStatus.find_by_name("Completed").id
+  end
+
+  def incomplete!
+    self.project_status_id = ProjectStatus.find_by_name("Incomplete").id
   end
 
 end

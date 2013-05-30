@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
         format.json { render json: @project }
       end
     end
-     
+
     @status = @project.project_status
     @status.accept!
 
@@ -119,7 +119,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-   # GET /projects
+  # GET /projects
   # GET /projects.json
   def index
     @projects = Project.all
@@ -167,28 +167,26 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-    @status = ProjectStatus.new
 
     if params[:online]
       # If submitted online, the project will have a company associated with it
       @company = Company.create(params[:company])
       @project.company_id = @company.id
-      @status.complete!
+      @project.complete!
     elsif params[:manual]
       # If submitted by uploading a form, mark project as incomplete
-      @status.incomplete!
+      @project.incomplete!
     else
+      flash[:notice] = 'There was some problem. Please try again or contact us.'
       render action: "new"
     end
 
     respond_to do |format|
       if @project.save
-	@status.project_id = @project.id
-	@status.save
-        format.html { redirect_to :action => "confirmation", :id => @project.id, notice: 'Project was successfully created.' }
+        format.html { redirect_to :action => "confirmation", :id => @project.id, notice: 'Project was successfully submitted.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", notice: 'There was some problem. Please try again or contact us.' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -211,7 +209,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-	@status.save
+        @status.save
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
