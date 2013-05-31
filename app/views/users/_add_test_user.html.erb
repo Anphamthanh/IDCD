@@ -1,10 +1,29 @@
-<h3>Add Test User</h3>
+<h3>Add Student/Admin Test User</h3>
 
 <div class="row-fluid">
   <div class="span12">
     <%= form_tag controller: "users", action: "add_test_user" do %>
       <%= text_field_tag 'gtusername', nil, class: "span4" %>
-      <%= select_tag :test_user_type, "<option>Student</option><option>Faculty</option><option>Admin</option>".html_safe, class: "span4" %>
+      <%= select_tag :test_user_type, "<option>Student</option><option>Admin</option>".html_safe, class: "span4" %>
+      <%= submit_tag "Add", class: "span4" %>
+    <% end %>
+  </div>
+</div>
+
+<h3>Add Faculty Test User</h3>
+
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_tag controller: "users", action: "add_test_user" do %>
+      <%= text_field_tag 'gtusername', nil, class: "span4" %>
+      <h5>Assign School</h5>
+      <% School.all.each do |s| %>
+        <label class="radio">
+          <%= radio_button_tag 'selectedSchool[]', s.id, false, :type => "radio", required: "required" %><%= s.name %><br />
+        </label>
+      <% end %>
+
+      <%= hidden_field_tag :test_user_type, "Faculty", class: "span4" %>
       <%= submit_tag "Add", class: "span4" %>
     <% end %>
   </div>

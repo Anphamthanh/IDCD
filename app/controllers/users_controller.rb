@@ -30,7 +30,10 @@ class UsersController < ApplicationController
   end
 
   def delete_faculty
+    f = Faculty.find(params[:id])
+    f.projects.clear
     user = User.find(params[:id])
+    user.school_id = nil
     user.type = "Student"
     user.save
 
@@ -70,6 +73,8 @@ class UsersController < ApplicationController
     else
       if params[:test_user_type] == "Admin"
         user = User.create(gtusername: gtusername, test: true, admin: true)
+      elsif params[:test_user_type] == "Faculty"
+        user = User.create(gtusername: gtusername, type: params[:test_user_type], test: true, school_id: params[:selectedSchool][0])
       else
         user = User.create(gtusername: gtusername, type: params[:test_user_type], test: true)
       end
@@ -82,6 +87,10 @@ class UsersController < ApplicationController
 
   def remove_test_user
     user = User.find(params[:id])
+    if user.isFaculty?
+      f = Faculty.find(params[:id])
+      f.projects.clear
+    end
     gtusername = user.gtusername
     user.destroy
 
