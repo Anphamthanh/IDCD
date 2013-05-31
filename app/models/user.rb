@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :email, :firstname, :gtusername, :lastname, :type, :test
+  attr_accessible :admin, :email, :firstname, :gtusername, :lastname, :type, :test, :school_id
 
   def name
     return "#{firstname} #{lastname}"

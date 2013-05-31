@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :admin
       t.string :type
       t.boolean :test
+      t.integer :school_id
 
       t.timestamps
     end

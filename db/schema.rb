@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20130521071653) do
     t.boolean  "admin"
     t.string   "type"
     t.boolean  "test"
+    t.integer  "school_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
