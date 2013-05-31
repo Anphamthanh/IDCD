@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def tester_login
     session['test_user'] = User.find(params[:test_user_id]).gtusername
 

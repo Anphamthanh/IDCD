@@ -56,10 +56,10 @@
 	  <div id="support">
 		<div class="span3">
 		    <ul id="mainNav">
-		      <% if not session[:cas_user] %>
+		      <% if not current_user %>
 			<h2><%= link_to "Login Using CAS", home_login_with_CAS_path %></h2>
 		      <% else %>
-			<h2><%= link_to current_user.name, edit_user_path(current_user) %></h2>
+			<h2><%= link_to current_user.gtusername, edit_user_path(current_user) %></h2>
 			<h2><%= link_to "Logout", home_logout_path %></h2>
 		      <% end %>
 

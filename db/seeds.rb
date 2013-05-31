@@ -8,8 +8,6 @@
 
 
 # Stuff that needs to set up by an admin
-Semester.create(:name => "Spring 2013", :start_date => Time.local(2013, 1, 10), :end_date => Time.local(2013, 5, 2))
-Semester.create(:name => "Spring 2014", :start_date => Time.local(2014, 1, 10), :end_date => Time.local(2014, 5, 2))
 Semester.create(:name => "Fall 2013", :start_date => Time.local(2013, 8, 10), :end_date => Time.local(2013, 12, 22))
 
 
@@ -19,21 +17,11 @@ School.create(:name => "ID")
 School.create(:name => "ME")
 School.create(:name => "BME")
 
-Company.create(:name => "Boeing", :technical_name => "Survy")
-Company.create(:name => "Georgia Power", :technical_name => "John Smith")
-Company.create(:name => "National Instruments", :technical_name => "Mark Jones")
-Company.create(:name => "Cooper Lighting", :technical_name => "George Johnson")
-Company.create(:name => "Delta Airlines Instruments", :technical_name => "Stan Brown")
+Company.create(name: "Boeing", technical_name: "string", technical_designation: "string", technical_email: "string", technical_phone: "string", director_name: "string", director_designation: "string", director_email: "string", director_phone: "string")
 
-Project.create(:name => "Jet Packs", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", :company_id => 1)
-Project.create(:name => "Automatic Pulverizer Pyrite Flushing System for Units 1-3", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", :company_id => 2)
-Project.create(:name => "Light Emitting Gate Analysis Board", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", :company_id => 3)
-Project.create(:name => "LED Hose Down fixture", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", :company_id => 4)
-Project.create(:name => "Prevention of aircraft damage during loading", :background => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum sodales lacus, vitae dictum massa cursus vitae. Fusce porttitor nulla non velit porta mattis.", :company_id => 5)
-
-Group.create(:name => "Group 1")
-Group.create(:name => "Group 2")
-Group.create(:name => "Group 3")
+Project.create(name: "ECE Project (to be rejected)", background: "background", concept: "concept", design: "design", skills: "skills", solutions: "solutions", company_id: 1, project_status_id: 2)
+Project.create(name: "ECE Project", background: "background", concept: "concept", design: "design", skills: "skills", solutions: "solutions", company_id: 1, project_status_id: 2)
+Project.create(name: "ID and ECE Project", background: "background", concept: "concept", design: "design", skills: "skills", solutions: "solutions", company_id: 1, project_status_id: 1)
 
 # Stuff that will not change without a significant code impact
 # 
