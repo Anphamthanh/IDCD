@@ -13,14 +13,17 @@ class UsersController < ApplicationController
 
   def add_faculty
     gtusername = params[:gtusername]
+    selected_school = params[:selectedSchool][0].to_i
+
     if Faculty.find_by_gtusername(gtusername)
       flash[:notice] = "GTUsername \"#{gtusername}\" is already marked as Faculty"
     elsif Student.find_by_gtusername(gtusername)
       user = Student.find_by_gtusername(gtusername)
       user.type = "Faculty"
+      user.school_id = selected_school
       user.save
     else
-      Faculty.create(gtusername: gtusername)
+      Faculty.create(gtusername: gtusername, school_id: selected_school)
     end
 
     redirect_to users_url
