@@ -5,7 +5,11 @@
     </button>
     <ul class="dropdown-menu pull-right">
       <% options.each do |option| %>
-        <li><%= link_to option[:label], {controller: option[:controller], action: option[:action], id: option[:id]}, method: option[:method], confirm: option[:confirm] %></li>
+        <% if option.has_key? :parameter %>
+          <li><%= link_to "#{option[:label]}", {controller: option[:controller], action: option[:action], id: option[:id], option[:parameter][:key] => option[:parameter][:value]}, method: option[:method], confirm: option[:confirm] %></li>
+        <% else %>
+          <li><%= link_to option[:label], {controller: option[:controller], action: option[:action], id: option[:id]}, method: option[:method], confirm: option[:confirm] %></li>
+        <% end %>
       <% end %>
     </ul>
   </div>

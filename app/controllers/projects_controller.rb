@@ -15,28 +15,27 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/faculty_approve
-  # GET /projects/1/faculty_approve.json
   def faculty_approve
-    @project = Project.find(params[:id])
-    @faculty = Faculty.find(params[:faculty_id])
-    @project.approving_faculty << @faculty
+    fpd = FacultyProjectDecision.where(faculty_id: params[:faculty_id], project_id: params[:id]).first
+    fpd.decision = true
 
     respond_to do |format|
-      format.html { redirect_to :action => "index", notice: 'Project was successfully marked as Accepted.' }
-      format.json { render json: @projects }
+      if fpd.save
+        format.html { redirect_to :action => "index", notice: 'Project was successfully marked as Accepted.' }
+        format.json { render json: @projects }
+      else
+        format.html { redirect_to :action => "index", notice: 'Project could NOT be marked as Accepted.' }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  # GET /projects/1/faculty_reject
-  # GET /projects/1/faculty_reject.json
   def faculty_reject
-    @project = Project.find(params[:id])
-    @faculty = Faculty.find(params[:faculty_id])
-    @project.approving_faculty.delete(@faculty)
+    fpd = FacultyProjectDecision.where(faculty_id: params[:faculty_id], project_id: params[:id]).first
+    fpd.decision = false
 
     respond_to do |format|
-      if @project.save
+      if fpd.save
         format.html { redirect_to :action => "index", notice: 'Project was successfully marked as Rejected.' }
         format.json { render json: @projects }
       else
@@ -46,8 +45,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/admin_accept
-  # GET /projects/1/admin_accept.json
   def admin_accept
     @project = Project.find(params[:id])
 
@@ -96,8 +93,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/admin_reject
-  # GET /projects/1/admin_reject.json
   def admin_reject
     @project = Project.find(params[:id])
     @project.reject!

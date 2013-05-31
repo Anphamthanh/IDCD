@@ -9,28 +9,29 @@
   confirm: false }) 
 %>
 
-<!-- #TODO faculty here being the current user -->
-<%# if project.faculty_approved? %>
-  <% options.push({ 
-    label: "Reject",
-    controller: "projects",
-    action: "faculty_reject",
-    id: project.id,
-    method: "get",
-    confirm: "Are you sure?"}) 
-  %>
-<%# end %>
-
-<%# if project.faculty_rejected? %>
-  <% options.push({ 
-    label: "Approve",
-    controller: "projects",
-    action: "faculty_approve",
-    id: project.id,
-    method: "get",
-    confirm: false }) 
-  %>
-<%# end %>
+<% if project.schools.include? current_user.school %>
+  <% if FacultyProjectDecision.where(faculty_id: current_user.id, project_id: project.id).first.decision %>
+    <% options.push({ 
+      label: "Reject",
+      controller: "projects",
+      action: "faculty_reject",
+      id: project.id,
+      parameter: {key: "faculty_id", value: current_user.id},
+      method: "get",
+      confirm: "Are you sure?"}) 
+    %>
+  <% else %>
+    <% options.push({ 
+      label: "Approve",
+      controller: "projects",
+      action: "faculty_approve",
+      id: project.id,
+      parameter: {key: "faculty_id", value: current_user.id},
+      method: "get",
+      confirm: false }) 
+    %>
+  <% end %>
+<% end %>
 
 <%= render :partial => "shared/dropdown_actions", :locals => {options: options.reverse!} %>
 
