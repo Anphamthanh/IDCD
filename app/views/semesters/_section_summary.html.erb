@@ -19,18 +19,18 @@
                     <strong>Assigned Faculty</strong>
                     <ul>
                         <% section.faculties.each do |faculty| %>
-                            <li><%= faculty.email %></li>
+                            <li>- <%= faculty.gtusername %></li>
                         <% end %>
                     </ul>
                 </div>
                 <div class="span6">
                     <strong>Approved Projects</strong>
                     <ul>
-                        <%# section.faculties.each do |faculty| %>
-                            <%# faculty.approved_projects.each do |p| %>
-                                <li><%#= p.name %></li>
-                            <%# end %>
-                        <%# end %>
+                        <% section.faculties.each do |faculty| %>
+                            <% faculty.approved_projects.each do |p| %>
+                                <li>- <%= p.name %></li>
+                            <% end %>
+                        <% end %>
                     </ul>
                 </div>
             </div>
