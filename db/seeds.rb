@@ -32,10 +32,4 @@ ProjectStatus.create(:name => "Completed")
 ProjectStatus.create(:name => "Accepted")
 ProjectStatus.create(:name => "Rejected")
 
-ProposalStatusType.create(:name => "Pending")
-ProposalStatusType.create(:name => "Accepted")
-ProposalStatusType.create(:name => "Rejected")
-
-
-
 

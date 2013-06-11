@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :type
       t.boolean :test
       t.integer :school_id
+      t.integer :section_id
 
       t.timestamps
     end
