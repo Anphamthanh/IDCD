@@ -3,7 +3,13 @@
 one:
   group_id: 1
   student_id: 1
+  requested: false
+  invited: false
+  member: false
 
 two:
   group_id: 1
   student_id: 1
+  requested: false
+  invited: false
+  member: false
