@@ -19,79 +19,82 @@
         </h2>
       </div>
       <div id="utilityBar">
-	<div class="row-fluid">
-	<div clas="span12">
-        <ul id="utilityNav">
-          <li>
-          <a href="/semester_settings">Semester Settings</a>
-          </li>
-          <li>
-          <a href="/past_projects">Past Projects</a>
-          </li>
-          <li>
-          <a href="http://www.capstone.gatech.edu">Capstone Expo Info</a>
-          </li>
-          <li>
-          <a href="/pages/1">Home</a>
-          </li>
-        </ul>
-        <!--<ul class="nav pull-right">
-          <!-- <ul class="nav pull-right">
-            <% session[:current_semester] ||= Semester.first %>
-            <div class="btn-group">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <%= "#{session[:current_semester].name} " %><span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <% Semester.active.each do |semester| %>
-                  <li><%= link_to "#{semester.name}", "#" %></li>
-                <% end %>
-              </ul>-->
-	  </div>
-	  </div>
+        <div class="row-fluid">
+          <div clas="span12">
+            <ul id="utilityNav">
+              <li>
+              <a href="/semester_settings">Semester Settings</a>
+              </li>
+              <li>
+              <a href="/past_projects">Past Projects</a>
+              </li>
+              <li>
+              <a href="http://www.capstone.gatech.edu">Capstone Expo Info</a>
+              </li>
+              <li>
+              <a href="/pages/1">Home</a>
+              </li>
+            </ul>
+            <!--<ul class="nav pull-right">
+              <!-- <ul class="nav pull-right">
+                <% session[:current_semester] ||= Semester.first %>
+                <div class="btn-group">
+                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <%= "#{session[:current_semester].name} " %><span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <% Semester.active.each do |semester| %>
+                      <li><%= link_to "#{semester.name}", "#" %></li>
+                    <% end %>
+                  </ul>-->
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div id="meat">
-	<div class="row-fluid">
-	  <div id="support">
-		<div class="span3">
-		    <ul id="mainNav">
-		      <% if not current_user %>
-			<h2><%= link_to "Login Using CAS", home_login_with_CAS_path %></h2>
-		      <% else %>
-			<h2><%= link_to current_user.gtusername, edit_user_path(current_user) %></h2>
-			<h2><%= link_to "Logout", home_logout_path %></h2>
-		      <% end %>
+          <div id="meat">
+            <div class="row-fluid">
+              <div id="support">
+                <div class="span3">
+                  <ul id="mainNav">
+                    <% if not current_user %>
+                      <h2><%= link_to "Login Using CAS", home_login_with_CAS_path %></h2>
+                    <% else %>
+                      <h2><%= link_to current_user.gtusername, edit_user_path(current_user) %></h2>
+                      <h2><%= link_to "Logout", home_logout_path %></h2>
+                    <% end %>
 
-		      <h2>As an Admin, you can:</h2>
-		      <li><%= link_to "Manage Semester Settings", semesters_path %></li>
-		      <li><%= link_to "Manage Users", users_path %></li>
-		      <li><%= link_to "View Projects", projects_path %></li>
-		      <h2>As a Student, you can:</h2>
-		      <h2>As a Faculty Member, you can:</h2>
-		      <li><%= link_to "Approve Projects", projects_path %></li>
-		      <h2>As a Sponsor, you can:</h2>
-		      <li><%= link_to "Submit A Project", new_project_path  %></li>
-		    </ul>
-		</div>
-	   </div>
-	  <div id="content">
-		<div class="span7">
-		    <!--<div id="columnPrimary" class="t1 l1 w8 textEm tallestBlock">-->
-		      <%= yield %>
-		    </div>
-		</div>
-	        </div>
-	  </div>
-	</div>
+                    <h2>As an Admin, you can:</h2>
+                    <li><%= link_to "Manage Semester Settings", semesters_path %></li>
+                    <li><%= link_to "Manage Users", users_path %></li>
+                    <li><%= link_to "View Projects", projects_path %></li>
+                    <h2>As a Student, you can:</h2>
+                    <h2>As a Faculty Member, you can:</h2>
+                    <li><%= link_to "Approve Projects", projects_path %></li>
+                    <h2>As a Sponsor, you can:</h2>
+                    <li><%= link_to "Submit A Project", new_project_path  %></li>
+                  </ul>
+                </div>
+              </div>
+              <div id="content">
+                <div class="span7">
+                  <!--<div id="columnPrimary" class="t1 l1 w8 textEm tallestBlock">-->
+                    <%= yield %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div id="footer">
           Current user:
-          <% if session[:cas_user] %>
-            <%= "#{session[:cas_user]}" %>
+          <% if current_user %>
+            <%= current_user.gtusername %>
+            <% if current_user.isTest? %>
+              (Test user)
+            <% end %>
           <% else %>
-            No CAS user
+            No logged in user
           <% end %>
 
           <center>

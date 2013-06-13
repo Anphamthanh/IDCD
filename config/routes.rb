@@ -34,7 +34,11 @@ IDCD::Application.routes.draw do
     end
   end
 
-  resources :groups
+  resources :groups do
+    collection do
+      post 'new_student_group'
+    end
+  end
 
   resources :schools
 

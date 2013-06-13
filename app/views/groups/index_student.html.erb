@@ -1,0 +1,37 @@
+<% if current_user.group_member_of.nil? %>
+
+  <div class="row-fluid">
+    <div class="span12 well">
+      You are currently not a member of any group.
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span12 well">
+      <h4>Create a new Group</h4>
+
+        <%= form_tag controller: "groups", action: "new_student_group" do %>
+      <div class="row-fluid">
+          <%= text_field_tag 'group_name', nil, class: "span4" %>
+          <%= hidden_field_tag :student_gtusername, current_user.gtusername, class: "span4" %>
+          <%= submit_tag "Create", class: "span4" %>
+      </div>
+        <% end %>
+
+    </div>
+  </div>
+
+<% else %>
+
+  <div class="row-fluid">
+    <div class="span12 well">
+      You are currently a member of <strong><%= current_user.group_member_of.name %></strong>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span12 well">
+    </div>
+  </div>
+
+<% end %>

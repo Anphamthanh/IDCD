@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(:version => 20130611161828) do
   create_table "group_members", :force => true do |t|
     t.integer  "group_id"
     t.integer  "student_id"
-    t.boolean  "requested"
-    t.boolean  "invited"
-    t.boolean  "member"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "requested",  :default => false
+    t.boolean  "invited",    :default => false
+    t.boolean  "member",     :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "groups", :force => true do |t|

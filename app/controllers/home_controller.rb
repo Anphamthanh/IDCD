@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
 
+  skip_before_filter :require_login, :only => [:login_with_CAS]
   before_filter RubyCAS::Filter, :only => [:login_with_CAS]
 
   def login_with_CAS

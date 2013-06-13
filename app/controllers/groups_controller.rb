@@ -1,12 +1,53 @@
 class GroupsController < ApplicationController
+
+  def new_student_group
+
+    # retrieve student creating group
+    student = Student.find_by_gtusername(params['student_gtusername'])
+
+    # destroy previous memberships
+    if student.group_member_of
+      old_group = student.group_member_of
+      remove_membership_of_student_x_from_group_y(student, old_group)
+    end
+
+    # create new group
+    group = Group.create( name: params['group_name'])
+
+    # add student to group
+    GroupMember.create( group_id: group.id, student_id: student.id, member: true)
+
+    redirect_to action: 'index'
+  end
+
+  def remove_membership_of_student_x_from_group_y (student, group)
+    GroupMember.where("student_id = ? and group_id = ? and member = true", student.id, group.id).first.destroy
+    if group.group_members.count == 0
+      group.destroy
+    end
+  end
+
+
+
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    if current_user.isAdmin?
+      @groups = Group.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @groups }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @groups }
+      end
+
+    elsif current_user.isStudent?
+      @groups = Group.all
+
+      respond_to do |format|
+        format.html { render 'index_student' }
+        format.json { render json: @groups }
+      end
+
     end
   end
 

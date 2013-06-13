@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  skip_before_filter :require_login
+
   def tester_login
     session['test_user'] = User.find(params[:test_user_id]).gtusername
 

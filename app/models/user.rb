@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     return false
   end
 
+  def isTest?
+    return self.test
+  end
+
 end
