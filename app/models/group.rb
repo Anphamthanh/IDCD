@@ -1,19 +1,37 @@
 class Group < ActiveRecord::Base
   attr_accessible :name
 
-  has_many :group_members
+  has_many :group_members, :dependent => :destroy
   has_many :students, :through => :group_members
 
-  def requesters
+  def owners
     students = []
-    GroupMember.where( group_id: self.id, requested: true).each do |group_member|
-      students << Student.find(group_member.student_id)
+    self.group_members.each do |gm|
+      if gm.member 
+        students << Student.find(gm.student_id)
+      end
     end
+    return students
+  end
 
-    if students.count > 0
-      return students
+  def requests
+    students = []
+    self.group_members.each do |gm|
+      if gm.requested
+        students << Student.find(gm.student_id)
+      end
     end
-    return false
+    return students
+  end
+
+  def invites
+    students = []
+    self.group_members.each do |gm|
+      if gm.invited
+        students << Student.find(gm.student_id)
+      end
+    end
+    return students
   end
 
 end

@@ -3,4 +3,6 @@ class GroupMember < ActiveRecord::Base
 
   belongs_to :group
   belongs_to :student
+
+  validates :group_id, :uniqueness => { :scope => [:student_id, :requested, :invited, :member], :message => "Duplicate records!" }
 end

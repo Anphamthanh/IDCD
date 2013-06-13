@@ -1,85 +1,200 @@
 class GroupsController < ApplicationController
 
-  def accept_request
-    group = Group.find_by_name(params['group_name'])
-    student = Student.find_by_gtusername(params['student_gtusername'])
-    redirect_to action: 'index'
-  end
-
-  def request_to_join
-
-    # retrieve student creating group
-    student = Student.find_by_gtusername(params['student_gtusername'])
-
-    # find group
-    group = Group.find_by_name(params['group_name'])
-    if not group
-      flash[:notice] = "Group not found"
+  #post 'add_new_group'
+  def add_new_group
+    # should not be owner of another group
+    if current_user.is_owner?
+      flash[:notice] = "You are currently a member of another group. Leave it to create your own group. [Sketchy]!!"
       redirect_to action: 'index'
       return
     end
 
-    # do nothing if request already exists
-    if GroupMember.where("student_id = ? and group_id = ? and requested = true", student.id, group.id).count > 0
-      flash[:notice] = "Request already exists"
+    # new group should have a unique name
+    if Group.find_by_name(params[:group_name])
+      flash[:notice] = "This Group Name is already taken. Please choose another one."
       redirect_to action: 'index'
       return
     end
 
-    # destroy previous memberships
-    if student.group_member_of
-      old_group = student.group_member_of
-      remove_membership_of_student_x_from_group_y(student, old_group)
-    end
-
-    # add student to group
-    GroupMember.create( group_id: group.id, student_id: student.id, requested: true)
-
-    redirect_to action: 'index'
-  end
-
-
-  def leave_group
-
-    # retrieve student creating group
-    student = Student.find_by_gtusername(params['student_gtusername'])
-
-    # destroy membership from current group
-    if student.group_member_of
-      old_group = student.group_member_of
-      remove_membership_of_student_x_from_group_y(student, old_group)
-    end
-
-    redirect_to action: 'index'
-  end
-
-
-  def new_student_group
-
-    # retrieve student creating group
-    student = Student.find_by_gtusername(params['student_gtusername'])
-
-    # destroy previous memberships
-    if student.group_member_of
-      old_group = student.group_member_of
-      remove_membership_of_student_x_from_group_y(student, old_group)
+    # delete pending requests
+    current_user.my_requests.each do |group|
+      GroupMember.where(group_id: group.id, student_id: current_user.id, requested: true).first.destroy
     end
 
     # create new group
-    group = Group.create( name: params['group_name'])
-
-    # add student to group
-    GroupMember.create( group_id: group.id, student_id: student.id, member: true)
+    group = Group.create(name: params[:group_name])
+    GroupMember.create(group_id: group.id, student_id: current_user.id, member: true)
 
     redirect_to action: 'index'
   end
 
-  def remove_membership_of_student_x_from_group_y (student, group)
-    #TODO check for how many group owners are left and delete all requests and invites
-    GroupMember.where("student_id = ? and group_id = ? and member = true", student.id, group.id).first.destroy
-    if group.group_members.count == 0
+
+  #post 'send_request'
+  def send_request
+    # should not be owner of another group
+    if current_user.is_owner?
+      flash[:notice] = "You are currently a member of another group. Leave it to send a request to join another group. [Sketchy]!!"
+      redirect_to action: 'index'
+      return
+    end
+
+    # passed name should be a valid group
+    group = Group.find_by_name(params[:group_name])
+    if group.nil?
+      flash[:notice] = "There does not exist a group with that name. Please try again."
+      redirect_to action: 'index'
+      return
+    end
+
+    # request should not be a duplicate - done in the model
+
+    # create request
+    GroupMember.create(group_id: group.id, student_id: current_user.id, requested: true)
+
+    redirect_to action: 'index'
+  end
+
+
+  #get 'accept_invite'
+  def accept_invite
+    # should not be owner of another group
+    if current_user.is_owner?
+      flash[:notice] = "You are currently a member of another group. Leave it to accept invite. [Sketchy]!!"
+      redirect_to action: 'index'
+      return
+    end
+
+    # check if there exists an invite
+    gm = GroupMember.where(group_id: params[:group_id], student_id: current_user.id, invited: true)
+    if gm.nil?
+      flash[:notice] = "You dont have an invite to join the group. Please request one. [Sketchy]!!"
+      redirect_to action: 'index'
+      return
+    end
+
+    # mark the user as a member
+    gm = gm.first
+    gm.invited = false;
+    gm.member = true;
+    gm.save
+
+    redirect_to action: 'index'
+  end
+
+
+  #get 'reject_invite'
+  def reject_invite
+    # check if there exists an invite
+    gm = GroupMember.where(group_id: params[:group_id], student_id: current_user.id, invited: true)
+    if gm.nil?
+      flash[:notice] = "You dont have an invite to reject. [Sketchy]!!"
+      redirect_to action: 'index'
+      return
+    end
+
+    # delete the invite
+    gm = gm.first
+    gm.destroy
+
+    redirect_to action: 'index'
+  end
+
+
+
+
+
+  #get 'leave_group'
+  def leave_group
+    group = current_user.my_group
+
+    # is current_user an owner of the passed group?
+    #if not current_user.my_group == group
+    #  flash[:notice] = "You are not a member of this group. [Sketchy]!!"
+    #  redirect_to action: 'index'
+    #  return
+    #end
+
+    # remove from group
+    GroupMember.where(group_id: group.id, student_id: current_user.id, member: true).first.destroy
+
+    # remove current_user's pending sent requests
+    current_user.my_requests.each do |group|
+      GroupMember.where(group_id: group.id, student_id: current_user.id, requested: true).first.destroy
+    end
+
+    # delete group if the group does not have an owner
+    if group.owners.count == 0
       group.destroy
     end
+
+    redirect_to action: 'index'
+  end
+
+
+  #post 'send_invite'
+  def send_invite
+    group = current_user.my_group
+
+    # is current_user an owner of the passed group?
+    #if not current_user.my_group == group
+    #  flash[:notice] = "You are not a member of this group. [Sketchy]!!"
+    #  redirect_to action: 'index'
+    #  return
+    #end
+
+    # check if student exists
+    student = Student.find_by_gtusername(params[:student_gtusername])
+    if student.nil?
+      flash[:notice] = "The gtusername you entered does not exist in the system. Check spellings and make sure the student has completed his/her profile"
+      redirect_to action: 'index'
+      return
+    end
+
+    # create invite
+    GroupMember.create(group_id: group.id, student_id: student.id, invited: true)
+
+    redirect_to action: 'index'
+  end
+
+
+  #get 'accept_request'
+  def accept_request
+    group = current_user.my_group
+    student = Student.find(params[:student_id])
+
+    # check if request exists
+    gm = GroupMember.where(group_id: group.id, student_id: student.id, requested: true)
+    if gm.nil?
+      flash[:notice] = "The request does not exist. [Sketchy]!!"
+      redirect_to action: 'index'
+      return
+    end
+
+    gm = gm.first
+    gm.requested = false
+    gm.member = true
+    gm.save
+
+    redirect_to action: 'index'
+  end
+
+
+  #get 'reject_request'
+  def reject_request
+    group = current_user.my_group
+    student = Student.find(params[:student_id])
+
+    # check if request exists
+    gm = GroupMember.where(group_id: group.id, student_id: student.id, requested: true)
+    if gm.nil?
+      flash[:notice] = "The request does not exist. [Sketchy]!!"
+      redirect_to action: 'index'
+      return
+    end
+
+    gm.first.destroy
+
+    redirect_to action: 'index'
   end
 
 

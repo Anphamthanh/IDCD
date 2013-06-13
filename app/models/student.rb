@@ -5,20 +5,20 @@ class Student < User
   has_many :group_members # not group members in the literal sense
   has_many :groups, :through => :group_members
 
-  def my_groups_requests
-    return self.group_member_of.requesters
-  end
-
-  def group_member_of
-    self.group_members.each do |row|
-      if row.member
-        return Group.find(row.group_id)
+  def my_group
+    self.group_members.each do |gm|
+      if gm.member
+        return Group.find(gm.group_id)
       end
     end
     return nil
   end
 
-  def requests_to_join_groups
+  def is_owner?
+    return !self.my_group.nil?
+  end
+
+  def my_requests
     groups = []
     self.group_members.each do |group_member|
       if group_member.requested
@@ -26,10 +26,26 @@ class Student < User
       end
     end
 
-    if groups.count > 0
-      return groups
+    return groups
+  end
+
+  def my_invites
+    groups = []
+    self.group_members.each do |group_member|
+      if group_member.invited
+        groups << Group.find(group_member.group_id)
+      end
     end
-    return false
+
+    return groups
+  end
+
+  def my_groups_requests
+    return self.my_group.requests
+  end
+
+  def my_groups_invites
+    return self.my_group.invites
   end
 
 end

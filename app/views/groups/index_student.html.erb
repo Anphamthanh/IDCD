@@ -1,4 +1,4 @@
-<% if current_user.group_member_of.nil? %>
+<% if !current_user.is_owner? %>
 
   <div class="row-fluid">
     <div class="span12 well">
@@ -11,9 +11,8 @@
       <h4>Create a New Group</h4>
 
       <div class="row-fluid">
-        <%= form_tag controller: "groups", action: "new_student_group" do %>
-          <%= text_field_tag 'group_name', nil, class: "span4" %>
-          <%= hidden_field_tag :student_gtusername, current_user.gtusername, class: "span4" %>
+        <%= form_tag controller: "groups", action: "add_new_group" do %>
+          <%= text_field_tag 'group_name', nil, class: "span4", :placeholder => "name of group" %>
           <%= submit_tag "Create", class: "span2" %>
         <% end %>
       </div>
@@ -23,67 +22,145 @@
 
   <div class="row-fluid">
     <div class="span12 well">
-      <h4>Request to join an Existing Group</h4>
+      <h4>Invitations to join other Groups</h4>
 
-      <div class="row-fluid">
-        <%= form_tag controller: "groups", action: "request_to_join" do %>
-          <%= text_field_tag 'group_name', nil, class: "span4", :placeholder => "name of group" %>
-          <%= hidden_field_tag :student_gtusername, current_user.gtusername, class: "span4" %>
-          <%= submit_tag "Request", class: "span2" %>
-        <% end %>
-      </div>
-
-      <% if current_user.requests_to_join_groups %>
-        <h5>Existing Requests</h5>
+      <% if current_user.my_invites.count > 0 %>
         <div class="row-fluid">
           <div class="span12">
-            <% current_user.requests_to_join_groups.each do |group| %>
-              <%= group.name %>
+            <% current_user.my_invites.each do |group| %>
+              <div class="span4">
+                <%= group.name %>
+              </div>
+              <%= link_to "Accept", accept_invite_groups_path(group_id: group.id), :class => "span2" %>
+              <%= link_to "Reject", reject_invite_groups_path(group_id: group.id), :class => "span2" %>
               <br />
             <% end %>
           </div>
         </div>
-      <% end %>
-
-    </div>
-  </div>
-
-<% else %>
-
-  <div class="row-fluid well">
-    <div class="span8">
-      You are currently a member of <strong><%= current_user.group_member_of.name %></strong>
-    </div>
-    <div class="span4">
-      <%= form_tag controller: "groups", action: "leave_group" do %>
-        <%= hidden_field_tag :student_gtusername, current_user.gtusername, class: "span4" %>
-        <%= submit_tag "Leave Group", :confirm => "Are you sure you want to leave the group? If you are the only memeber, this action will also delete the group." %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row-fluid well">
-    <div class="span12">
-      <h4>Pending Requests to join your group</h4>
-
-      <% if current_user.my_groups_requests %>
-        <% current_user.my_groups_requests.each do |student| %>
-          <div class="row-fluid">
-            <div class="span4">
-              <%= student.gtusername %>
-            </div>
-            <div class="span4">
-              <%= link_to "Accept", accept_request_groups_path(group_name: current_user.group_member_of.name, student_gtusername: student.gtusername), :method => :post %> 
-            </div>
-            <div class="span4">
-            </div>
-          </div>
-        <% end %>
       <% else %>
         None
       <% end %>
 
     </div>
   </div>
+
+  <div class="row-fluid">
+    <div class="span12 well">
+      <h4>Request to join an Existing Group</h4>
+
+      <div class="row-fluid">
+        <%= form_tag controller: "groups", action: "send_request" do %>
+          <%= text_field_tag 'group_name', nil, class: "span4", :placeholder => "name of group" %>
+          <%= submit_tag "Request", class: "span2" %>
+        <% end %>
+      </div>
+
+      <h5>Pending Requests</h5>
+
+      <% if current_user.my_requests.count > 0 %>
+        <div class="row-fluid">
+          <div class="span12">
+            <% current_user.my_requests.each do |group| %>
+              <%= group.name %>
+              <br />
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        None
+      <% end %>
+
+    </div>
+  </div>
+
+
+
+
+
+<% else %>
+
+
+
+
+
+  <div class="row-fluid well">
+    <div class="span12">
+
+      <div class="row-fluid">
+        <div class="span8">
+          You are currently a member of <strong><%= current_user.my_group.name %></strong>
+        </div>
+        <%= link_to "Leave Group", leave_group_groups_path, :class => "span3" %>
+      </div>
+
+      <div class="row-fluid">
+        <h5>All members</h5>
+        <% current_user.my_group.owners.each do |student| %>
+          <%= "#{student.gtusername}" %>
+          <br />
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row-fluid well">
+    <div class="span12">
+      <h4>Invite Students to your Group</h4>
+
+      <div class="row-fluid">
+        <%= form_tag controller: "groups", action: "send_invite" do %>
+          <%= text_field_tag 'student_gtusername', nil, class: "span4", :placeholder => "gtusername of student" %>
+          <%= submit_tag "Invite", class: "span2" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row-fluid well">
+    <div class="span12">
+      <h4>Requests to join your Group</h4>
+
+      <% if current_user.my_groups_requests.count > 0 %>
+        <div class="row-fluid">
+          <div class="span12">
+            <% current_user.my_groups_requests.each do |student| %>
+              <div class="span4">
+                <%= student.gtusername %>
+              </div>
+              <%= link_to "Accept", accept_request_groups_path(student_id: student.id), :class => "span2" %>
+              <%= link_to "Reject", reject_request_groups_path(student_id: student.id), :class => "span2" %>
+              <br />
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        None
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row-fluid well">
+    <div class="span12">
+      <h5>Pending Invites</h5>
+
+      <% if current_user.my_groups_invites.count > 0 %>
+        <div class="row-fluid">
+          <div class="span12">
+            <% current_user.my_groups_invites.each do |student| %>
+              <%= student.gtusername %>
+              <br />
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        None
+      <% end %>
+
+    </div>
+  </div>
+
 
 <% end %>

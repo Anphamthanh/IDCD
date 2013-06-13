@@ -36,10 +36,15 @@ IDCD::Application.routes.draw do
 
   resources :groups do
     collection do
-      post 'new_student_group'
-      post 'leave_group'
-      post 'request_to_join'
-      post 'accept_request'
+      post 'add_new_group'
+      post 'send_request'
+      get 'accept_invite'
+      get 'reject_invite'
+
+      get 'leave_group'
+      post 'send_invite'
+      get 'accept_request'
+      get 'reject_request'
     end
   end
 
