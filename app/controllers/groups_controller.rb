@@ -1,5 +1,59 @@
 class GroupsController < ApplicationController
 
+  def accept_request
+    group = Group.find_by_name(params['group_name'])
+    student = Student.find_by_gtusername(params['student_gtusername'])
+    redirect_to action: 'index'
+  end
+
+  def request_to_join
+
+    # retrieve student creating group
+    student = Student.find_by_gtusername(params['student_gtusername'])
+
+    # find group
+    group = Group.find_by_name(params['group_name'])
+    if not group
+      flash[:notice] = "Group not found"
+      redirect_to action: 'index'
+      return
+    end
+
+    # do nothing if request already exists
+    if GroupMember.where("student_id = ? and group_id = ? and requested = true", student.id, group.id).count > 0
+      flash[:notice] = "Request already exists"
+      redirect_to action: 'index'
+      return
+    end
+
+    # destroy previous memberships
+    if student.group_member_of
+      old_group = student.group_member_of
+      remove_membership_of_student_x_from_group_y(student, old_group)
+    end
+
+    # add student to group
+    GroupMember.create( group_id: group.id, student_id: student.id, requested: true)
+
+    redirect_to action: 'index'
+  end
+
+
+  def leave_group
+
+    # retrieve student creating group
+    student = Student.find_by_gtusername(params['student_gtusername'])
+
+    # destroy membership from current group
+    if student.group_member_of
+      old_group = student.group_member_of
+      remove_membership_of_student_x_from_group_y(student, old_group)
+    end
+
+    redirect_to action: 'index'
+  end
+
+
   def new_student_group
 
     # retrieve student creating group
@@ -21,6 +75,7 @@ class GroupsController < ApplicationController
   end
 
   def remove_membership_of_student_x_from_group_y (student, group)
+    #TODO check for how many group owners are left and delete all requests and invites
     GroupMember.where("student_id = ? and group_id = ? and member = true", student.id, group.id).first.destroy
     if group.group_members.count == 0
       group.destroy

@@ -104,6 +104,12 @@
           </center>
 
           <%= Rails.env.development? %>
+
+          <br />
+
+          <% if flash[:notice] %>
+            <%= "#{flash[:notice]}" %>
+          <% end %>
         </div>
 
 

@@ -37,6 +37,9 @@ IDCD::Application.routes.draw do
   resources :groups do
     collection do
       post 'new_student_group'
+      post 'leave_group'
+      post 'request_to_join'
+      post 'accept_request'
     end
   end
 
