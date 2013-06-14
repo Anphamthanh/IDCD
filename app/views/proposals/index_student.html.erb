@@ -1,27 +1,29 @@
-<h1>Listing proposals - stu</h1>
+<div class="row-fluid">
+  <div class="span12">
+    <h1>Project proposals</h1>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>Group</th>
-    <th>Project</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#online" data-toggle="tab">Submitted Proposals</a></li>
+      <li><a href="#manual" data-toggle="tab">Submit A Proposal</a></li>
+    </ul>
+  </div>
+</div>
 
-<% @proposals.each do |proposal| %>
-  <tr>
-    <td><%= proposal.group_id %></td>
-    <td><%= proposal.project_id %></td>
-    <td><%= proposal.description %></td>
-    <td><%= link_to 'Show', proposal %></td>
-    <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
-    <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="online">
+        <%= render :partial => 'list_student' %>
+      </div>
+      <div class="tab-pane fade in" id="manual">
+        <%= render :partial => 'proposal_submission' %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<br />
 
-<%= link_to 'New Proposal', new_proposal_path %>

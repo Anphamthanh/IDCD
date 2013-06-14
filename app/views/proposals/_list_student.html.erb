@@ -1,0 +1,56 @@
+<div class="row-fluid">
+  <div class="span12">
+    <% if current_user.my_group.proposals.count == 0 %>
+
+      <div class="row-fluid">
+        <div class="span12">
+          No submitted proposals.
+        </div>
+      </div>
+
+    <% else %>
+
+      <% current_user.my_group.proposals.each do |proposal|  %>
+        <div class="row-fluid">
+          <div class="span12 well">
+
+            <div class="row-fluid">
+              <div class="span11">
+                <strong>Project Name: </strong><%= "#{proposal.project.name}" %>
+                <br />
+                <%= "#{proposal.description}" %>
+              </div>
+
+              <div class="span1">
+                <% options = [] %>
+
+                <% options.push({
+                  label: "Delete",
+                  controller: "proposals",
+                  action: "destroy",
+                  id: proposal.id,
+                  method: "delete",
+                  confirm: "Are you sure?"})
+                %>
+
+                <% options.push({
+                  label: "Edit",
+                  controller: "proposals",
+                  action: "edit",
+                  id: proposal.id,
+                  method: "get",
+                  confirm: false})
+                %>
+
+                <%= render :partial => "shared/dropdown_actions", :locals => {options: options.reverse!} %>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>

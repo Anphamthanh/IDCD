@@ -63,7 +63,7 @@
 
                     <% if current_user.isAdmin? %>
                       <li><%= link_to "View Projects", projects_path %></li>
-                      <li><%= link_to "Manage Semester Settings", semesters_path %></li>
+                      <li><%= link_to "Semester Settings", semesters_path %></li>
                       <li><%= link_to "Manage Users", users_path %></li>
                       <li><%= link_to "Manage Groups", groups_path %></li>
                       <li><%= link_to "Manage Proposals", proposals_path%></li>
@@ -93,7 +93,7 @@
                     <div class="span12">
                       <div class="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Warning!</strong> <%= "#{flash[:notice]}" %>
+                        <%= "#{flash[:notice]}" %>
                       </div>
                     </div>
                   </div>
@@ -104,7 +104,7 @@
                     <div class="span12">
                       <div class="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Warning!</strong> <%= "#{flash[:error]}" %>
+                        <%= "#{flash[:error]}" %>
                       </div>
                     </div>
                   </div>

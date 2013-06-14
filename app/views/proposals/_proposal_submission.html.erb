@@ -1,0 +1,21 @@
+<div class="row-fluid">
+  <div class="span12">
+
+    <% if not current_user.is_owner? %>
+      You must be a member of a Group to submit a Proposal.
+
+    <% else %>
+
+      <div class="row-fluid">
+        <div class="span12">
+          Submitting a proposal on behalf of <strong><%= "#{current_user.my_group.name}" %></strong>
+        </div>
+      </div>
+
+      <%= render partial: 'form' %>
+
+    <% end %>
+
+  </div>
+</div>
+

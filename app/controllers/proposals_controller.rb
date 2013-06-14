@@ -1,12 +1,17 @@
 class ProposalsController < ApplicationController
+
+  # TODO - Is this the best/only way to avoid "Can't verify CSRF token authenticity" error?
+  skip_before_filter :verify_authenticity_token, :only => [:destroy]
+
   # GET /proposals
   # GET /proposals.json
   def index
     if current_user.isStudent?
       @proposals = Proposal.all
+      @proposal = Proposal.new
 
       respond_to do |format|
-        format.html {render 'index_student' }
+        format.html { render 'index_student' }
         format.json { render json: @proposals }
       end
     end
@@ -52,13 +57,17 @@ class ProposalsController < ApplicationController
   # POST /proposals.json
   def create
     @proposal = Proposal.new(params[:proposal])
+    @proposal.group_id = current_user.my_group.id
+
+    # check of duplicate proposal by the same group for the same project
+    # done in the model
 
     respond_to do |format|
       if @proposal.save
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
+        format.html { redirect_to proposals_path, notice: 'Proposal was successfully created.' }
         format.json { render json: @proposal, status: :created, location: @proposal }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to proposals_path, notice: 'Proposal submission unsuccessful, most probably because of duplication. ' }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
       end
     end
@@ -71,10 +80,10 @@ class ProposalsController < ApplicationController
 
     respond_to do |format|
       if @proposal.update_attributes(params[:proposal])
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
+        format.html { redirect_to proposals_path, notice: 'Proposal was successfully created.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to proposals_path, notice: 'Proposal submission unsuccessful, most probably because of duplication. ' }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
       end
     end
