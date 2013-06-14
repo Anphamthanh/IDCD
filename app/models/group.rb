@@ -5,6 +5,14 @@ class Group < ActiveRecord::Base
   has_many :students, :through => :group_members
   has_many :proposals, :dependent => :destroy
 
+  def available_project_choices
+    available_projects = Project.all
+    self.students.each do |student|
+      available_projects = available_projects & student.section.faculty_approved_projects
+    end
+    return available_projects
+  end
+
   def owners
     students = []
     self.group_members.each do |gm|

@@ -31,10 +31,11 @@
   </div>
 
   <% if @user.isStudent? %>
+    <% semId = session[:current_semester].id %>
     <div class="control-group">
       <%= f.label :section_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :section_id, :class => 'text_field' %>
+        <%= f.collection_select :section_id, Semester.find(semId).sections, :id, :name  %>
       </div>
     </div>
   <% end %>

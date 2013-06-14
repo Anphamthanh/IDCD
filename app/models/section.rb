@@ -7,4 +7,12 @@ class Section < ActiveRecord::Base
   has_many :faculty_sections
   has_many :faculties, :through => :faculty_sections
 
+  def faculty_approved_projects
+    projects = []
+    self.faculties.each do |faculty|
+      projects = projects | faculty.approved_projects
+    end
+    return projects
+  end
+
 end
