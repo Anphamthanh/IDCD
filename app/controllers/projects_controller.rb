@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+
+  skip_before_filter :require_login, :only => [:new, :create, :confirmation]
+
   # GET /projects/1/complete
   # GET /projects/1/complete.json
   def complete

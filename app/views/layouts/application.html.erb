@@ -23,16 +23,10 @@
           <div clas="span12">
             <ul id="utilityNav">
               <li>
-              <a href="/semester_settings">Semester Settings</a>
-              </li>
-              <li>
-              <a href="/past_projects">Past Projects</a>
-              </li>
-              <li>
               <a href="http://www.capstone.gatech.edu">Capstone Expo Info</a>
               </li>
               <li>
-              <a href="/pages/1">Home</a>
+              <a href="/home">Home</a>
               </li>
             </ul>
             <!--<ul class="nav pull-right">
@@ -56,22 +50,40 @@
               <div id="support">
                 <div class="span3">
                   <ul id="mainNav">
+
                     <% if not current_user %>
-                      <h2><%= link_to "Login Using CAS", home_login_with_CAS_path %></h2>
+                      <li><%= link_to "Login Using CAS", home_login_with_CAS_path %></li>
+                      <li><%= link_to "Submit A Project", new_project_path  %></li>
+
                     <% else %>
-                      <h2><%= link_to current_user.gtusername, edit_user_path(current_user) %></h2>
-                      <h2><%= link_to "Logout", home_logout_path %></h2>
+                      <li><%= link_to "Welcome #{current_user.gtusername}", edit_user_path(current_user) %></li>
+                      <li><%= link_to "Logout", home_logout_path %></li>
+
+                      <h2 style="margin-top: 20px">Quick Links</h2>
+
+                      <% if current_user.isAdmin? %>
+                        <li><%= link_to "View Projects", projects_path %></li>
+                        <li><%= link_to "Manage Semester Settings", semesters_path %></li>
+                        <li><%= link_to "Manage Users", users_path %></li>
+                        <li><%= link_to "Manage Groups", groups_path %></li>
+                        <li><%= link_to "Manage Proposals", proposals_path%></li>
+                        <li><%= link_to "My Profile", user_path(current_user) %></li>
+                      <% end %>
+
+                      <% if current_user.isFaculty? %>
+                        <li><%= link_to "View Projects", projects_path %></li>
+                        <li><%= link_to "My Profile", user_path(current_user) %></li>
+                      <% end %>
+
+                      <% if current_user.isStudent? %>
+                        <li><%= link_to "View Projects", projects_path %></li>
+                        <li><%= link_to "Groups and Teams", groups_path %></li>
+                        <li><%= link_to "Project Proposals", groups_path %></li>
+                        <li><%= link_to "My Profile", user_path(current_user) %></li>
+                      <% end %>
+
                     <% end %>
 
-                    <h2>As an Admin, you can:</h2>
-                    <li><%= link_to "Manage Semester Settings", semesters_path %></li>
-                    <li><%= link_to "Manage Users", users_path %></li>
-                    <li><%= link_to "View Projects", projects_path %></li>
-                    <h2>As a Student, you can:</h2>
-                    <h2>As a Faculty Member, you can:</h2>
-                    <li><%= link_to "Approve Projects", projects_path %></li>
-                    <h2>As a Sponsor, you can:</h2>
-                    <li><%= link_to "Submit A Project", new_project_path  %></li>
                   </ul>
                 </div>
               </div>
