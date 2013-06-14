@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     if not current_user
-      redirect_to home_login_with_CAS_path
+      redirect_to home_path
     end
   end
 
