@@ -4,6 +4,7 @@ class CreateProposals < ActiveRecord::Migration
       t.integer :group_id
       t.integer :project_id
       t.text :description
+      t.integer :decision, :default => 0
 
       t.timestamps
     end

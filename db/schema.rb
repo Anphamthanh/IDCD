@@ -92,8 +92,9 @@ ActiveRecord::Schema.define(:version => 20130614072942) do
     t.integer  "group_id"
     t.integer  "project_id"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "decision",    :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "schools", :force => true do |t|

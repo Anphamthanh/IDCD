@@ -1,0 +1,69 @@
+<div class="row-fluid">
+  <div class="span12">
+    <% if proposals.count == 0 %>
+
+      <div class="row-fluid">
+        <div class="span12">
+          No proposals in this category.
+        </div>
+      </div>
+
+    <% else %>
+
+      <% proposals.each do |proposal|  %>
+        <div class="row-fluid">
+          <div class="span12 well">
+
+            <div class="row-fluid">
+              <div class="span11">
+                <strong>Project Name: </strong><%= "#{proposal.project.name}" %>
+                <br />
+                <strong>Group Name: </strong><%= "#{proposal.group.name}" %>
+                <br />
+                <strong>Description: </strong><%= "#{proposal.description}" %>
+              </div>
+
+              <div class="span1">
+                <% options = [] %>
+
+                <% if type == "pending" %>
+                  <% options.push({
+                    label: "Reject",
+                    controller: "proposals",
+                    action: "reject",
+                    id: proposal.id,
+                    method: "get",
+                    confirm: false})
+                  %>
+                  <% options.push({
+                    label: "Accept",
+                    controller: "proposals",
+                    action: "accept",
+                    id: proposal.id,
+                    method: "get",
+                    confirm: "Are you sure? This will reject all other proposals for project \"#{Project.find(proposal.project_id).name}\"."})
+                  %>
+
+                <% else %>
+                  <% options.push({
+                    label: "Mark Pending",
+                    controller: "proposals",
+                    action: "mark_pending",
+                    id: proposal.id,
+                    method: "get",
+                    confirm: "Are you sure? This will mark all proposals for project \"#{Project.find(proposal.project_id).name}\" as Pending."})
+                  %>
+                <% end %>
+
+                <%= render :partial => "shared/dropdown_actions", :locals => {options: options.reverse!} %>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
+</div>

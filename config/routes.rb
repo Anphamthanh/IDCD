@@ -1,7 +1,12 @@
 IDCD::Application.routes.draw do
   
-  resources :proposals
-
+  resources :proposals do
+    collection do
+      get :accept
+      get :reject
+      get :mark_pending
+    end
+  end
 
   resources :users do
     collection do
