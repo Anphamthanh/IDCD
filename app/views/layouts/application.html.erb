@@ -45,53 +45,77 @@
               </div>
             </div>
           </div>
-          <div id="meat">
+
+          <div id="meat" class="container">
             <div class="row-fluid">
-              <div id="support">
-                <div class="span3">
-                  <ul id="mainNav">
+              <div id="support" class="span2">
+                <ul id="mainNav">
 
-                    <% if not current_user %>
-                      <li><%= link_to "Login Using CAS", home_login_with_CAS_path %></li>
-                      <li><%= link_to "Submit A Project", new_project_path  %></li>
+                  <% if not current_user %>
+                    <li><%= link_to "Login Using CAS", home_login_with_CAS_path %></li>
+                    <li><%= link_to "Submit A Project", new_project_path  %></li>
 
-                    <% else %>
-                      <li><%= link_to "Welcome #{current_user.gtusername}", edit_user_path(current_user) %></li>
-                      <li><%= link_to "Logout", home_logout_path %></li>
+                  <% else %>
+                    <li><%= link_to "Welcome #{current_user.gtusername}", edit_user_path(current_user) %></li>
+                    <li><%= link_to "Logout", home_logout_path %></li>
 
-                      <h2 style="margin-top: 20px">Quick Links</h2>
+                    <h2 style="margin-top: 20px">Quick Links</h2>
 
-                      <% if current_user.isAdmin? %>
-                        <li><%= link_to "View Projects", projects_path %></li>
-                        <li><%= link_to "Manage Semester Settings", semesters_path %></li>
-                        <li><%= link_to "Manage Users", users_path %></li>
-                        <li><%= link_to "Manage Groups", groups_path %></li>
-                        <li><%= link_to "Manage Proposals", proposals_path%></li>
-                        <li><%= link_to "My Profile", user_path(current_user) %></li>
-                      <% end %>
-
-                      <% if current_user.isFaculty? %>
-                        <li><%= link_to "View Projects", projects_path %></li>
-                        <li><%= link_to "My Profile", user_path(current_user) %></li>
-                      <% end %>
-
-                      <% if current_user.isStudent? %>
-                        <li><%= link_to "View Projects", projects_path %></li>
-                        <li><%= link_to "Groups and Teams", groups_path %></li>
-                        <li><%= link_to "Project Proposals", groups_path %></li>
-                        <li><%= link_to "My Profile", user_path(current_user) %></li>
-                      <% end %>
-
+                    <% if current_user.isAdmin? %>
+                      <li><%= link_to "View Projects", projects_path %></li>
+                      <li><%= link_to "Manage Semester Settings", semesters_path %></li>
+                      <li><%= link_to "Manage Users", users_path %></li>
+                      <li><%= link_to "Manage Groups", groups_path %></li>
+                      <li><%= link_to "Manage Proposals", proposals_path%></li>
+                      <li><%= link_to "My Profile", user_path(current_user) %></li>
                     <% end %>
 
-                  </ul>
-                </div>
+                    <% if current_user.isFaculty? %>
+                      <li><%= link_to "View Projects", projects_path %></li>
+                      <li><%= link_to "My Profile", user_path(current_user) %></li>
+                    <% end %>
+
+                    <% if current_user.isStudent? %>
+                      <li><%= link_to "View Projects", projects_path %></li>
+                      <li><%= link_to "Groups and Teams", groups_path %></li>
+                      <li><%= link_to "Project Proposals", groups_path %></li>
+                      <li><%= link_to "My Profile", user_path(current_user) %></li>
+                    <% end %>
+
+                  <% end %>
+
+                </ul>
               </div>
-              <div id="content">
-                <div class="span7">
-                  <!--<div id="columnPrimary" class="t1 l1 w8 textEm tallestBlock">-->
+
+              <div id="content" class="span8">
+                <% if flash[:notice] %>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <div class="alert">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Warning!</strong> <%= "#{flash[:notice]}" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+
+                <% if flash[:error] %>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <div class="alert">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Warning!</strong> <%= "#{flash[:error]}" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+
+                <div class="row-fluid">
+                  <div class="span12">
                     <%= yield %>
                   </div>
+                </div>
+                <div class="row-fluid">
                 </div>
               </div>
             </div>
