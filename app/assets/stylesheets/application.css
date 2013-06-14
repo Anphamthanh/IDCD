@@ -70,8 +70,8 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 #utilityNav #search form { display: inline; }
 #utilityNav #search input { background: #fff; border: 1px solid #d7b350; font-size: 10px; margin-top: 3px;  padding: 2px 2px 2px 5px; width: 165px; }*/
 
-#meat { margin: 50px auto; /*width: 980px; */}
-#meat h1 { background: #fff; border-bottom: 1px solid #e3ca84; line-height: 36px; margin: -25px 0 0 0; padding: 6px 0; text-transform: uppercase;}
+#meat { margin: 0px auto; /*width: 980px; */}
+#meat h1 { background: #fff; border-bottom: 1px solid #e3ca84; line-height: 36px; margin: 0; padding: 6px 0; text-transform: uppercase;}
 #meat ul.inline li { background: none; display: inline; margin: 0; padding: 0; }
 #meat ul.inline li:after { content: "|"; margin: 0 6px; }
 #meat ul.inline li.last:after { content: ""; }
@@ -81,7 +81,7 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 
 #support { /*float: left;*/ margin: 0 0 0 100px; padding: 7px 0 0 0; /*width: 186px;*/ }
 
-#mainNav  { font-weight: bold; font-size: 13px; margin: -35px 0 0 0; }
+#mainNav  { font-weight: bold; font-size: 13px; margin: 0; }
 #mainNav h2 { font-size: 14px; line-height: 16px; margin: 7px 0; color: #C59353; }
 #mainNav a { color: #666; display: block; padding: 5px 5px 6px 5px; text-decoration: none; border-left: 1px solid #fff; border-right: 1px solid #fff; border-top: 1px solid #fff; border-bottom: 1px solid #fff }
 #mainNav a:hover { color: #c5a757;}
