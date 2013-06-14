@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12">
-    <% if current_user.my_group.proposals.count == 0 %>
+    <% if not current_user.is_owner? or current_user.my_group.proposals.count == 0 %>
 
       <div class="row-fluid">
         <div class="span12">
