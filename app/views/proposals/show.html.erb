@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Group:</b>
+  <%= @proposal.group_id %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @proposal.project_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @proposal.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_proposal_path(@proposal) %> |
+<%= link_to 'Back', proposals_path %>

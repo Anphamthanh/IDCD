@@ -1,5 +1,8 @@
 IDCD::Application.routes.draw do
   
+  resources :proposals
+
+
   resources :users do
     collection do
       post :add_faculty

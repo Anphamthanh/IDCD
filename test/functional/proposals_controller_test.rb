@@ -18,7 +18,7 @@ class ProposalsControllerTest < ActionController::TestCase
 
   test "should create proposal" do
     assert_difference('Proposal.count') do
-      post :create, proposal: { group_id: @proposal.group_id, project_id: @proposal.project_id, propsal_status_type_id: @proposal.propsal_status_type_id }
+      post :create, proposal: { description: @proposal.description, group_id: @proposal.group_id, project_id: @proposal.project_id }
     end
 
     assert_redirected_to proposal_path(assigns(:proposal))
@@ -35,7 +35,7 @@ class ProposalsControllerTest < ActionController::TestCase
   end
 
   test "should update proposal" do
-    put :update, id: @proposal, proposal: { group_id: @proposal.group_id, project_id: @proposal.project_id, propsal_status_type_id: @proposal.propsal_status_type_id }
+    put :update, id: @proposal, proposal: { description: @proposal.description, group_id: @proposal.group_id, project_id: @proposal.project_id }
     assert_redirected_to proposal_path(assigns(:proposal))
   end
 
