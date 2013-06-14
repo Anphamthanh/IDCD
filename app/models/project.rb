@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   has_many :faculties, :through => :faculty_project_decisions
   has_many :project_schools
   has_many :schools, :through => :project_schools
+  has_many :proposals
 
   #has_many :proposals
   #has_many :approving_faculty, :through => :approvals, :source => "faculty"

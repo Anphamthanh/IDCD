@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
 
   has_many :group_members, :dependent => :destroy
   has_many :students, :through => :group_members
+  has_many :proposals
 
   def owners
     students = []

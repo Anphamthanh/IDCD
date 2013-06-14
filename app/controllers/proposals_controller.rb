@@ -2,11 +2,22 @@ class ProposalsController < ApplicationController
   # GET /proposals
   # GET /proposals.json
   def index
-    @proposals = Proposal.all
+    if current_user.isStudent?
+      @proposals = Proposal.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @proposals }
+      respond_to do |format|
+        format.html {render 'index_student' }
+        format.json { render json: @proposals }
+      end
+    end
+
+    if current_user.isAdmin?
+      @proposals = Proposal.all
+
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @proposals }
+      end
     end
   end
 

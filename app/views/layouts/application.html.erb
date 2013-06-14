@@ -78,7 +78,7 @@
                     <% if current_user.isStudent? %>
                       <li><%= link_to "View Projects", projects_path %></li>
                       <li><%= link_to "Groups and Teams", groups_path %></li>
-                      <li><%= link_to "Project Proposals", groups_path %></li>
+                      <li><%= link_to "Project Proposals", proposals_path %></li>
                       <li><%= link_to "My Profile", user_path(current_user) %></li>
                     <% end %>
 
