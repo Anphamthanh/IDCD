@@ -1,0 +1,107 @@
+<h1>List of Projects</h1>
+<br>
+<center><%= link_to "Submit A New Project", new_project_path, :class => 'btn btn-primary' %></center>
+<br>
+<br>
+
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#accepted" data-toggle="tab">Accepted</a></li>
+      <li><a href="#complete" data-toggle="tab">Complete</a></li>
+      <li><a href="#incomplete" data-toggle="tab">Incomplete</a></li>
+      <li><a href="#rejected" data-toggle="tab">Rejected</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="accepted">
+
+        <% @accepted_projects.each do |project| %>
+          <div class="row-fluid">
+            <div class="span12 well">
+
+              <div class="row-fluid">
+                <div class="span11">
+                  <%= render :partial => "summary", :locals => {:project => project} %>
+                </div>
+                <div class="span1">
+                  <%= render :partial => "actions", :locals => {:project => project} %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="tab-pane fade in active" id="complete">
+
+        <% @complete_projects.each do |project| %>
+          <div class="row-fluid">
+            <div class="span12 well">
+
+              <div class="row-fluid">
+                <div class="span11">
+                  <%= render :partial => "summary", :locals => {:project => project} %>
+                </div>
+                <div class="span1">
+                  <%= render :partial => "actions", :locals => {:project => project} %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="tab-pane fade in active" id="incomplete">
+
+        <% @incomplete_projects.each do |project| %>
+          <div class="row-fluid">
+            <div class="span12 well">
+
+              <div class="row-fluid">
+                <div class="span11">
+                  <%= render :partial => "summary", :locals => {:project => project} %>
+                </div>
+                <div class="span1">
+                  <%= render :partial => "actions", :locals => {:project => project} %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+      <div class="tab-pane fade in active" id="rejected">
+
+        <% @rejected_projects.each do |project| %>
+          <div class="row-fluid">
+            <div class="span12 well">
+
+              <div class="row-fluid">
+                <div class="span11">
+                  <%= render :partial => "summary", :locals => {:project => project} %>
+                </div>
+                <div class="span1">
+                  <%= render :partial => "actions", :locals => {:project => project} %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

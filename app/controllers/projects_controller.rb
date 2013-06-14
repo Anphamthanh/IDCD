@@ -127,11 +127,38 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order("updated_at DESC")
+    if current_user.isAdmin?
+      @incomplete_projects = Project.where(project_status_id: 1)
+      @complete_projects = Project.where(project_status_id: 2)
+      @accepted_projects = Project.where(project_status_id: 3)
+      @rejected_projects = Project.where(project_status_id: 4)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
+      respond_to do |format|
+        format.html { render 'index_admin' }
+        format.json { render json: @projects }
+      end
+
+    elsif current_user.isStudent?
+      #TODO also limit by current semester
+      @all_projects = Project.where(project_status_id: 3)
+      if current_user.is_owner?
+        @available_projects = current_user.my_group.available_project_choices
+      else
+        @available_projects = []
+      end
+
+      respond_to do |format|
+        format.html { render 'index_student' }
+        format.json { render json: @projects }
+      end
+
+    else
+      @projects = Project.all
+      respond_to do |format|
+        format.html 
+        format.json { render json: @projects }
+      end
+
     end
   end
 
