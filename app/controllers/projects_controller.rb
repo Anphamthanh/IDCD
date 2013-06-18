@@ -205,12 +205,21 @@ class ProjectsController < ApplicationController
       @company = Company.create(params[:company])
       @project.company_id = @company.id
       @project.complete!
+
     elsif params[:manual]
       # If submitted by uploading a form, mark project as incomplete
       @project.incomplete!
+
+    elsif params[:student]
+      # If submitted by a student or a faculty, store the person's id
+      @project.submitter = current_user
+      @project.complete!
+
     else
       flash[:notice] = 'There was some problem. Please try again or contact us.'
-      render action: "new"
+      redirect_to action: "new"
+      return
+
     end
 
     respond_to do |format|

@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20130614072942) do
     t.integer  "company_id"
     t.string   "form"
     t.integer  "semester_id"
+    t.integer  "submitter_id"
     t.integer  "project_status_id",  :default => 1
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false

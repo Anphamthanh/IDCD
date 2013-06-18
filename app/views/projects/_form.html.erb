@@ -1,23 +1,29 @@
+<% if current_user %>
+  
+  <%= render :partial => 'online_form_student' %>
 
-<div class="row-fluid">
-  <div class="span12">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#online" data-toggle="tab">Fill out an Online Form</a></li>
-      <li><a href="#manual" data-toggle="tab">Complete Form by Hand and Upload</a></li>
-    </ul>
+<% else %>
+  
+  <div class="row-fluid">
+    <div class="span12">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#online" data-toggle="tab">Fill out an Online Form</a></li>
+        <li><a href="#manual" data-toggle="tab">Complete Form by Hand and Upload</a></li>
+      </ul>
+    </div>
   </div>
-</div>
 
-<div class="row-fluid">
-  <div class="span12">
-    <div class="tab-content">
-      <div class="tab-pane fade in active" id="online">
-        <%= render :partial => 'online_form' %>
-      </div>
-      <div class="tab-pane fade in" id="manual">
-        <%= render :partial => 'manual_form' %>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="online">
+          <%= render :partial => 'online_form' %>
+        </div>
+        <div class="tab-pane fade in" id="manual">
+          <%= render :partial => 'manual_form' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+<% end %>
