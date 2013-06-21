@@ -9,9 +9,9 @@ class Faculty < User
 
   belongs_to :school
 
-  def approved_projects
+  def approved_projects(semester_id)
     return_list = []
-    projects = self.projects.where("decision = true and project_status_id = 3")
+    projects = self.projects.where("decision = true and project_status_id = 3 and semester_id = #{semester_id}")
     projects.each do |project|
       if project.schools.include? self.school
         return_list << project
@@ -20,9 +20,9 @@ class Faculty < User
     return return_list
   end
 
-  def rejected_projects
+  def rejected_projects(semester_id)
     return_list = []
-    projects = self.projects.where("decision = false and project_status_id = 3")
+    projects = self.projects.where("decision = false and project_status_id = 3 and semester_id = #{semester_id}")
     projects.each do |project|
       if project.schools.include? self.school
         return_list << project
