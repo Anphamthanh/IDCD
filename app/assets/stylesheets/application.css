@@ -68,6 +68,7 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 
 #meat { margin: 0px auto;}
 #meat h1 { background: #fff; border-bottom: 1px solid #e3ca84; line-height: 36px; margin: 0; padding: 6px 0; text-transform: uppercase;}
+#meat h2 { background: #fff; border-bottom: 1px solid #e3ca84; line-height: 36px; margin: 0; padding: 6px 0; text-transform: uppercase;}
 #meat ul.inline li { background: none; display: inline; margin: 0; padding: 0; }
 #meat ul.inline li:after { content: "|"; margin: 0 6px; }
 #meat ul.inline li.last:after { content: ""; }
