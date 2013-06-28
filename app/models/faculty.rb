@@ -9,7 +9,7 @@ class Faculty < User
 
   belongs_to :school
 
-  def approved_projects(semester_id)
+  def approved_projects(semester_id = Semester.current.id)
     return_list = []
     projects = self.projects.where("decision = true and project_status_id = 3 and semester_id = #{semester_id}")
     projects.each do |project|

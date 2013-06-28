@@ -8,4 +8,8 @@ class Semester < ActiveRecord::Base
 	  where("end_date >= ?", Date.current)
   end
 
+  def self.current
+    where("end_date >= ?", Date.current).order("start_date ASC").first
+  end
+
 end
