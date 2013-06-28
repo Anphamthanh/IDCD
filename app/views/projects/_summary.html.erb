@@ -1,6 +1,12 @@
 <div class="row-fluid">
   <div class="span12">
-    <h3><%= project.name %></h3>
+    <h3><%= link_to project.name, project_path(project) %></h3>
+    <% if project.company %>
+      <h6>Submitted by <%= project.company.name %></h6>
+    <% elsif project.submitter %>
+      <h6>Submitted by a Student or Faculty member</h6>
+    <% end %>
+
   </div>
 </div>
 

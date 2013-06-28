@@ -3,12 +3,14 @@
 
     <div class="row-fluid">
       <div class="span11">
-        <%= render :partial => "summary", :locals => {:project => @project} %>
+        <%= render :partial => "all_info", :locals => {:project => @project} %>
       </div>
       <div class="span1">
         <%= render :partial => "actions", :locals => {:project => @project} %>
       </div>
     </div>
+
+    <hr />
 
     <div class="row-fluid">
       <div class="span12">

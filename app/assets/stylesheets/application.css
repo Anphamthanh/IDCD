@@ -88,7 +88,6 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 #content h3 { color: #001C3A; }
 #content h4 { color: #4d4d4d; }
 #content h5 { color: #4d4d4d; font-style: italic; }
-#content h6 { font-size: 30px; font-weight: bold; line-height: 48px; margin: 24px 0; background: #fff; border-bottom: 1px solid #e3ca84; margin: 0; padding: 6px 0; text-transform: uppercase; }
 #content ul li { background: url('...') 0px 9px no-repeat; font-size: 14px; line-height: 24px; padding: 0 0 0 18px; }
 #content ol { margin: 0 0 0 24px; padding: 0 12px; }
 #content ol li { border: 0px solid green; background: none; font-size: 14px; list-style-type: decimal; line-height: 24px; margin: 6px 0; padding: 0 0 0 6px; }
