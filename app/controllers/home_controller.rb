@@ -13,6 +13,9 @@ class HomeController < ApplicationController
 
       redirect_to edit_user_path(@user)
       return
+    elsif current_user.incompleteProfile?
+      flash[:error] = "Please complete all fields in your profile."
+      redirect_to edit_student_path(current_user)
     end
 
     respond_to do |format|

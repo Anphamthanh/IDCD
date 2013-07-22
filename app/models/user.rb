@@ -24,4 +24,15 @@ class User < ActiveRecord::Base
     return self.test
   end
 
+  def incompleteProfile?
+    if self.email.blank? or 
+      self.firstname.blank? or 
+      self.lastname.blank? or
+      self.gtusername.blank?
+      return true
+    else
+      return false
+    end
+  end
+
 end

@@ -5,6 +5,13 @@ class UsersController < ApplicationController
   def tester_login
     session['test_user'] = User.find(params[:test_user_id]).gtusername
 
+    if current_user.incompleteProfile?
+      flash[:error] = "Please complete all fields in your profile."
+      redirect_to edit_student_path(current_user)
+      return
+    end
+
+
     redirect_to users_url
   end
 
@@ -171,8 +178,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(updated_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        if @user.incompleteProfile?
+          format.html { redirect_to edit_user_path(@user), notice: 'Please fill out all details to complete profile.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
