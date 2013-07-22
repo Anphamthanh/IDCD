@@ -13,6 +13,23 @@
       <dt><strong>Background:</strong></dt>
       <dd><%= project.background %></dd>
 
+      <% if project.accepted? %>
+        <dt><strong>Majors Required:</strong></dt>
+        <dd>
+          <% counter = project.schools.count - 1 %>
+          <% project.schools.each do |s| %>
+            <%= "#{s.name}" %>
+            <% if counter > 0 %>
+              <%= ", " %>
+            <% end %>
+            <% counter = counter - 1 %>
+          <% end %>
+        </dd>
+      <% end %>
+
+      <dt><strong>Number of Proposals:</strong></dt>
+      <dd><%= project.proposals.count %></dd>
+
     </dl>
 
   </div>
