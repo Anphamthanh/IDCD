@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def login_with_CAS
     if User.find_by_gtusername(session[:cas_user]).nil?
-      flash[:notice] = "Welcome new user! Please fill out these details to get started"
+      flash[:notice] = "Please complete the one-time registration. Do not leave any field blank."
 
       # create and save a new user -> default is student
       # pre-populate details received from CAS

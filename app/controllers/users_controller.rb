@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     session['test_user'] = User.find(params[:test_user_id]).gtusername
 
     if current_user.incompleteProfile?
-      flash[:error] = "Please complete all fields in your profile."
+      flash[:error] = "Please complete the one-time registration. Do not leave any field blank."
       redirect_to edit_student_path(current_user)
       return
     end

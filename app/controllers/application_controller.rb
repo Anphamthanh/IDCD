@@ -41,6 +41,9 @@ class ApplicationController < ActionController::Base
   def require_login
     if not current_user
       redirect_to home_path
+    elsif current_user.incompleteProfile?
+      flash[:error] = "Please complete the one-time registration. Do not leave any field blank."
+      redirect_to edit_user_path(current_user)
     end
   end
 
