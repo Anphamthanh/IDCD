@@ -19,6 +19,16 @@ class Proposal < ActiveRecord::Base
     self.decision = 0
   end
 
+  def status
+    if self.decision == 1
+      return "Accepted"
+    elsif self.decision == 0
+      return "Pending"
+    elsif self.decision == -1
+      return "Rjected"
+    end
+  end
+
 
   def self.pending
     Proposal.where(decision: 0).order("project_id, group_id")
