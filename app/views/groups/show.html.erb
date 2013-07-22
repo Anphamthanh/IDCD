@@ -1,18 +1,24 @@
-<p id="notice"><%= notice %></p>
+<h1>Group Details</h1>
 
-<p>
-  <b>Name:</b>
-  <%= @group.name %>
-</p>
-<p>
-  <b>Members:</b>
+<dl class="dl-horizontal">
 
-</p>
-<p>
-  <b>Submitted Proposals:</b>
+  <dt><strong>Name:</strong></dt>
+  <dd><%= "#{@group.name}" %></dd>
 
-</p>
+  <dt><strong>Members:</strong></dt>
+  <dd>
+    <% @group.students.each do |member| %>
+      <li><%= "#{member.name}" %></li>
+    <% end %>
+  </dd>
 
+  <dt><strong>Proposals:</strong></dt>
+  <dd>
+    <% @group.proposals.each do |proposal| %>
+      <li><%= "#{proposal.project.name}" %></li>
+    <% end %>
+  </dd>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
+</dl>
+
 <%= link_to 'Back to Manage Groups', groups_path %>
