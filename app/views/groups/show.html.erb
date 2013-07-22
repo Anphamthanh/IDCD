@@ -15,7 +15,7 @@
   <dt><strong>Proposals:</strong></dt>
   <dd>
     <% @group.proposals.each do |proposal| %>
-      <li><%= "#{proposal.project.name}" %></li>
+      <li><%= "#{proposal.project.name} - #{proposal.status}" %></li>
     <% end %>
   </dd>
 
