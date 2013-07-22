@@ -23,10 +23,10 @@
           <div clas="span12">
             <ul id="utilityNav">
               <% if not current_user %>
-              <li><%= link_to "Login", home_login_with_CAS_path %></li>
+                <li><%= link_to "Login", home_login_with_CAS_path %></li>
               <% else %>
-              <li><%= link_to "Logout", home_logout_path %></li>
-	      <% end %>
+                <li><%= link_to "Logout", home_logout_path %></li>
+              <% end %>
               <li>
               <a href="http://www.capstone.gatech.edu">Capstone Expo Info</a>
               </li>
@@ -34,160 +34,161 @@
               <a href="/home">Home</a>
               </li>
             </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="meat" class="container">
-            <div class="row-fluid">
-              <div id="support" class="span2">
-                <ul id="mainNav">
-
-                  <% if not current_user %>
-                    <!--<li><%= link_to "Login Using CAS", home_login_with_CAS_path %></li>-->
-                    <li><%= link_to "Submit A Project", new_project_path  %></li>
-
-                  <% else %>
-                    <li>Welcome <%= "#{current_user.gtusername}" %></li>
-                    <!--<li><%= link_to "Logout", home_logout_path %></li>-->
-
-                    <h2 style="margin-top: 20px">Quick Links</h2>
-
-                    <% if current_user.isAdmin? %>
-                      <li><%= link_to "Projects", projects_path %></li>
-                      <li><%= link_to "Semester Settings", semesters_path %></li>
-                      <li><%= link_to "Manage Users", users_path %></li>
-                      <li><%= link_to "Manage Groups", groups_path %></li>
-                      <li><%= link_to "Manage Proposals", proposals_path%></li>
-                      <li><%= link_to "My Profile", user_path(current_user) %></li>
-                    <% end %>
-
-                    <% if current_user.isFaculty? %>
-                      <li><%= link_to "Projects", projects_path %></li>
-                      <li><%= link_to "My Profile", user_path(current_user) %></li>
-                    <% end %>
-
-                    <% if current_user.isStudent? %>
-                      <li><%= link_to "Projects", projects_path %></li>
-                      <li><%= link_to "Groups", groups_path %></li>
-                      <li><%= link_to "Project Proposals", proposals_path %></li>
-                      <li><%= link_to "My Profile", user_path(current_user) %></li>
-                    <% end %>
-
-                  <% end %>
-
-                </ul>
-              </div>
-
-              <div id="content" class="span8">
-                <% if flash[:notice] %>
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <div class="alert">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <%= "#{flash[:notice]}" %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-
-                <% if flash[:error] %>
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <div class="alert">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <%= "#{flash[:error]}" %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-
-                <div class="row-fluid">
-                  <div class="span12">
-                    <%= yield %>
-                  </div>
-                </div>
-                <div class="row-fluid">
-                </div>
-              </div>
-            </div>
+            <% session[:current_semester] ||= Semester.first %>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div id="footer" style="display: none">
-          Current user:
-          <% if current_user %>
-            <%= current_user.gtusername %>
-            <% if current_user.isTest? %>
-              (Test user)
+    <div id="meat" class="container">
+      <div class="row-fluid">
+        <div id="support" class="span2">
+          <ul id="mainNav">
+
+            <% if not current_user %>
+              <!--<li><%= link_to "Login Using CAS", home_login_with_CAS_path %></li>-->
+              <li><%= link_to "Submit A Project", new_project_path  %></li>
+
+            <% else %>
+              <li>Welcome <%= "#{current_user.gtusername}" %></li>
+              <!--<li><%= link_to "Logout", home_logout_path %></li>-->
+
+              <h2 style="margin-top: 20px">Quick Links</h2>
+
+              <% if current_user.isAdmin? %>
+                <li><%= link_to "Projects", projects_path %></li>
+                <li><%= link_to "Semester Settings", semesters_path %></li>
+                <li><%= link_to "Manage Users", users_path %></li>
+                <li><%= link_to "Manage Groups", groups_path %></li>
+                <li><%= link_to "Manage Proposals", proposals_path%></li>
+                <li><%= link_to "My Profile", user_path(current_user) %></li>
+              <% end %>
+
+              <% if current_user.isFaculty? %>
+                <li><%= link_to "Projects", projects_path %></li>
+                <li><%= link_to "My Profile", user_path(current_user) %></li>
+              <% end %>
+
+              <% if current_user.isStudent? %>
+                <li><%= link_to "Projects", projects_path %></li>
+                <li><%= link_to "Groups", groups_path %></li>
+                <li><%= link_to "Project Proposals", proposals_path %></li>
+                <li><%= link_to "My Profile", user_path(current_user) %></li>
+              <% end %>
+
             <% end %>
-          <% else %>
-            No logged in user
-          <% end %>
 
-          <center>
-            &copy;2013 Georgia Institute of Technology
-            <br>
-            semester set to: <%= session[:current_semester].name %>
-          </center>
-
-          <%= Rails.env.development? %>
-
-          <br />
-
-          <% if flash[:notice] %>
-            <%= "#{flash[:notice]}" %>
-          <% end %>
+          </ul>
         </div>
 
-
-        <div id="admin_footer" class="container">
-          <div class="row-fluid page-header">
-            <div class="span12">
-              <h4>Admin Footer</h4>
+        <div id="content" class="span8">
+          <% if flash[:notice] %>
+            <div class="row-fluid">
+              <div class="span12">
+                <div class="alert">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <%= "#{flash[:notice]}" %>
+                </div>
+              </div>
             </div>
-          </div>
+          <% end %>
 
-          <div>
-            <%= session %>
-          </div>
+          <% if flash[:error] %>
+            <div class="row-fluid">
+              <div class="span12">
+                <div class="alert">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <%= "#{flash[:error]}" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
 
           <div class="row-fluid">
             <div class="span12">
-              <%= form_tag controller: "users", action: "tester_login" do %>
-                Login as: 
-                <%= select_tag 'test_user_id', options_for_select(User.where(test: true).collect{ |u| [u.gtusername, u.id] }) %>
-                <%= submit_tag %>
-              <% end %>
-              <%= link_to "Go to users page", users_path %>
+              <%= yield %>
             </div>
           </div>
-
-          <% if test_user %>
-
-            <div class="row-fluid">
-              <div class="span12">
-                Viewing site as user "<%= "#{test_user.gtusername}" %>"
-                |
-                <%= link_to "Exit View", tester_logout_users_path %>
-                |
-                <%= link_to "Go to users page", users_path %>
-              </div>
-            </div>
-
-          <% end %>
-
-
+          <div class="row-fluid">
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div style="padding-bottom: 30px">
+  <div id="footer" style="display: none">
+    Current user:
+    <% if current_user %>
+      <%= current_user.gtusername %>
+      <% if current_user.isTest? %>
+        (Test user)
+      <% end %>
+    <% else %>
+      No logged in user
+    <% end %>
+
+    <center>
+      &copy;2013 Georgia Institute of Technology
+      <br>
+      semester set to: <%= session[:current_semester].name %>
+    </center>
+
+    <%= Rails.env.development? %>
+
+    <br />
+
+    <% if flash[:notice] %>
+      <%= "#{flash[:notice]}" %>
+    <% end %>
+  </div>
+
+
+  <div id="admin_footer" class="container">
+    <div class="row-fluid page-header">
+      <div class="span12">
+        <h4>Admin Footer</h4>
+      </div>
+    </div>
+
+    <div>
+      <%= session %>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12">
+        <%= form_tag controller: "users", action: "tester_login" do %>
+          Login as: 
+          <%= select_tag 'test_user_id', options_for_select(User.where(test: true).collect{ |u| [u.gtusername, u.id] }) %>
+          <%= submit_tag %>
+        <% end %>
+        <%= link_to "Go to users page", users_path %>
+      </div>
+    </div>
+
+    <% if test_user %>
+
+      <div class="row-fluid">
+        <div class="span12">
+          Viewing site as user "<%= "#{test_user.gtusername}" %>"
+          |
+          <%= link_to "Exit View", tester_logout_users_path %>
+          |
+          <%= link_to "Go to users page", users_path %>
         </div>
+      </div>
+
+    <% end %>
 
 
-        <!-- Javascripts
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <%= javascript_include_tag "application" %>
-      </body>
+  </div>
+
+  <div style="padding-bottom: 30px">
+  </div>
+
+
+  <!-- Javascripts
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <%= javascript_include_tag "application" %>
+</body>
     </html>
