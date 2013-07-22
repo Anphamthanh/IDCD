@@ -17,6 +17,14 @@
 
       <div class="tab-pane active" id="available">
 
+        <div class="row-fluid">
+          <div class="span12">
+            <%= render :partial => "school_summary", :locals => {:projects => @available_projects} %>
+          </div>
+        </div>
+
+        <hr />
+
         <% @available_projects.each do |project| %>
           <div class="row-fluid">
             <div class="span12 well">
@@ -37,6 +45,14 @@
       </div>
 
       <div class="tab-pane" id="all">
+
+        <div class="row-fluid">
+          <div class="span12">
+            <%= render :partial => "school_summary", :locals => {:projects => @all_projects} %>
+          </div>
+        </div>
+
+        <hr />
 
         <% @all_projects.each do |project| %>
           <div class="row-fluid">

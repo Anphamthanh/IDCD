@@ -1,17 +1,19 @@
 <div class="row-fluid">
   <div class="span12">
     <h3><%= link_to project.name, project_path(project) %></h3>
-    <% if project.company %>
-      <h6>Submitted by <%= project.company.name %></h6>
-    <% elsif project.submitter %>
-      <h6>Submitted by a Student or Faculty member</h6>
-    <% end %>
 
-  </div>
-</div>
+    <dl class="dl-horizontal">
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= project.background %>
+      <% if project.company %>
+        <dt><strong>Submitted by:</strong></dt>
+        <dd><%= project.company.name %></dd>
+      <% elsif project.submitter %>
+      <% end %>
+
+      <dt><strong>Background:</strong></dt>
+      <dd><%= project.background %></dd>
+
+    </dl>
+
   </div>
 </div>
