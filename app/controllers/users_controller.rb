@@ -174,6 +174,8 @@ class UsersController < ApplicationController
       updated_params = params[:student]
     elsif @user.is_a? Faculty
       updated_params = params[:faculty]
+    else
+      updated_params = params[:user]
     end
 
     respond_to do |format|
