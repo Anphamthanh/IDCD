@@ -5,8 +5,8 @@
 <div class="row-fluid">
   <div class="span12">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#all" data-toggle="tab">All</a></li>
-      <li><a href="#available" data-toggle="tab">Available</a></li>
+      <li><a href="#all" data-toggle="tab">All</a></li>
+      <li class="active"><a href="#available" data-toggle="tab">Available</a></li>
     </ul>
   </div>
 </div>
@@ -15,7 +15,7 @@
   <div class="span12">
     <div class="tab-content">
 
-      <div class="tab-pane fade in active" id="available">
+      <div class="tab-pane active" id="available">
 
         <% @available_projects.each do |project| %>
           <div class="row-fluid">
@@ -36,7 +36,7 @@
 
       </div>
 
-      <div class="tab-pane fade in active" id="all">
+      <div class="tab-pane" id="all">
 
         <% @all_projects.each do |project| %>
           <div class="row-fluid">

@@ -6,7 +6,7 @@
   <div class="span12">
     <ul class="nav nav-tabs">
       <li><a href="#accepted" data-toggle="tab">Accepted</a></li>
-      <li><a href="#complete" data-toggle="tab">Complete</a></li>
+      <li class="active"><a href="#complete" data-toggle="tab">Complete</a></li>
       <li><a href="#incomplete" data-toggle="tab">Incomplete</a></li>
       <li><a href="#rejected" data-toggle="tab">Rejected</a></li>
     </ul>
@@ -16,7 +16,7 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="tab-content">
-      <div class="tab-pane fade in active" id="accepted">
+      <div class="tab-pane" id="accepted">
 
         <% @accepted_projects.each do |project| %>
           <div class="row-fluid">
@@ -36,7 +36,7 @@
         <% end %>
 
       </div>
-      <div class="tab-pane fade in active" id="complete">
+      <div class="tab-pane active" id="complete">
 
         <% @complete_projects.each do |project| %>
           <div class="row-fluid">
@@ -56,7 +56,7 @@
         <% end %>
 
       </div>
-      <div class="tab-pane fade in active" id="incomplete">
+      <div class="tab-pane" id="incomplete">
 
         <% @incomplete_projects.each do |project| %>
           <div class="row-fluid">
@@ -76,7 +76,7 @@
         <% end %>
 
       </div>
-      <div class="tab-pane fade in active" id="rejected">
+      <div class="tab-pane" id="rejected">
 
         <% @rejected_projects.each do |project| %>
           <div class="row-fluid">
