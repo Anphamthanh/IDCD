@@ -19,7 +19,7 @@
 
         <div class="row-fluid">
           <div class="span12">
-            <%= render :partial => "school_summary", :locals => {:projects => @available_projects} %>
+            <%= render :partial => "summary_table", :locals => {:projects => @available_projects} %>
           </div>
         </div>
 
@@ -48,7 +48,7 @@
 
         <div class="row-fluid">
           <div class="span12">
-            <%= render :partial => "school_summary", :locals => {:projects => @all_projects} %>
+            <%= render :partial => "summary_table", :locals => {:projects => @all_projects} %>
           </div>
         </div>
 

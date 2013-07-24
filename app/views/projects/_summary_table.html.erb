@@ -1,0 +1,64 @@
+<h4>Summary</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <% School.all.each do |s| %>
+      <th><%= "#{s.name}" %></th>
+    <% end %>
+  </tr>
+  <% projects.each do |project| %>
+    <tr>
+      <td>
+        <a href=<%= project_path(project) %> id="<%= "project_id_#{project.id}" %>" rel="popover" data-trigger="hover" data-original-title="Details"><%= "#{project.name}" %></a>
+      </td>
+
+      <% School.all.each do |s| %>
+        <% if project.schools.include?(s) %>
+          <td style="text-align: center;"><%= "*" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+      <% end %>
+
+      <div id="<%= "project_id_#{project.id}_content" %>" style="display: none;">
+        <div class="row-fluid">
+          <div class="span12">
+
+            <dl class="dl-horizontal">
+
+              <% if project.company %>
+                <dt><strong>Submitted by:</strong></dt>
+                <dd><%= project.company.name %></dd>
+              <% elsif project.submitter %>
+              <% end %>
+
+              <dt><strong>Background:</strong></dt>
+              <dd><%= project.background %></dd>
+
+              <% if project.accepted? %>
+                <dt><strong>Majors Required:</strong></dt>
+                <dd>
+                <% counter = project.schools.count - 1 %>
+                <% project.schools.each do |s| %>
+                  <%= "#{s.name}" %>
+                  <% if counter > 0 %>
+                    <%= ", " %>
+                  <% end %>
+                  <% counter = counter - 1 %>
+                <% end %>
+                </dd>
+              <% end %>
+
+              <dt><strong>Number of Proposals:</strong></dt>
+              <dd><%= project.proposals.count %></dd>
+
+            </dl>
+
+          </div>
+        </div>
+      </div>
+
+    </tr>
+  <% end %>
+</table>
+
