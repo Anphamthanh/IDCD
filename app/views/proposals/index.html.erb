@@ -6,26 +6,33 @@
 <br>
 <div class="row-fluid">
   <div class="span12">
+
     <ul class="nav nav-tabs">
       <li class="active"><a href="#pending" data-toggle="tab">Pending Proposals</a></li>
       <li><a href="#decided" data-toggle="tab">Decided Proposals</a></li>
     </ul>
+
   </div>
 </div>
 
 <div class="row-fluid">
   <div class="span12">
+
     <div class="tab-content">
+
       <div class="tab-pane fade in active" id="pending">
         <%= render :partial => 'list_admin', :locals => { :proposals => Proposal.pending, :type => "pending"} %>
       </div>
+
       <div class="tab-pane fade in" id="decided">
         <h4>Accepted Proposals</h4>
         <%= render :partial => 'list_admin', :locals => { :proposals => Proposal.accepted, :type => "accepted"} %>
         <h4>Rejected Proposals</h4>
         <%= render :partial => 'list_admin', :locals => { :proposals => Proposal.rejected, :type => "rejected"} %>
       </div>
+
     </div>
+
   </div>
 </div>
 

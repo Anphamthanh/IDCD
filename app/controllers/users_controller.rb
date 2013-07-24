@@ -7,7 +7,13 @@ class UsersController < ApplicationController
 
     if current_user.incompleteProfile?
       flash[:error] = "Please complete the one-time registration. Do not leave any field blank."
-      redirect_to edit_student_path(current_user)
+      if current_user.isStudent?
+        redirect_to edit_student_path(current_user)
+      elsif current_user.isFaculty?
+        redirect_to edit_faculty_path(current_user)
+      else
+        redirect_to edit_user_path(current_user)
+      end
       return
     end
 

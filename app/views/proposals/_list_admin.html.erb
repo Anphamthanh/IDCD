@@ -16,11 +16,7 @@
 
             <div class="row-fluid">
               <div class="span11">
-                <strong>Project Name: </strong><%= "#{proposal.project.name}" %>
-                <br />
-                <strong>Group Name: </strong><%= "#{proposal.group.name}" %>
-                <br />
-                <strong>Description: </strong><%= "#{proposal.description}" %>
+                <%= render :partial => "proposals/details", :locals => {proposal: proposal} %>
               </div>
 
               <div class="span1">

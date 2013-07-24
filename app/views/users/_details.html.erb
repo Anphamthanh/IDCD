@@ -1,0 +1,24 @@
+<dl class="dl-horizontal">
+
+  <dt><strong>GT Username:</strong></dt>
+  <dd><%= user.gtusername %></dd>
+
+  <dt><strong>Email:</strong></dt>
+  <dd><%= user.email %></dd>
+
+  <% if user.isStudent? %>
+    <% student = Student.find(user.id) %>
+
+    <dt><strong>Section:</strong></dt>
+    <dd><%= student.section.name %></dd>
+
+    <dt><strong>Group:</strong></dt>
+    <% if student.my_group %>
+      <dd><%= student.my_group.name %></dd>
+    <% else %>
+      <dd>No group</dd>
+    <% end %>
+
+  <% end %>
+
+</dl>

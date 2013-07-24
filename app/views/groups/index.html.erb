@@ -16,7 +16,7 @@
         <ul>
           <% group.students.each do |student| %>
             <li>
-            <%= render :partial => "users/show_popover", :locals => {student: student, placement: "bottom"} %>
+            <%= render :partial => "users/details_popover", :locals => {user: student, placement: "bottom"} %>
             </li>
           <% end %>
         </ul>
@@ -26,7 +26,7 @@
         <ul>
           <% group.proposals.each do |proposal| %>
             <li>
-            <%= render :partial => "proposals/show_popover", :locals => {proposal: proposal, placement: "bottom"} %>
+            <%= render :partial => "proposals/details_popover", :locals => {proposal: proposal, placement: "bottom"} %>
             </li>
           <% end %>
         </ul>

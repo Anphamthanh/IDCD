@@ -1,0 +1,20 @@
+<a 
+  href="<%= proposal_path(proposal)%>" 
+  id="<%= "proposal_id_#{proposal.id}" %>" 
+  data-trigger="hover" 
+  data-original-title="Details"
+  data-placement="bottom"
+  rel="popover" 
+  onclick="return true;">
+  <%= "#{proposal.project.name}" %>
+</a>
+
+<div id="<%= "proposal_id_#{proposal.id}_content" %>" style="display: none;">
+  <div class="row-fluid">
+    <div class="span12">
+
+      <%= render :partial => "proposals/details", :locals => {proposal: proposal} %>
+
+    </div>
+  </div>
+</div>

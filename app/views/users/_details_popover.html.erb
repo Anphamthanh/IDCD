@@ -1,0 +1,20 @@
+<a 
+  href="<%= user_path(user)%>" 
+  id="<%= "user_id_#{user.id}" %>" 
+  data-trigger="hover" 
+  data-original-title="Details"
+  data-placement="bottom"
+  rel="popover" 
+  onclick="return true;">
+  <%= "#{user.name}" %>
+</a>
+
+<div id="<%= "user_id_#{user.id}_content" %>" style="display: none;">
+  <div class="row-fluid">
+    <div class="span12">
+
+       <%= render :partial => "users/details", :locals => {user: user} %>
+
+    </div>
+  </div>
+</div>
