@@ -1,0 +1,97 @@
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#status" data-toggle="tab">Status</a></li>
+      <li><a href="#more_info" data-toggle="tab">More Information</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row-fluid">
+  <div class="span12">
+    <div class="tab-content">
+
+      <div class="tab-pane active" id="status">
+        <dl class="dl-horizontal">
+
+          <% if project.company %>
+            <dt><strong>Submitted By:</strong></dt>
+            <dd><%= project.company.name %></dd>
+          <% elsif project.submitter %>
+            <dt><strong>Submitted By:</strong></dt>
+            <dd>Student or Faculty Member</dd>
+          <% end %>
+
+          <% if current_user.isAdmin? and project.accepted?%>
+            <dt><strong>Semester:</strong></dt>
+            <dd><%= project.semester.name %></dd>
+          <% end %>
+
+          <% if project.accepted? %>
+            <dt><strong>Majors Required:</strong></dt>
+            <dd>
+            <% counter = project.schools.count - 1 %>
+            <% project.schools.each do |s| %>
+              <%= "#{s.name}" %>
+              <% if counter > 0 %>
+                <%= ", " %>
+              <% end %>
+              <% counter = counter - 1 %>
+            <% end %>
+            </dd>     
+          <% end %> 
+
+          <dt><strong>Number of Proposals:</strong></dt>
+          <dd><%= project.proposals.count %></dd>
+
+          <% if current_user.isAdmin? %>
+            <dt><strong>Submitted Proposals:</strong></dt>
+            <dd>
+            <% project.proposals.each do |proposal| %>
+              <li><%= proposal.group.name %></li>
+            <% end %>
+            </dd>
+          <% end %>
+
+          <dt><strong>Project Status:</strong></dt>
+          <dd><%= ProjectStatus.find(project.project_status_id).name %></dd>
+
+        </dl>
+      </div>
+
+      <div class="tab-pane" id="more_info">
+        <dl class="dl-horizontal">
+
+          <dt><strong>Background:</strong></dt>
+          <dd><%= project.background %></dd>
+
+          <dt><strong>Concept:</strong></dt>
+          <dd><%= project.concept %></dd>
+
+          <dt><strong>Design:</strong></dt>
+          <dd><%= project.design %></dd>
+
+          <dt><strong>Skills:</strong></dt>
+          <dd><%= project.skills %></dd>
+
+          <dt><strong>Solutions:</strong></dt>
+          <dd><%= project.solutions %></dd>
+
+          <% if current_user.isAdmin? %>
+
+            <dt><strong>NDA Required:</strong></dt>
+            <dd><%= project.nda_required %></dd>
+
+            <dt><strong>Funding Commitment:</strong></dt>
+            <dd><%= project.funding_commitment %></dd>
+
+          <% end %>
+
+        </dl>
+      </div>
+
+    </div>
+  </div>
+</div>
+

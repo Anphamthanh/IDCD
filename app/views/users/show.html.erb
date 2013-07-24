@@ -1,32 +1,6 @@
-<h1>My Profile</h1>
+<h1>User Profile</h1>
 
-<dl class="dl-horizontal">
-
-  <dt><strong>Name:</strong></dt>
-  <dd><%= "#{@user.firstname} #{@user.lastname}" %></dd>
-
-  <dt><strong>GT Username:</strong></dt>
-  <dd><%= @user.gtusername %></dd>
-
-  <dt><strong>Email:</strong></dt>
-  <dd><%= @user.email %></dd>
-
-  <% if @user.isStudent? %>
-    <% student = Student.find(@user.id) %>
-    
-    <dt><strong>Section:</strong></dt>
-    <dd><%= student.section.name %></dd>
-    
-    <dt><strong>Group:</strong></dt>
-    <% if student.my_group %>
-      <dd><%= student.my_group.name %></dd>
-    <% else %>
-      <dd>No group</dd>
-    <% end %>
-
-  <% end %>
-
-</dl>
+<%= render :partial => "users/details", :locals => {user: @user} %>
 
 <div class="form-actions">
   <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(@user), :class => 'btn' %>

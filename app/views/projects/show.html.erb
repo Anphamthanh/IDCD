@@ -1,22 +1,25 @@
+<h1><%= @project.name %></h1>
+
 <div class="row-fluid">
-  <div class="span12 well">
+  <div class="span12">
 
     <div class="row-fluid">
       <div class="span11">
-        <%= render :partial => "all_info", :locals => {:project => @project} %>
+        <%= render :partial => "projects/details", :locals => {:project => @project} %>
       </div>
       <div class="span1">
         <%= render :partial => "actions", :locals => {:project => @project} %>
       </div>
     </div>
 
-    <hr />
-
-    <div class="row-fluid">
-      <div class="span12">
-        <%= render :partial => "more_info", :locals => {:project => @project} %>
+    <% if current_user.isAdmin? and (@project.completed? or @project.rejected?) %>
+      <hr />
+      <div class="row-fluid">
+        <div class="span12">
+          <%= render :partial => "more_info", :locals => {:project => @project} %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
   </div>
 </div>
