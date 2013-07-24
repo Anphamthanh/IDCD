@@ -45,7 +45,7 @@
           <dt><strong>Number of Proposals:</strong></dt>
           <dd><%= project.proposals.count %></dd>
 
-          <% if current_user.isAdmin? %>
+          <% if current_user.isAdmin? and project.proposals.count > 0 %>
             <dt><strong>Submitted Proposals:</strong></dt>
             <dd>
             <% project.proposals.each do |proposal| %>
