@@ -4,50 +4,6 @@
 
   <!-- No user logged in -->
 
-<% elsif current_user.isAdmin? %>
-
-  <!-- Admin -->
-
-<% elsif current_user.isStudent? %>
-
-  <!-- Student -->
-
-<% elsif current_user.isFaculty? %>
-
-  <!-- Faculty -->
-
-<% end %>
-
-
-
-
-<% if current_user %>
-
-  <!-- 
-  options to display if there is a student/faculty/admin that has logged in 
-  --> 
-
-  <div class="row-fluid">
-    <div class="span12">
-      <center><h1>Welcome <%= "#{current_user.gtusername}" %></h1></center>
-    </div>
-  </div>
-
-  <div class="row-fluid">
-    <div class="span12">
-      <center>
-        <br />
-        <%= link_to "Submit a Project", new_project_path(), class: "btn btn-large btn-primary" %>
-      </center>
-    </div>
-  </div>
-
-<% else %>
-
-  <!-- 
-  options to display if there is a no user logged in 
-  --> 
-
   <div class="row-fluid">
     <div class="span4">
       <table>
@@ -60,15 +16,15 @@
         <tbody>
           <tr>
             <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
-            <td colspan=2><a href="https://www.capstone.gatech.edu/?page_id=15">Past projects</a></td>
+            <td colspan=2 style="vertical-align:middle"><a href="http://www.capstone.gatech.edu/?page_id=15">Past projects</a></td>
           </tr>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="https://www.capstone.gatech.edu/?page_id=15">Read @ NDA/IP</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="http://www.capstone.gatech.edu/?page_id=15">Read @ NDA/IP</a></td>
           </tr>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="/projects/new">Submit a project</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/projects/new">Submit a project</a></td>
           </tr>
         </tbody>
       </table>
@@ -84,16 +40,16 @@
         </tr>
         <tbody>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="/home/login_with_CAS">Displays Capstone Design project ideas</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Displays Capstone Design project ideas</a></td>
           </tr>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="/home/login_with_CAS">Form interdisciplinary teams</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Form interdisciplinary teams</a></td>
           </tr>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="/home/login_with_CAS">Submit bids for projects</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Submit bids for projects</a></td>
           </tr>
         </tbody>
       </table>
@@ -108,20 +64,170 @@
         </tr>
         <tbody>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="/home/login_with_CAS">Look up project ideas for your section</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Look up project ideas for your section</a></td>
           </tr>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="/home/login_with_CAS">Approve projects</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Approve projects</a></td>
           </tr>
           <tr>
-            <td colspan=1><img src="PlaceHolder.png"></td>
-            <td colspan=2><a href="/home/login_with_CAS">Submit Capstone Design project ideas</a></td>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Submit Capstone Design project ideas</a></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
+<% elsif current_user.isAdmin? %>
+
+  <!-- Admin -->
+
+  <div class="row-fluid">
+    <div class="span4">
+      <table>
+        <tr>
+          <th colspan=3><h4>Industry</h4></th>
+        </tr>
+        <tr>
+          <th colspan=3>Blurb about why to get involved</th>
+        </tr>
+        <tbody>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="http://www.capstone.gatech.edu/?page_id=15">Past projects</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="http://www.capstone.gatech.edu/?page_id=15">Read @ NDA/IP</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/projects/new">Submit a project</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="span4">
+      <table>
+        <tr>
+          <th colspan=3><h4>Students</h4></th>
+        </tr>
+        <tr>
+          <th colspan=3>What does this site do?</th>
+        </tr>
+        <tbody>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Displays Capstone Design project ideas</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Form interdisciplinary teams</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Submit bids for projects</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span4">
+      <table>
+        <tr>
+          <th colspan=3><h4>Faculty</h4></th>
+        </tr>
+        <tr>
+          <th colspan=3>What can I do?</th>
+        </tr>
+        <tbody>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %>/td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Look up project ideas for your section</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Approve projects</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Submit Capstone Design project ideas</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<% elsif current_user.isStudent? %>
+  <!-- Student -->
+
+  <div class="row-fluid">
+    <div class="span3">
+    </div>
+    <div class="span4">
+      <table>
+        <tr>
+          <th colspan=3><h4>Students</h4></th>
+        </tr>
+        <tr>
+          <th colspan=3>What does this site do?</th>
+        </tr>
+        <tbody>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Displays Capstone Design project ideas</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Form interdisciplinary teams</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Submit bids for projects</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span5">
+    </div>
+  </div>
+
+<% elsif current_user.isFaculty? %>
+
+  <!-- Faculty -->
+
+  <div class="row-fluid">
+    <div class="span3">
+    </div>
+    <div class="span4">
+      <table>
+        <tr>
+          <th colspan=3><h4>Faculty</h4></th>
+        </tr>
+        <tr>
+          <th colspan=3>What can I do?</th>
+        </tr>
+        <tbody>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Look up project ideas for your section</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Approve projects</a></td>
+          </tr>
+          <tr>
+            <td colspan=1><%= image_tag "PlaceHolder.png" %></td>
+            <td colspan=2 style="vertical-align:middle"><a href="/home/login_with_CAS">Submit Capstone Design project ideas</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span5">
+    </div>
+  </div>
+
 <% end %>
+
