@@ -1,28 +1,28 @@
 <div class="row-fluid">
-    <div class="span4">
-        <strong>Name</strong>
-    </div>
-    <div class="span4">
-        <strong>School</strong>
-    </div>
-    <div class="span4">
-        <strong>Options</strong>
-    </div>
+  <div class="span4">
+    <strong>Name</strong>
+  </div>
+  <div class="span4">
+    <strong>School</strong>
+  </div>
+  <div class="span4">
+    <strong>Options</strong>
+  </div>
 </div>
 
 <% @semester.sections.sort { |a,b| a.name <=> b.name}.each do |section| %>
-    <div class="row-fluid">
-        <div class="span4">
-            <%= section.name %>
-        </div>
-        <div class="span4">
-            <%= section.school.name %>
-        </div>
-        <div class="span4">
-            <%= link_to 'Edit', edit_semester_section_path(@semester, section) %>
-            |
-            <%= link_to 'Destroy', semester_section_path(@semester, section), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
+  <div class="row-fluid">
+    <div class="span4">
+      <%= section.name %>
     </div>
+    <div class="span4">
+      <%= section.school.name %>
+    </div>
+    <div class="span4">
+      <%= link_to 'Edit', edit_semester_section_path(@semester, section) %>
+      |
+      <%= link_to 'Destroy', semester_section_path(@semester, section), method: "delete", data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
 <% end %>
 

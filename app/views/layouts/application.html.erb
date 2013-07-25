@@ -8,6 +8,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "IDCD" %></title>
     <!--<%= csrf_meta_tags %>
     <%= stylesheet_link_tag "application", :media => "all" %>-->
+    <%= csrf_meta_tag %>
     <link rel="stylesheet" href="/assets/application.css" media="screen" type="text/css">
 
   </head>
