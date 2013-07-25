@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
   attr_accessible :admin, :email, :firstname, :gtusername, :lastname, :type, :test, :school_id, :section_id
 
   def name
-    return "#{firstname} #{lastname}"
+    if firstname.blank?
+      return gtusername
+    else
+      return "#{firstname} #{lastname}"
+    end
   end
 
   def isAdmin?
