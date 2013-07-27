@@ -152,6 +152,15 @@ class ProjectsController < ApplicationController
         format.json { render json: @projects }
       end
 
+    elsif current_user.isFaculty?
+      @accepted_projects = current_user.approved_projects
+      @all_projects = Project.where(project_status_id: 3)
+
+      respond_to do |format|
+        format.html { render 'index_faculty' }
+        format.json { render json: @projects }
+      end
+
     else
       @projects = Project.all
       respond_to do |format|

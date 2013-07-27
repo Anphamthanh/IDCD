@@ -6,6 +6,7 @@ class Section < ActiveRecord::Base
 
   has_many :faculty_sections
   has_many :faculties, :through => :faculty_sections
+  has_many :students
 
   def faculty_approved_projects
     projects = []
