@@ -103,12 +103,8 @@
           <dt><strong>NDA Required:</strong></dt>
           <dd><%= project.nda_required %></dd>
 
-          <% if current_user.isAdmin? %>
-
-            <dt><strong>Funding Commitment:</strong></dt>
-            <dd><%= project.funding_commitment %></dd>
-
-          <% end %>
+          <dt><strong>Interest in IP Assignment:</strong></dt>
+          <dd><%= project.funding_commitment %></dd>
 
         </dl>
       </div>
