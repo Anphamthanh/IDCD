@@ -199,7 +199,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.incomplete?
       @company = Company.new
-    else
+    elsif !@project.submitter
       @company = Company.find(@project.company_id)
     end
   end
@@ -251,7 +251,7 @@ class ProjectsController < ApplicationController
       @company = Company.create(params[:company])
       @project.company_id = @company.id
       @project.complete!
-    else
+    elsif !@project.submitter
       @company = Company.find(@project.company_id)
       @company.update_attributes(params[:company])
     end

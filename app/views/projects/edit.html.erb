@@ -3,6 +3,12 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <%= render :partial => 'online_form' %>
+
+    <% if current_user %>
+      <%= render :partial => 'online_form_student' %>
+    <% else %>
+      <%= render :partial => 'online_form' %>
+    <% end %>
+
   </div>
 </div>
