@@ -8,6 +8,38 @@ class Section < ActiveRecord::Base
   has_many :faculties, :through => :faculty_sections
   has_many :students
 
+  def groups
+    list_of_groups = []
+
+    # for each student in this section
+    self.students.each do |student|
+
+      # if the student has a group
+      if student.is_owner?
+        if !list_of_groups.include? student.my_group
+          list_of_groups << student.my_group
+        end
+      end
+
+    end
+    return list_of_groups
+  end
+
+  def students_without_groups
+    list_of_students = []
+
+    # for each student in this section
+    self.students.each do |student|
+
+      # if the student does not have a group
+      if !student.is_owner?
+        list_of_students << student
+      end
+
+    end
+    return list_of_students
+  end
+
   def faculty_approved_projects
     projects = []
     self.faculties.each do |faculty|

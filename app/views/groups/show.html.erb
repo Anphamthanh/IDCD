@@ -1,24 +1,5 @@
 <h1>Group Details</h1>
 
-<dl class="dl-horizontal">
-
-  <dt><strong>Name:</strong></dt>
-  <dd><%= "#{@group.name}" %></dd>
-
-  <dt><strong>Members:</strong></dt>
-  <dd>
-    <% @group.students.each do |member| %>
-      <li><%= "#{member.name}" %></li>
-    <% end %>
-  </dd>
-
-  <dt><strong>Proposals:</strong></dt>
-  <dd>
-    <% @group.proposals.each do |proposal| %>
-      <li><%= "#{proposal.project.name} - #{proposal.status}" %></li>
-    <% end %>
-  </dd>
-
-</dl>
+<%= render :partial => "groups/details", :locals => {group: @group} %>
 
 <%= link_to 'Back to Manage Groups', groups_path %>

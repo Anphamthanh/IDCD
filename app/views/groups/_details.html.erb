@@ -1,0 +1,31 @@
+<dl class="dl-horizontal">
+
+  <dt><strong>Name:</strong></dt>
+  <dd><%= "#{group.name}" %></dd>
+
+  <dt><strong>Members:</strong></dt>
+  <dd>
+  <% group.students.each do |member| %>
+    <li class="bullet"><%= "#{member.name}" %></li>
+  <% end %>
+  </dd>
+
+  <% if group.assigned_project %>
+    <dt><strong>Assigned Project:</strong></dt>
+    <dd>
+    <%= group.assigned_project.name %>
+    </dd>
+  <% else %>
+    <dt><strong>Proposals:</strong></dt>
+    <dd>
+    <% if group.proposals.count > 0 %>
+      <% group.proposals.each do |proposal| %>
+        <li class="bullet"><%= "#{proposal.project.name} - #{proposal.status}" %></li>
+      <% end %>
+    <% else %>
+      No proposals
+    <% end %>
+    </dd>
+  <% end %>
+
+</dl>

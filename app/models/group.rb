@@ -5,10 +5,20 @@ class Group < ActiveRecord::Base
   has_many :students, :through => :group_members
   has_many :proposals, :dependent => :destroy
 
+  def assigned_project
+    self.proposals.each do |proposal|
+      if Proposal.accepted.include? proposal
+        return proposal.project
+      end
+    end
+    return false
+  end
+
   def available_project_choices
-    available_projects = Project.all
+    #available_projects = Project.all
+    available_projects = []
     self.students.each do |student|
-      available_projects = available_projects & student.section.faculty_approved_projects
+      available_projects = available_projects | student.section.faculty_approved_projects
     end
     return available_projects
   end

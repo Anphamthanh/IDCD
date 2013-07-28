@@ -1,38 +1,99 @@
-<h1>Manage groups</h1>
-<br>
-<table>
-  <tr>
-    <th>Group Name</th>
-    <th>Group Members</th>
-    <th>Proposals</th>
-  </tr>
+<h1>Groups</h1>
 
-  <% @groups.each do |group| %>
-    <tr>
+<div class="row-fluid" style="margin-top: 10px">
+  <div class="span12">
+    <% if current_user.isFaculty? %>
+      <% current_user.sections.each do |section| %>
+        <h4><%= section.name %></h4>
 
-      <td><%= group.name %></td>
-      
-      <td>
+        <%
+          groups_assigned_projects = []
+          groups_not_assigned_projects = []
+
+          section.groups.each do |group|
+            if group.assigned_project
+              groups_assigned_projects << group
+            else
+              groups_not_assigned_projects << group
+            end
+          end
+        %>
+
         <ul>
-          <% group.students.each do |student| %>
-            <li>
-            <%= render :partial => "users/details_popover", :locals => {user: student, placement: "bottom"} %>
-            </li>
+
+          <li>
+          <h5>Groups Assigned Projects</h5>
+          <% groups_assigned_projects.each do |group| %>
+            <ul>
+              <li class="bullet"><%= render :partial => "groups/details_popover", :locals => {group: group, placement: "bottom"} %></li>
+            </ul>
           <% end %>
-        </ul>
-      </td>
+          </li>
 
-      <td>
-        <ul>
-          <% group.proposals.each do |proposal| %>
-            <li>
-            <%= render :partial => "proposals/details_popover", :locals => {proposal: proposal, placement: "bottom"} %>
-            </li>
+          <li>
+          <h5>Groups Not Assigned Projects</h5>
+          <% groups_not_assigned_projects.each do |group| %>
+            <ul>
+              <li class="bullet"><%= render :partial => "groups/details_popover", :locals => {group: group, placement: "bottom"} %></li>
+            </ul>
           <% end %>
+          </li>
+
+          <li>
+          <h5>Students Without Groups</h5>
+          <% section.students_without_groups.each do |student| %>
+            <ul>
+              <li class="bullet"><%= render :partial => "users/details_popover", :locals => {user: student, placement: "bottom"} %></li>
+            </ul>
+          <% end %>
+          </li>
+
         </ul>
-      </td>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-    </tr>
-  <% end %>
-</table>
 
+
+<div class="row-fluid" style="margin-top: 10px">
+  <div class="span12">
+    <% if current_user.isAdmin? %>
+      <table>
+        <tr>
+          <th>Group Name</th>
+          <th>Group Members</th>
+          <th>Proposals</th>
+        </tr>
+
+        <% @groups.each do |group| %>
+          <tr>
+
+            <td><%= group.name %></td>
+
+            <td>
+              <ul>
+                <% group.students.each do |student| %>
+                  <li>
+                  <%= render :partial => "users/details_popover", :locals => {user: student, placement: "bottom"} %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+
+            <td>
+              <ul>
+                <% group.proposals.each do |proposal| %>
+                  <li>
+                  <%= render :partial => "proposals/details_popover", :locals => {proposal: proposal, placement: "bottom"} %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
