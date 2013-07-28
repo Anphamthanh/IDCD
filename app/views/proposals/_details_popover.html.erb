@@ -2,11 +2,11 @@
   href="<%= proposal_path(proposal)%>" 
   id="<%= "proposal_id_#{proposal.id}" %>" 
   data-trigger="hover" 
-  data-original-title="Details"
+  data-original-title="Proposal Details"
   data-placement="bottom"
   rel="popover" 
   onclick="return true;">
-  <%= "#{proposal.project.name}" %>
+  Proposal for<strong><%= " #{proposal.project.name} " %></strong>by<strong><%= " #{proposal.group.name}" %></strong>
 </a>
 
 <div id="<%= "proposal_id_#{proposal.id}_content" %>" style="display: none;">
