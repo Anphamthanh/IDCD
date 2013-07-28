@@ -29,7 +29,9 @@ class Project < ActiveRecord::Base
   end
 
   def submitter_humanize
-    if self.company
+    if self.incomplete?
+      return "Unknown because project details are incomplete"
+    elsif self.company
       return self.company.name 
     elsif self.submitter.isAdmin?
       return "#{self.submitter.name} (Admin)" 
