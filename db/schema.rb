@@ -78,15 +78,15 @@ ActiveRecord::Schema.define(:version => 20130614072942) do
     t.text     "design"
     t.text     "skills"
     t.text     "solutions"
-    t.boolean  "nda_required"
-    t.boolean  "funding_commitment"
+    t.boolean  "nda_required",       :default => false
+    t.boolean  "funding_commitment", :default => false
     t.integer  "company_id"
     t.string   "form"
     t.integer  "semester_id"
     t.integer  "submitter_id"
     t.integer  "project_status_id",  :default => 1
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "proposals", :force => true do |t|

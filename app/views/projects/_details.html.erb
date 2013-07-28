@@ -20,7 +20,7 @@
             <dd><%= project.company.name %></dd>
           <% elsif project.submitter %>
             <dt><strong>Submitted By:</strong></dt>
-            <dd>Student or Faculty Member</dd>
+            <dd><%= "#{project.submitter.name} (#{project.submitter.type})" %></dd>
           <% end %>
 
           <% if current_user.isAdmin? and project.accepted?%>
@@ -78,10 +78,10 @@
           <dt><strong>Solutions:</strong></dt>
           <dd><%= project.solutions %></dd>
 
-          <% if current_user.isAdmin? %>
+          <dt><strong>NDA Required:</strong></dt>
+          <dd><%= project.nda_required %></dd>
 
-            <dt><strong>NDA Required:</strong></dt>
-            <dd><%= project.nda_required %></dd>
+          <% if current_user.isAdmin? %>
 
             <dt><strong>Funding Commitment:</strong></dt>
             <dd><%= project.funding_commitment %></dd>
