@@ -1,6 +1,6 @@
 <% options = [] %>
 
-<% options.push({ 
+<%# options.push({ 
   label: "Details",  
   controller: "projects",
   action: "show",
@@ -33,5 +33,7 @@
   <% end %>
 <% end %>
 
-<%= render :partial => "shared/dropdown_actions", :locals => {options: options.reverse!} %>
+<% if options.length > 0 %>
+  <%= render :partial => "shared/dropdown_actions", :locals => {options: options.reverse!} %>
+<% end %>
 

@@ -217,8 +217,9 @@ class GroupsController < ApplicationController
         format.html { render 'index_student' }
         format.json { render json: @groups }
       end
-
     end
+
+    @groups = Group.all
   end
 
   # GET /groups/1

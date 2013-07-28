@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <div class="span12">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#status" data-toggle="tab">Status</a></li>
+      <li class="active"><a href="#status" data-toggle="tab">Overview</a></li>
       <li><a href="#more_info" data-toggle="tab">More Information</a></li>
     </ul>
   </div>
@@ -10,7 +10,7 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="tab-content">
+    <div class="tab-content" style="overflow: visible">
 
       <div class="tab-pane active" id="status">
         <dl class="dl-horizontal">
@@ -54,8 +54,30 @@
             </dd>
           <% end %>
 
-          <dt><strong>Project Status:</strong></dt>
-          <dd><%= ProjectStatus.find(project.project_status_id).name %></dd>
+          <% if current_user.isAdmin? %>
+            <dt><strong>Project Status:</strong></dt>
+            <dd><%= ProjectStatus.find(project.project_status_id).name %></dd>
+          <% end %>
+
+          <% if current_user.isFaculty? %>
+            <dt><strong>Project Status:</strong></dt>
+            <dd>
+            <% if project.schools.include? current_user.school %>
+            <div class="btn-group">
+              <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><%= "#{project.faculty_decision(current_user).stringify} " %><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if project.faculty_decision(current_user).decision %>
+                  <li><%= link_to "Reject", faculty_reject_project_path(project, faculty_id: current_user.id) %></li>
+                <% else %>
+                  <li><%= link_to "Approve", faculty_approve_project_path(project, faculty_id: current_user.id) %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% else %>
+            N/A
+          <% end %>
+            </dd>
+          <% end %>
 
         </dl>
       </div>

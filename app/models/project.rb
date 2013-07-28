@@ -17,6 +17,17 @@ class Project < ActiveRecord::Base
 
   mount_uploader :form, ProjectFormUploader
 
+  def faculty_decision(f)
+    return FacultyProjectDecision.where(faculty_id: f.id, project_id: self.id).first
+
+    d = FacultyProjectDecision.where(faculty_id: f.id, project_id: self.id).first.decision
+    if d
+      return "Accepted"
+    else
+      return "Rejected"
+    end
+  end
+
   def accepted?
     return true if self.project_status_id == ProjectStatus.find_by_name("Accepted").id
     return false

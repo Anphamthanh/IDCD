@@ -4,4 +4,12 @@ class FacultyProjectDecision < ActiveRecord::Base
   belongs_to :faculty
   belongs_to :project
 
+  def stringify
+    if self.decision
+      return "Approved"
+    else
+      return "Rejected"
+    end
+  end
+
 end
