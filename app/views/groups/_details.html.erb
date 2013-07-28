@@ -20,7 +20,9 @@
     <dd>
     <% if group.proposals.count > 0 %>
       <% group.proposals.each do |proposal| %>
-        <li class="bullet"><%= "#{proposal.project.name} - #{proposal.status}" %></li>
+        <li class="bullet">
+          <%= render :partial => "proposals/details_popover", :locals => {proposal: proposal} %>
+        </li>
       <% end %>
     <% else %>
       No proposals
