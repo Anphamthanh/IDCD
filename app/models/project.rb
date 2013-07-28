@@ -28,6 +28,16 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def submitter_humanize
+    if self.company
+      return self.company.name 
+    elsif self.submitter.isAdmin?
+      return "#{self.submitter.name} (Admin)" 
+    else 
+      return "#{self.submitter.name} (#{self.submitter.type})" 
+    end 
+  end
+
   def accepted?
     return true if self.project_status_id == ProjectStatus.find_by_name("Accepted").id
     return false

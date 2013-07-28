@@ -1,7 +1,7 @@
 <div class="row-fluid" style="margin-top: 10px;">
   <div class="span12">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#status" data-toggle="tab">Overview</a></li>
+      <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
       <li><a href="#more_info" data-toggle="tab">More Information</a></li>
     </ul>
   </div>
@@ -12,16 +12,11 @@
   <div class="span12">
     <div class="tab-content" style="overflow: visible">
 
-      <div class="tab-pane active" id="status">
+      <div class="tab-pane active" id="overview">
         <dl class="dl-horizontal">
 
-          <% if project.company %>
-            <dt><strong>Submitted By:</strong></dt>
-            <dd><%= project.company.name %></dd>
-          <% elsif project.submitter %>
-            <dt><strong>Submitted By:</strong></dt>
-            <dd><%= "#{project.submitter.name} (#{project.submitter.type})" %></dd>
-          <% end %>
+          <dt><strong>Submitted By:</strong></dt>
+          <dd><%= project.submitter_humanize %></dd>
 
           <% if current_user.isAdmin? and project.accepted?%>
             <dt><strong>Semester:</strong></dt>
@@ -63,19 +58,19 @@
             <dt><strong>Project Status:</strong></dt>
             <dd>
             <% if project.schools.include? current_user.school %>
-            <div class="btn-group">
-              <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><%= "#{project.faculty_decision(current_user).stringify} " %><span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <% if project.faculty_decision(current_user).decision %>
-                  <li><%= link_to "Reject", faculty_reject_project_path(project, faculty_id: current_user.id) %></li>
-                <% else %>
-                  <li><%= link_to "Approve", faculty_approve_project_path(project, faculty_id: current_user.id) %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% else %>
-            N/A
-          <% end %>
+              <div class="btn-group">
+                <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><%= "#{project.faculty_decision(current_user).stringify} " %><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <% if project.faculty_decision(current_user).decision %>
+                    <li><%= link_to "Reject", faculty_reject_project_path(project, faculty_id: current_user.id) %></li>
+                  <% else %>
+                    <li><%= link_to "Approve", faculty_approve_project_path(project, faculty_id: current_user.id) %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% else %>
+              N/A
+            <% end %>
             </dd>
           <% end %>
 
