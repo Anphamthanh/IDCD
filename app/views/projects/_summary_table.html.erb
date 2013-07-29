@@ -1,3 +1,132 @@
+
+<div class="row-fluid">
+  <div class="span12 well">
+
+    <!-- table column names -->
+    <div class="row-fluid pagination-centered">
+      <div class="span4">
+        <h4>Project Name</h4>
+      </div>
+      <div class="span4">
+        <h4>Schools Required</h4>
+      </div>
+      <div class="span4">
+        <h4>Proposals</h4>
+      </div>
+    </div>
+
+    <!-- table column hints -->
+    <div class="row-fluid pagination-centered">
+      <div class="span4">
+      </div>
+      <div class="span4">
+        <table class="table_no_decor"><tr class="table_no_decor">
+            <% School.all.each do |s| %>
+              <td style="width: 25%;"><h6><%= "#{s.name}" %></h6></td>
+            <% end %>
+        </table></tr>
+      </div>
+      <div class="span2">
+        <h6>Actions Available</h6>
+      </div>
+      <div class="span2">
+        <h6>Submitted Proposals</h6>
+      </div>
+    </div>
+
+    <!-- rows for projects -->
+    <% projects.each do |project| %>
+      <div class="row-fluid">
+
+        <div class="span4">
+          <%= project.name %>
+          <%#= render :partial => "projects/details", :locals => {project: project} %>
+        </div>
+
+        <div class="span4">
+          <table class="table_no_decor"><tr class="table_no_decor">
+              <% School.all.each do |s| %>
+                <% if project.schools.include?(s) %>
+                  <td style="width: 25%; text-align: center;"><%= "*" %></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+              <% end %>
+          </table></tr>
+        </div>
+
+        <!-- 
+        1. Display link to edit proposal if proposal exists
+        2. Display link to submit proposal if project is available
+        -->
+        <div class="span2 pagination-centered">
+          <% submitted_proposals = Proposal.where(project_id: project.id, group_id: current_user.my_group.id) %>
+          <% if submitted_proposals.count > 0 %>
+            <a 
+              href="<%= proposal_path(submitted_proposals[0]) %>"
+              rel="tooltip" 
+              data-toggle="tooltip" 
+              data-placement="top" 
+              title="" 
+              data-original-title="View your proposal">
+              <%= image_tag "proposal_submitted.png", class: "medium_icon" %>
+            </a>
+          <% elsif current_user.my_group.available_project_choices.include? project %>
+            <a 
+              href="<%= new_proposal_path %>"
+              rel="tooltip" 
+              data-toggle="tooltip" 
+              data-placement="top" 
+              title="" 
+              data-original-title="Submit new proposal">
+              <%= image_tag "can_submit_proposal.png", class: "medium_icon" %>
+            </a>
+          <% end %>
+        </div>
+
+        <!--
+        1. Should a count of the number of proposals submitted
+        2. On hover, if count != 0, show a list of groups that submitted proposals
+        -->
+        <div class="span2 pagination-centered">
+          <% proposal_count = project.proposals.count %>
+
+          <% if proposal_count == 0 %>
+            <span class="badge"><%= proposal_count %></span>
+          <% else %>
+            <a      
+              href="#"
+              id="<%= "list_of_proposals_projid_#{project.id}" %>"  
+              data-trigger="hover" 
+              data-original-title="Groups that submitted proposals"
+              data-placement="bottom"
+              rel="popover" 
+              onclick="return false;">
+              <span class="badge"><%= proposal_count %></span>
+            </a>
+
+            <div id="<%= "list_of_proposals_projid_#{project.id}_content" %>" style="display: none;">
+              <div class="row-fluid">
+                <div class="span12">
+                  <ul>
+                    <% project.proposals.each do |p| %>
+                      <li class="bullet"><%= p.group.name %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>  
+          <% end %>
+
+        </div>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+
 <table>
   <tr>
     <th>Name</th>
