@@ -51,7 +51,7 @@
 
           <% if current_user.isAdmin? %>
             <dt><strong>Project Status:</strong></dt>
-            <dd><%= ProjectStatus.find(project.project_status_id).name %></dd>
+            <dd><%= "#{ProjectStatus.find(project.project_status_id).name} for #{project.semester.name}" %></dd>
           <% end %>
 
           <% if current_user.isFaculty? %>
