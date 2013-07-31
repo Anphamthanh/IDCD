@@ -5,6 +5,11 @@
   <div class="row-fluid">
     <div class="span12">
       <%= form_for @proposal, :html => { :class => 'form-horizontal' } do |f| %>
+        <% 
+          if params[:project] 
+            @proposal.project_id = params[:project]
+          end 
+        %>
         <div class="control-group">
           <%= f.label :project_id, :class => 'control-label' %>
           <div class="controls">

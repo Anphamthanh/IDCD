@@ -17,6 +17,15 @@ class Project < ActiveRecord::Base
 
   mount_uploader :form, ProjectFormUploader
 
+  def group
+    p = Proposal.where(project_id: self.id, decision: true)
+    if p.length > 0
+      return Group.find(p.first.group_id)
+    else
+      return false
+    end
+  end
+
   def faculty_decision(f)
     return FacultyProjectDecision.where(faculty_id: f.id, project_id: self.id).first
 

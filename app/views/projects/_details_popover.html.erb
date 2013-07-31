@@ -1,0 +1,22 @@
+<a 
+  href="<%= project_path(project)%>" 
+  id="<%= "project_id_#{project.id}" %>" 
+  data-trigger="hover" 
+  data-original-title="Project Details"
+  data-placement="bottom"
+  rel="popover" 
+  onclick="return true;">
+  <%= " #{project.name} " %>
+</a>
+
+<div id="<%= "project_id_#{project.id}_content" %>" style="display: none;">
+  <div class="row-fluid">
+    <div class="span12">
+
+      <% if level == 1 %>
+        <%= render :partial => "projects/details_l1", :locals => {project: project} %> 
+      <% end %>
+
+    </div>
+  </div>
+</div>
