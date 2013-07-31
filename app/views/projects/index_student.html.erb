@@ -19,7 +19,13 @@
 
         <div class="row-fluid">
           <div class="span12">
-            <%= render :partial => "summary_table", :locals => {:projects => @available_projects} %>
+            <% if @available_projects.count > 0 %>
+              <%= render :partial => "summary_table", :locals => {:projects => @available_projects} %>
+            <% elsif !current_user.is_owner? %>
+              <h5>Projects become available upon group formation. To browse projects, use the "All" tab.</h5>
+            <% else %>
+              <h5>No projects available. Please contact your faculty or admin.</h5>
+            <% end %>
           </div>
         </div>
 
