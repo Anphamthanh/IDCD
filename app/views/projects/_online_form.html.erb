@@ -5,7 +5,7 @@
 
         <%= fields_for @company, :html => { :class => 'form-horizontal', :multipart => :true } do |c| %>
           <h3>Company Information</h3>
-          
+
           <div class="control-group">
             <%= c.label :name, 'Company Name', :class => 'control-label' %>
             <div class="controls">
@@ -68,19 +68,19 @@
 
       </div>
     </div>
-    </div>
+  </div>
   <div class="row-fluid">
     <div class="span12">
       <div class="well">
         <h3>Project Information</h3>
         <div class="control-group">
-          <%= f.label :name, :class => 'control-label' %>
+          <%= f.label "Project Title", :class => 'control-label' %>
           <div class="controls">
             <%= f.text_field :name, :class => 'text_field', :required => true %>
           </div>
         </div>
         <div class="control-group">
-          <%= f.label :background, :class => 'control-label' %>
+          <%= f.label "Background / Need", :class => 'control-label' %>
           <div class="controls">
             <%= f.text_area :background, :class => 'text_area', :rows => '3', :style => "width: 90%", :required => true %>
           </div>
@@ -92,23 +92,24 @@
           </div>
         </div>
         <div class="control-group">
-          <%= f.label :design, :class => 'control-label' %>
+          <%= f.label "Design Considerations", :class => 'control-label' %>
           <div class="controls">
             <%= f.text_area :design, :class => 'text_area', :rows => '3', :style => "width: 90%", :required => true %>
           </div>
         </div>
         <div class="control-group">
-          <%= f.label :skills, :class => 'control-label' %>
+          <%= f.label "Desired skills, expertise, schools", :class => 'control-label' %>
           <div class="controls">
             <%= f.text_area :skills, :class => 'text_area', :rows => '3', :style => "width: 90%", :required => true %>
           </div>
         </div>
         <div class="control-group">
-          <%= f.label :solutions, :class => 'control-label' %>
+          <%= f.label "Prefered solution (proof of concept, working prototype)", :class => 'control-label' %>
           <div class="controls">
             <%= f.text_area :solutions, :class => 'text_area', :rows => '3', :style => "width: 90%", :required => true %>
           </div>
         </div>
+
         <div class="control-group">
           <%= f.label :nda_required, "NDA required", :class => 'control-label' %>
           <div class="controls">
