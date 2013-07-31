@@ -80,6 +80,20 @@
       <div class="tab-pane" id="more_info">
         <dl class="dl-horizontal">
 
+          <dt><strong>NDA Required:</strong></dt>
+          <% if project.nda_required %>
+            <dd style="color: red">Yes</dd>
+          <% else %>
+            <dd>No</dd>
+          <% end %>
+
+          <dt><strong>Interest in IP Assignment:</strong></dt>
+          <% if project.funding_commitment %>
+            <dd style="color: red">Yes</dd>
+          <% else %>
+            <dd>No</dd>
+          <% end %>
+
           <dt><strong>Background:</strong></dt>
           <dd><%= project.background %></dd>
 
@@ -94,12 +108,6 @@
 
           <dt><strong>Solutions:</strong></dt>
           <dd><%= project.solutions %></dd>
-
-          <dt><strong>NDA Required:</strong></dt>
-          <dd><%= project.nda_required %></dd>
-
-          <dt><strong>Interest in IP Assignment:</strong></dt>
-          <dd><%= project.funding_commitment %></dd>
 
         </dl>
       </div>
