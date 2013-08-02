@@ -61,7 +61,7 @@
                 <li><%= link_to "Semester Settings", semesters_path %></li>
                 <li><%= link_to "Manage Users", users_path %></li>
                 <li><%= link_to "Manage Groups", groups_path %></li>
-                <li><%= link_to "Manage Proposals", proposals_path%></li>
+                <li><%= link_to "Manage Project Bids", proposals_path%></li>
                 <li><%= link_to "My Profile", user_path(current_user) %></li>
               <% end %>
 
@@ -74,7 +74,7 @@
               <% if current_user.isStudent? %>
                 <li><%= link_to "Projects", projects_path %></li>
                 <li><%= link_to "Groups", groups_path %></li>
-                <li><%= link_to "Project Proposals", proposals_path %></li>
+                <li><%= link_to "Project Bids", proposals_path %></li>
                 <li><%= link_to "My Profile", user_path(current_user) %></li>
               <% end %>
 
