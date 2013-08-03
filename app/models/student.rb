@@ -29,6 +29,13 @@ class Student < User
     return groups
   end
 
+  def my_unrequested_groups
+    groups = Group.all;
+    groups = groups - self.my_requests
+
+    return groups
+  end
+
   def my_invites
     groups = []
     self.group_members.each do |group_member|

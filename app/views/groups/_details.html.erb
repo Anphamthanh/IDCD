@@ -5,8 +5,8 @@
 
   <dt><strong>Members:</strong></dt>
   <dd>
-  <% group.students.each do |member| %>
-    <li class="bullet"><%= "#{member.name}" %></li>
+  <% group.owners.each do |member| %>
+    <li class="xbullet"><%= "#{member.name}" %></li>
   <% end %>
   </dd>
 
@@ -20,7 +20,7 @@
     <dd>
     <% if group.proposals.count > 0 %>
       <% group.proposals.each do |proposal| %>
-        <li class="bullet">
+        <li class="xbullet">
           <%= render :partial => "proposals/details_popover", :locals => {proposal: proposal} %>
         </li>
       <% end %>
