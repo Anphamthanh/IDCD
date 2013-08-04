@@ -114,6 +114,28 @@
           <dt><strong>Solutions:</strong></dt>
           <dd><%= project.solutions %></dd>
 
+          <% if current_user.isAdmin? and project.company_id %>
+            <h6>Director Info</h6>
+            <dt><strong>Name:</strong></dt>
+            <dd><%= project.company.director_name %></dd>
+            <dt><strong>Designation:</strong></dt>
+            <dd><%= project.company.director_designation %></dd>
+            <dt><strong>Email:</strong></dt>
+            <dd><%= project.company.director_email %></dd>
+            <dt><strong>Phone:</strong></dt>
+            <dd><%= project.company.director_phone %></dd>
+
+            <h6>Technical Contact Info</h6>
+            <dt><strong>Name:</strong></dt>
+            <dd><%= project.company.technical_name %></dd>
+            <dt><strong>Designation:</strong></dt>
+            <dd><%= project.company.technical_designation %></dd>
+            <dt><strong>Email:</strong></dt>
+            <dd><%= project.company.technical_email %></dd>
+            <dt><strong>Phone:</strong></dt>
+            <dd><%= project.company.technical_phone %></dd>
+          <% end %>
+
         </dl>
       </div>
 
