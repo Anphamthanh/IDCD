@@ -9,23 +9,29 @@ class GroupsController < ApplicationController
       return
     end
 
-    # new group should have a unique name
-    if Group.find_by_name(params[:group_name])
-      flash[:notice] = "This Group Name is already taken. Please choose another one."
-      redirect_to action: 'index'
+    # group name should not be blank
+    if params[:group_name].blank?
+      redirect_to :back, notice: "Group name cannot be blank"
       return
+    else
+      # new group should have a unique name
+      if Group.find_by_name(params[:group_name].titlecase)
+        flash[:notice] = "This Group Name is already taken. Please choose another one."
+        redirect_to action: 'index'
+        return
+      end
+
+      # delete pending requests
+      current_user.my_requests.each do |group|
+        GroupMember.where(group_id: group.id, student_id: current_user.id, requested: true).first.destroy
+      end
+
+      # create new group
+      group = Group.create(name: params[:group_name].titlecase)
+      GroupMember.create(group_id: group.id, student_id: current_user.id, member: true)
+
+      redirect_to action: 'index'
     end
-
-    # delete pending requests
-    current_user.my_requests.each do |group|
-      GroupMember.where(group_id: group.id, student_id: current_user.id, requested: true).first.destroy
-    end
-
-    # create new group
-    group = Group.create(name: params[:group_name])
-    GroupMember.create(group_id: group.id, student_id: current_user.id, member: true)
-
-    redirect_to action: 'index'
   end
 
 
