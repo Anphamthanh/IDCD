@@ -103,13 +103,19 @@ class ProposalsController < ApplicationController
     # check of duplicate proposal by the same group for the same project
     # done in the model
 
-    respond_to do |format|
-      if @proposal.save
-        format.html { redirect_to proposals_path, notice: 'Proposal was successfully created.' }
-        format.json { render json: @proposal, status: :created, location: @proposal }
-      else
-        format.html { redirect_to proposals_path, notice: 'Proposal submission unsuccessful, most probably because of duplication. ' }
-        format.json { render json: @proposal.errors, status: :unprocessable_entity }
+    if @proposal.description.blank?
+      redirect_to :back, notice: "Cannot submit an empty project bid"
+      return 
+    else
+
+      respond_to do |format|
+        if @proposal.save
+          format.html { redirect_to proposals_path, notice: 'Proposal was successfully created.' }
+          format.json { render json: @proposal, status: :created, location: @proposal }
+        else
+          format.html { redirect_to proposals_path, notice: 'Proposal submission unsuccessful, most probably because of duplication. ' }
+          format.json { render json: @proposal.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
