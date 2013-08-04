@@ -90,7 +90,7 @@ Student has a group
         <div class="span8">
           You are currently a member of <strong><%= current_user.my_group.name %></strong>
         </div>
-        <%= link_to "Leave Group", leave_group_groups_path, :class => "span3" %>
+        <%= link_to "Leave Group", leave_group_groups_path, :class => "span3", :confirm => "Are you sure you want to leave the group? If you are the last member, leaving the group will delete all bids made by your group." %>
       </div>
     </div>
   </div>
@@ -99,7 +99,7 @@ Student has a group
     <div class="span6 offset3">
 
       <!-- 
-      Send invitation to group group
+      Send invitation to group
       -->
       <h6>Invite other students</h6>
       <div class="row-fluid">
