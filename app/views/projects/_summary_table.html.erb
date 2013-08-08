@@ -4,10 +4,10 @@
 
     <!-- table column names -->
     <div class="row-fluid pagination-centered">
-      <div class="span5">
+      <div class="span4">
         <h4>Project Name</h4>
       </div>
-      <div class="span4">
+      <div class="span5">
         <h4>Schools Required</h4>
       </div>
       <div class="span3">
@@ -17,19 +17,19 @@
 
     <!-- table column hints -->
     <div class="row-fluid pagination-centered">
-      <div class="span5">
-      </div>
       <div class="span4">
+      </div>
+      <div class="span5">
         <table class="table_no_decor"><tr class="table_no_decor">
             <% School.all.each do |s| %>
-              <td style="width: 25%;"><h6><%= "#{s.name}" %></h6></td>
+              <td style="width: 14%;"><h6><%= "#{s.name}" %></h6></td>
             <% end %>
         </table></tr>
       </div>
       <div class="span3">
         <table class="table_no_decor"><tr class="table_no_decor">
             <td>
-              <h6>Project Proposals</h6>
+              <h6>Status of Bids</h6>
             </td>
         </table></tr>
       </div>
@@ -43,18 +43,18 @@
         <!--
         Project name
         -->
-        <div class="span5">
+        <div class="span4">
           <%= render :partial => "projects/details_popover", :locals => {project: project, level: 1} %>
         </div>
 
         <!--
         Project school details
         -->
-        <div class="span4">
+        <div class="span5">
           <table class="table_no_decor"><tr class="table_no_decor">
               <% School.all.each do |s| %>
                 <% if project.schools.include?(s) %>
-                  <td style="width: 25%; text-align: center;"><%= "*" %></td>
+                  <td style="width: 14%; text-align: center;"><%= "*" %></td>
                 <% else %>
                   <td></td>
                 <% end %>

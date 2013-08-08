@@ -2,13 +2,13 @@
   <div class="span12">
 
     <% if not current_user.is_owner? %>
-      You must be a member of a Group to submit a Proposal.
+      You must be a member of a Group to submit a Bid.
 
     <% else %>
 
       <div class="row-fluid">
         <div class="span12">
-          Submitting a proposal on behalf of <strong><%= "#{current_user.my_group.name}" %></strong>
+          Submitting a bid on behalf of <strong><%= "#{current_user.my_group.name}" %></strong>
         </div>
       </div>
 

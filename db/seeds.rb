@@ -84,5 +84,8 @@ School.create(:name => "ECE")
 School.create(:name => "ID")
 School.create(:name => "ME")
 School.create(:name => "BME")
+School.create(:name => "ISyE")
+School.create(:name => "MSE")
+School.create(:name => "AE")
 
 
