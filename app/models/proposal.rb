@@ -25,7 +25,7 @@ class Proposal < ActiveRecord::Base
     elsif self.decision == 0
       return "Pending"
     elsif self.decision == -1
-      return "Rjected"
+      return "Rejected"
     end
   end
 
