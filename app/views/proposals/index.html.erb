@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12">
-    <h1>Project Proposals</h1>
+    <h1>Project Bids</h1>
   </div>
 </div>
 <br>
@@ -8,8 +8,8 @@
   <div class="span12">
 
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#pending" data-toggle="tab">Pending Proposals</a></li>
-      <li><a href="#decided" data-toggle="tab">Decided Proposals</a></li>
+      <li class="active"><a href="#pending" data-toggle="tab">Pending Bids</a></li>
+      <li><a href="#decided" data-toggle="tab">Decided Bids</a></li>
     </ul>
 
   </div>
@@ -25,7 +25,7 @@
       </div>
 
       <div class="tab-pane fade in" id="decided">
-        <h4>Accepted Proposals</h4>
+        <h4>Accepted Bids</h4>
         <%= render :partial => 'list_admin', :locals => { :proposals => Proposal.accepted, :type => "accepted"} %>
         <h4>Rejected Proposals</h4>
         <%= render :partial => 'list_admin', :locals => { :proposals => Proposal.rejected, :type => "rejected"} %>
