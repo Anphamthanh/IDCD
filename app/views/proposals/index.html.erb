@@ -27,7 +27,7 @@
       <div class="tab-pane fade in" id="decided">
         <h4>Accepted Bids</h4>
         <%= render :partial => 'list_admin', :locals => { :proposals => Proposal.accepted, :type => "accepted"} %>
-        <h4>Rejected Proposals</h4>
+        <h4>Rejected Bids</h4>
         <%= render :partial => 'list_admin', :locals => { :proposals => Proposal.rejected, :type => "rejected"} %>
       </div>
 
