@@ -1,9 +1,23 @@
 <% if current_user %>
-  
+<br>
+<div class="row-fluid">
+  <div class="span12">
+    Complete the form below to submit a project. Please <strong>DO NOT </strong> include any proprietary or confidental information.<br />
+  </div>
+</div>
+
+<br />  
   <%= render :partial => 'online_form_student' %>
 
 <% else %>
-  
+<br>
+<div class="row-fluid">
+  <div class="span12">
+    Complete the form below or upload a copy of the completed form to submit a project. Please <strong>DO NOT </strong> include any proprietary or confidental information.
+  </div>
+</div>
+
+<br />  
   <div class="row-fluid">
     <div class="span12">
       <ul class="nav nav-tabs">
