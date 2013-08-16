@@ -56,7 +56,7 @@ Student does not have a group
           <h6>Other Groups</h6>
           <% current_user.my_unrequested_groups.each do |group| %>
             <dt><%= render :partial => "groups/details_popover", :locals => {group: group} %></dt>
-            <dd><%= group.name %> #TODO</dd>
+            <dd><%= link_to "Request Invite", send_request_groups_path(group_name: group.name), :method => "POST" %></dd>
           <% end %>
         </dl>
       <% end %>
