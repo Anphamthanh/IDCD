@@ -37,11 +37,11 @@
             </dd>     
           <% end %> 
 
-          <dt><strong>Number of Proposals:</strong></dt>
+          <dt><strong>Number of Bids:</strong></dt>
           <dd><%= project.proposals.count %></dd>
 
           <% if ( current_user.isAdmin? or current_user.isFaculty? ) and project.proposals.count > 0 %>
-            <dt><strong>Submitted Proposals:</strong></dt>
+            <dt><strong>Submitted Bids:</strong></dt>
             <dd>
             <% project.proposals.each do |proposal| %>
               <li><%= render :partial => "proposals/details_popover", :locals => {proposal: proposal, placement: "bottom"} %></li>

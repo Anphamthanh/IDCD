@@ -1,5 +1,5 @@
 <% if not current_user.is_owner? %>
-  You need to select a group before you can create proposals.
+  You need to select a group before you can create bids.
 
 <% else %>
   <div class="row-fluid">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.submit nil, :class => 'btn btn-primary', value: "Submit Proposal" %>
+          <%= f.submit nil, :class => 'btn btn-primary', value: "Submit Bid" %>
           <%= link_to t('.cancel', :default => t("helpers.links.cancel")), proposals_path, :class => 'btn' %>
         </div>
       <% end %>
