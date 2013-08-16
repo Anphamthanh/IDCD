@@ -17,8 +17,7 @@ class UsersController < ApplicationController
       return
     end
 
-
-    redirect_to users_url
+    redirect_to home_url
   end
 
   def tester_logout
@@ -119,13 +118,23 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    @students = Student.all
-    @faculty = Faculty.all
+    if current_user.isAdmin?
+      @users = User.all
+      @students = Student.all
+      @faculty = Faculty.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @users }
+      end
+      return
+
+    else
+      @user = User.find(current_user.id)
+
+      respond_to do |format|
+        format.html { redirect_to home_url }
+      end
     end
   end
 
@@ -133,6 +142,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    if !(current_user.isAdmin? or current_user == @user) 
+      redirect_to home_path, notice: "Unauthorized!"
+      return
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -154,6 +167,10 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    if !(current_user.isAdmin? or current_user == @user)
+      redirect_to home_path, notice: "Unauthorized!"
+      return
+    end
   end
 
   # POST /users
