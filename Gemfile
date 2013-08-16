@@ -9,6 +9,7 @@ gem 'pg'
 
 gem 'carrierwave'
 gem 'RedCloth'
+gem "cancan"
 
 group :test, :development do
   gem 'pry-rails'

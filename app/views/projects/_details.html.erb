@@ -85,33 +85,33 @@
       <div class="tab-pane active" id="more_info">
         <dl class="dl-horizontal">
 
-          <dt><strong>NDA Required:</strong></dt>
+          <dt><strong>NDA Required :</strong></dt>
           <% if project.nda_required %>
             <dd style="color: red">Yes</dd>
           <% else %>
             <dd>No</dd>
           <% end %>
 
-          <dt><strong>Interest in IP Assignment:</strong></dt>
+          <dt><strong>Interest in IP Assignment :</strong></dt>
           <% if project.funding_commitment %>
             <dd style="color: red">Yes</dd>
           <% else %>
             <dd>No</dd>
           <% end %>
 
-          <dt><strong>Background:</strong></dt>
+          <dt><strong>Background / need :</strong></dt>
           <dd><%= project.background %></dd>
 
           <dt><strong>Concept:</strong></dt>
           <dd><%= project.concept %></dd>
 
-          <dt><strong>Design:</strong></dt>
+          <dt><strong>Design considerations :</strong></dt>
           <dd><%= project.design %></dd>
 
-          <dt><strong>Skills:</strong></dt>
+          <dt><strong>Desired skills, schools :</strong></dt>
           <dd><%= project.skills %></dd>
 
-          <dt><strong>Solutions:</strong></dt>
+          <dt><strong>Prefered solution :</strong></dt>
           <dd><%= project.solutions %></dd>
 
           <% if current_user.isAdmin? and project.company_id %>
