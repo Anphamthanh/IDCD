@@ -9,9 +9,15 @@
 <% else %>
   <% Student.all.each do |user| %>
     <div class="row-fluid">
-      <div class="span12">
+
+      <div class="span11">
         <%= link_to "#{user.firstname} #{user.lastname} (#{user.gtusername})", user_path(user) %>
       </div>
+      
+      <div class"span1">
+        <%= button_to "Delete", user_path(user), :method => :delete, :confirm => "Are you sure?" %>
+      </div>
+
     </div>
   <% end %>
 <% end %>
