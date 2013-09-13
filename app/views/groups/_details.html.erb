@@ -16,7 +16,7 @@
     <%= group.assigned_project.name %>
     </dd>
   <% else %>
-    <dt><strong>Proposals:</strong></dt>
+    <dt><strong>Bids:</strong></dt>
     <dd>
     <% if group.proposals.count > 0 %>
       <% group.proposals.each do |proposal| %>
@@ -25,7 +25,7 @@
         </li>
       <% end %>
     <% else %>
-      No proposals
+      No Bids
     <% end %>
     </dd>
   <% end %>

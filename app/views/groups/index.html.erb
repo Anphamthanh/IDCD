@@ -73,7 +73,7 @@
 
             <td>
               <ul>
-                <% group.students.each do |student| %>
+                <% group.owners.each do |student| %>
                   <li>
                   <%= render :partial => "users/details_popover", :locals => {user: student, placement: "bottom"} %>
                   </li>
