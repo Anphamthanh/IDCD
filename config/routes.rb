@@ -84,6 +84,7 @@ IDCD::Application.routes.draw do
 
   match 'home/login_with_CAS' => 'home#login_with_CAS'
   match 'home/logout' => 'home#logout'
+  match 'home/help' => 'home#help'
   match 'home' => 'home#index'
 
   # The priority is based upon order of creation:
