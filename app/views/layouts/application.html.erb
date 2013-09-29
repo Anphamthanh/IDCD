@@ -142,7 +142,7 @@
   </div>
 
 
-  <% if params[:admin] %>
+  <% if (current_user) and (current_user.isAdmin? or test_user) %>
     <div id="admin_footer" class="container">
       <div class="row-fluid page-header">
         <div class="span12">
