@@ -141,8 +141,7 @@
     <% end %>
   </div>
 
-
-  <% if (current_user) and (current_user.isAdmin? or test_user) %>
+  <% if ((current_user) and (current_user.isAdmin? or test_user)) or (not Rails.env.production?)   %>
     <div id="admin_footer" class="container">
       <div class="row-fluid page-header">
         <div class="span12">
