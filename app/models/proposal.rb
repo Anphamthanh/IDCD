@@ -1,11 +1,22 @@
 class Proposal < ActiveRecord::Base
-  attr_accessible :description, :group_id, :project_id, :decision
+  attr_accessible :description, :group_id, :project_id, :decision, :priority
 
   belongs_to :group
   belongs_to :project
 
   validates :group_id, :uniqueness => { :scope => [:project_id], :message => "Duplicate records!" }
 
+  def insert_at_priority(current_proposal_priority, time_order = "DESC")
+    proposals = Proposal.where("group_id = #{self.group_id}").order("priority ASC", "updated_at #{time_order}")
+    priority_index = 1
+
+    proposals.each do |p|
+      p.priority = priority_index
+      p.save
+      priority_index = priority_index + 1
+    end
+
+  end
 
   def accept!
     self.decision = 1

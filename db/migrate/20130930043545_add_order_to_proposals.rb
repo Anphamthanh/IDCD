@@ -1,16 +1,16 @@
 class AddOrderToProposals < ActiveRecord::Migration
   def change
-    add_column :proposals, :order, :integer
+    add_column :proposals, :priority, :integer
 
     Proposal.reset_column_information
 
     Group.all.each do |g|
-      order_index = 1
+      priority_index = 1
       proposals = Proposal.where("group_id = #{g.id}")
       proposals.each do |p|
-        p.order = order_index
+        p.priority = priority_index
         p.save
-        order_index = order_index + 1
+        priority_index = priority_index + 1
       end
     end
 
