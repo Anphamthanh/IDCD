@@ -100,6 +100,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.0.0)
     ref (1.0.4)
     rubycas-client (2.2.1)
       activesupport
@@ -147,6 +148,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 3.2.11)
+  redcarpet
   rubycas-client-rails
   sass-rails (~> 3.2.3)
   therubyracer
