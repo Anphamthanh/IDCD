@@ -86,7 +86,7 @@
               <div class="span12">
                 <div class="alert">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <%= "#{flash[:notice]}" %>
+                  <%= "#{flash[:notice]}".html_safe %>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@
               <div class="span12">
                 <div class="alert">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <%= "#{flash[:error]}" %>
+                  <%= "#{flash[:error]}".html_safe %>
                 </div>
               </div>
             </div>
@@ -141,8 +141,7 @@
     <% end %>
   </div>
 
-
-  <% if params[:admin] %>
+  <% if ((current_user) and (current_user.isAdmin? or test_user)) or (not Rails.env.production?)   %>
     <div id="admin_footer" class="container">
       <div class="row-fluid page-header">
         <div class="span12">

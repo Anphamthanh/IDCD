@@ -6,12 +6,8 @@ class HomeController < ApplicationController
   def login_with_CAS
     if User.find_by_gtusername(session[:cas_user]).nil?
       flash[:notice] = "Please complete the one-time registration. Do not leave any field blank."
+      redirect_to new_user_path
 
-      # create and save a new user -> default is student
-      # pre-populate details received from CAS
-      @user = Student.create(:gtusername => session[:cas_user])
-
-      redirect_to edit_user_path(@user)
       return
     elsif current_user.incompleteProfile?
       flash[:error] = "Please complete all fields in your profile."

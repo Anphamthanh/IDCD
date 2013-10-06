@@ -9,11 +9,12 @@ gem 'pg'
 
 gem 'carrierwave'
 gem 'RedCloth'
-gem "cancan"
+gem 'cancan'
+gem 'redcarpet'
 
 group :test, :development do
   gem 'pry-rails'
- # gem "rails-erd"
+ # gem 'rails-erd'
 end
 
 # Gems used only for assets and not required
@@ -24,8 +25,8 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
-  gem "less-rails" 
-  gem "twitter-bootstrap-rails"
+  gem 'less-rails' 
+  gem 'twitter-bootstrap-rails'
 
   gem 'uglifier', '>= 1.0.3'
 end

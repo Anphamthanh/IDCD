@@ -37,6 +37,14 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def name_humanize
+    if self.submitter and self.submitter.isStudent?
+      return "#{self.name} (#{self.submitter.section.name})" 
+    else 
+      return "#{self.name}" 
+    end 
+  end
+
   def submitter_humanize
     if self.incomplete?
       return "Unknown because project details are incomplete"

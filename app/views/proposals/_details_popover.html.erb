@@ -6,7 +6,7 @@
   data-placement="bottom"
   rel="popover" 
   onclick="return true;">
-  Bid for<strong><%= " #{proposal.project.name} " %></strong>by<strong><%= " #{proposal.group.name}" %></strong>
+  Bid for<strong><%= " #{proposal.project.name_humanize} " %></strong>by<strong><%= " #{proposal.group.name}" %></strong>
 </a>
 
 <div id="<%= "proposal_id_#{proposal.id}_content" %>" style="display: none;">

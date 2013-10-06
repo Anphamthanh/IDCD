@@ -110,6 +110,10 @@ class ProposalsController < ApplicationController
 
       respond_to do |format|
         if @proposal.save
+
+          # insert proposal in order 
+          @proposal.insert_at_priority(@proposal.priority)
+
           format.html { redirect_to proposals_path, notice: 'Proposal was successfully created.' }
           format.json { render json: @proposal, status: :created, location: @proposal }
         else
@@ -124,9 +128,19 @@ class ProposalsController < ApplicationController
   # PUT /proposals/1.json
   def update
     @proposal = Proposal.find(params[:id])
+    old_priority = @proposal.priority
 
     respond_to do |format|
       if @proposal.update_attributes(params[:proposal])
+        new_priority = @proposal.priority
+
+        # insert proposal in order 
+        if new_priority > old_priority
+          @proposal.insert_at_priority(@proposal.priority, "ASC")
+        else
+          @proposal.insert_at_priority(@proposal.priority, "DESC")
+        end
+
         format.html { redirect_to proposals_path, notice: 'Proposal was successfully created.' }
         format.json { head :no_content }
       else

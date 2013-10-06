@@ -10,7 +10,7 @@
 
     <% else %>
 
-      <% current_user.my_group.proposals.each do |proposal|  %>
+      <% current_user.my_group.proposals.order("priority ASC").each do |proposal|  %>
         <div class="row-fluid" style="margin-bottom:20px;">
           <div class="span12 well">
 

@@ -2,7 +2,7 @@
   You need to select a group before you can create bids.
 
 <% else %>
-  <div class="row-fluid">
+  <div class="row-fluid" style="margin-top: 20px">
     <div class="span12">
       <%= form_for @proposal, :html => { :class => 'form-horizontal' } do |f| %>
         <% 
@@ -20,6 +20,31 @@
           <%= f.label "Why do you want this project?", :class => 'control-label' %>
           <div class="controls">
             <%= f.text_area :description, :class => 'text_area', :rows => 10, :style => "width: 90%" %>
+          </div>
+        </div>
+
+        <% 
+          proposals = current_user.my_group.proposals 
+          max_priority = 0
+          proposals.each do |p|
+            if p.priority > max_priority
+              max_priority = p.priority
+            end
+          end
+          if not @proposal.priority
+            max_priority = max_priority + 1
+          end
+          priority_vals = (1..max_priority).to_a
+          priority_select_options = []
+          priority_vals.each do |pv|
+            priority_select_options << [pv.ordinalize, pv]
+          end
+        %>
+
+        <div class="control-group">
+          <%= f.label "Priority", :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :priority, options_for_select(priority_select_options, @proposal.priority) %>
           </div>
         </div>
 

@@ -100,19 +100,19 @@
           <% end %>
 
           <dt><strong>Background / need :</strong></dt>
-          <dd><%= project.background %></dd>
+          <dd><%= markdown(project.background) %></dd>
 
           <dt><strong>Concept:</strong></dt>
-          <dd><%= project.concept %></dd>
+          <dd><%= markdown(project.concept) %></dd>
 
           <dt><strong>Design considerations :</strong></dt>
-          <dd><%= project.design %></dd>
+          <dd><%= markdown(project.design) %></dd>
 
           <dt><strong>Desired skills, schools :</strong></dt>
-          <dd><%= project.skills %></dd>
+          <dd><%= markdown(project.skills) %></dd>
 
           <dt><strong>Prefered solution :</strong></dt>
-          <dd><%= project.solutions %></dd>
+          <dd><%= markdown(project.solutions) %></dd>
 
           <% if current_user.isAdmin? and project.company_id %>
             <h6>Director Info</h6>
