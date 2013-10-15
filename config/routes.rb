@@ -76,9 +76,14 @@ IDCD::Application.routes.draw do
   resources :companies
 
   resources :semesters, :path => "/semester_settings/" do
+    collection do
+      post 'set_current'
+    end
+
     member do
       post 'add_faculty_to_section'
     end
+
     resources :sections
   end
 

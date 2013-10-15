@@ -1,4 +1,12 @@
 class SemestersController < ApplicationController
+  # POST /semesters/1/set_current
+  # POST /semesters/1/set_current.json
+  def set_current
+    redirect_to(:back)
+    session[:current_semester] = Semester.find(params[:current_semester][:id])
+    return
+  end
+
   # POST /semesters/1
   # POST /semesters/1.json
   def add_faculty_to_section
