@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def tester_logout
     session.delete(:test_user)
 
-    redirect_to users_url
+    redirect_to home_url
   end
 
   def add_faculty
@@ -118,7 +118,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if current_user.isAdmin?
+    if current_user and current_user.isAdmin?
       @users = User.all
       @students = Student.all
       @faculty = Faculty.all
