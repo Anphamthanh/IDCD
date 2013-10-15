@@ -130,7 +130,7 @@ class ProjectsController < ApplicationController
     if current_user.isAdmin?
       @incomplete_projects = Project.where(project_status_id: 1)
       @complete_projects = Project.where(project_status_id: 2)
-      @accepted_projects = Project.where(project_status_id: 3)
+      @accepted_projects = Project.where(project_status_id: 3, semester_id: session[:current_semester].id)
       @rejected_projects = Project.where(project_status_id: 4)
 
       respond_to do |format|

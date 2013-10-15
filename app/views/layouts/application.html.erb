@@ -57,7 +57,7 @@
 
 <li>
 	<%= form_tag :controller => "semesters", action: "set_current", :method => 'post' do %>
-		<%= select("current_semester", "id", Semester.active.collect {|p| [ p.name, p.id ] } ) %>
+		<%= select("current_semester", "id", Semester.active.collect {|p| [ p.name, p.id ] }, :selected => session[:current_semester].id) %>
 		<%= submit_tag "Submit" %>
 	<% end %>
 </li>
