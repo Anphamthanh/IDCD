@@ -122,32 +122,6 @@
     </div>
   </div>
 
-  <div id="footer" style="display: none">
-    Current user:
-    <% if current_user %>
-      <%= current_user.gtusername %>
-      <% if current_user.isTest? %>
-        (Test user)
-      <% end %>
-    <% else %>
-      No logged in user
-    <% end %>
-
-    <center>
-      &copy;2013 Georgia Institute of Technology
-      <br>
-      semester set to: <%= session[:current_semester].name %>
-    </center>
-
-    <%= Rails.env.development? %>
-
-    <br />
-
-    <% if flash[:notice] %>
-      <%= "#{flash[:notice]}" %>
-    <% end %>
-  </div>
-
   <% if ((current_user) and (current_user.isAdmin? or test_user)) or (not Rails.env.production?)   %>
     <div id="admin_footer" class="container">
       <div class="row-fluid page-header">
