@@ -40,10 +40,10 @@ class Section < ActiveRecord::Base
     return list_of_students
   end
 
-  def faculty_approved_projects
+  def faculty_approved_projects(semester_id)
     projects = []
     self.faculties.each do |faculty|
-      projects = projects | faculty.approved_projects
+      projects = projects | faculty.approved_projects(semester_id)
     end
     return projects
   end

@@ -13,7 +13,7 @@
         <div class="control-group">
           <%= f.label :project_id, :class => 'control-label' %>
           <div class="controls">
-            <%= f.collection_select :project_id, current_user.my_group.available_project_choices, :id, :name  %>
+            <%= f.collection_select :project_id, current_user.my_group.available_project_choices(session[:current_semester].id), :id, :name  %>
           </div>
         </div>
         <div class="control-group">

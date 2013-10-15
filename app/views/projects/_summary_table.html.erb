@@ -115,7 +115,7 @@
                       <%= image_tag "proposal_submitted.png", class: "medium_icon" %>
                     </a>
 
-                  <% elsif current_user.my_group.available_project_choices.include? project %>
+                  <% elsif current_user.my_group.available_project_choices(session[:current_semester].id).include? project %>
                     <a 
                       href="<%= new_proposal_path(project: project.id) %>"
                       rel="tooltip" 

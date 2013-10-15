@@ -140,9 +140,9 @@ class ProjectsController < ApplicationController
 
     elsif current_user.isStudent?
       #TODO also limit by current semester
-      @all_projects = Project.where(project_status_id: 3)
+      @all_projects = Project.where(project_status_id: 3, semester_id: session[:current_semester].id)
       if current_user.is_owner?
-        @available_projects = current_user.my_group.available_project_choices
+        @available_projects = current_user.my_group.available_project_choices(session[:current_semester].id)
       else
         @available_projects = []
       end
@@ -153,8 +153,8 @@ class ProjectsController < ApplicationController
       end
 
     elsif current_user.isFaculty?
-      @accepted_projects = current_user.approved_projects
-      @all_projects = Project.where(project_status_id: 3)
+      @accepted_projects = current_user.approved_projects(session[:current_semester].id)
+      @all_projects = Project.where(project_status_id: 3, semester_id: session[:current_semester].id)
 
       respond_to do |format|
         format.html { render 'index_faculty' }
