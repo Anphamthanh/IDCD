@@ -29,15 +29,15 @@
     <div class="control-group">
       <%= f.label :semester_id, :class => 'control-label' %>
       <div class="controls">
-        <%= select("semester", "id", Semester.all.collect {|s| [s.id, s.name] }, :selected => 1) %>
+        <%= select("semester", "id", Semester.all.collect {|s| [s.name, s.id] }, :selected => 1) %>
       </div>
     </div>
     
     <% Semester.all.each do |s| %>
-      <div class="control-group">
+      <div class="control-group section_select_group" style="display: none" id=<%= "semester_id_#{s.id}" %>>
         <%= f.label :section_id, :class => 'control-label' %>
         <div class="controls">
-          <%= f.collection_select :section_id, Semester.find(s.id).sections, :id, :name  %>
+          <%= select("section_id", "for_semester_#{s.id}", Semester.find(s.id).sections.collect {|sec| [sec.name, sec.id] }) %>
         </div>
       </div>
     <% end %>

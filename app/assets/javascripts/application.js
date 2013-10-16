@@ -14,3 +14,28 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+$(document).ready(function(){
+
+	// Show default section dropdown
+	semester_id = $("#semester_id ").find(":selected").val();
+	$(".section_select_group#semester_id_" + semester_id).show();
+
+	// When the semester field changes, show the appropriate section div
+	$("#semester_id").change(function(){
+
+		// Get the selected semester
+		semester_id = $("#semester_id ").find(":selected").val();
+
+		// Hide all section dropdowns
+		$(".section_select_group").each(function(){
+			console.log(this);
+			$(this).hide();
+		});
+
+		// Display the section corresponding to the selected semester
+		$(".section_select_group#semester_id_" + semester_id).show();
+
+	});
+
+});

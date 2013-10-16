@@ -183,6 +183,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
+    @user.section_id = getSectionId(params)
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -198,12 +200,17 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+
     if @user.is_a? Student
       updated_params = params[:student]
+      @user.updateSection(params)
+
     elsif @user.is_a? Faculty
       updated_params = params[:faculty]
+
     else
       updated_params = params[:user]
+
     end
 
     respond_to do |format|

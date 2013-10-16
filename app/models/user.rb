@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessible :admin, :email, :firstname, :gtusername, :lastname, :type, :test, :school_id, :section_id
 
+  def updateSection(params)
+    semester_id = params[:semester][:id]
+    section_id = params[:section_id]["for_semester_#{semester_id}"]
+    self.section_id = section_id
+  end
+
   def semester
     self.section.semester
   end
