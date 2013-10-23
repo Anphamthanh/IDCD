@@ -25,13 +25,23 @@
   </div>
 
   <% if @user.isStudent? %>
-    <% semId = session[:current_semester].id %>
+
     <div class="control-group">
-      <%= f.label :section_id, :class => 'control-label' %>
+      <%= f.label :semester_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :section_id, Semester.find(semId).sections, :id, :name  %>
+        <%= select("semester", "id", Semester.all.collect {|s| [s.id, s.name] }, :selected => 1) %>
       </div>
     </div>
+    
+    <% Semester.all.each do |s| %>
+      <div class="control-group">
+        <%= f.label :section_id, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.collection_select :section_id, Semester.find(s.id).sections, :id, :name  %>
+        </div>
+      </div>
+    <% end %>
+
   <% end %>
 
   <div class="control-group" style="display: none">

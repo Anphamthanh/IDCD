@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessible :admin, :email, :firstname, :gtusername, :lastname, :type, :test, :school_id, :section_id
 
+  def semester
+    self.section.semester
+  end
+
   def name
     if firstname.blank?
       return gtusername
