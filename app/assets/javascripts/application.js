@@ -38,4 +38,8 @@ $(document).ready(function(){
 
 	});
 
+	$("form #current_semester_id").change(function(){
+		$(this.form).submit();
+	});
+
 });
