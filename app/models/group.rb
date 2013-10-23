@@ -1,10 +1,11 @@
 class Group < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :semester_id
 
   has_many :group_members, :dependent => :destroy
   has_many :students, :through => :group_members
   has_many :proposals, :dependent => :destroy
-
+  belongs_to :semester
+  
   def assigned_project
     self.proposals.each do |proposal|
       if Proposal.accepted.include? proposal

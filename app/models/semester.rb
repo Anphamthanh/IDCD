@@ -3,6 +3,7 @@ class Semester < ActiveRecord::Base
 
   has_many :sections
   has_many :projects
+  has_many :groups
 
   def self.active
 	  where("end_date >= ?", Date.current)
