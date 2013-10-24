@@ -30,7 +30,7 @@ class Student < User
   end
 
   def my_unrequested_groups
-    groups = Group.all;
+    groups = Group.where(semester_id: self.section.semester.id);
     groups = groups - self.my_requests
 
     return groups
