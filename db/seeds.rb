@@ -10,6 +10,7 @@
 # Stuff that needs to set up by an admin
 Semester.create(:name => "Just Browsing", :start_date => Time.local(2000, 1, 1), :end_date => Time.local(2050, 1, 1))
 Semester.create(:name => "Fall 2013", :start_date => Time.local(2013, 8, 10), :end_date => Time.local(2013, 12, 22))
+Semester.create(:name => "Spring 2014", :start_date => Time.local(2014, 1, 6), :end_date => Time.local(2014, 5, 12))
 
 
 Company.create(name: "Boeing", technical_name: "string", technical_designation: "string", technical_email: "string", technical_phone: "string", director_name: "string", director_designation: "string", director_email: "string", director_phone: "string")
