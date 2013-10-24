@@ -183,7 +183,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    @user.section_id = getSectionId(params)
+    @user.updateSection(params)
 
     respond_to do |format|
       if @user.save

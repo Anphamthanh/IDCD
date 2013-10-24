@@ -29,7 +29,6 @@ $(document).ready(function(){
 
 		// Hide all section dropdowns
 		$(".section_select_group").each(function(){
-			console.log(this);
 			$(this).hide();
 		});
 
