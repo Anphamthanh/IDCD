@@ -8,10 +8,14 @@
 
 
 # Stuff that needs to set up by an admin
+Semester.create(:name => "Just Browsing", :start_date => Time.local(2000, 1, 1), :end_date => Time.local(2050, 1, 1))
+Section.create(name: "Just Browsing", semester_id: 1)
+
 Semester.create(:name => "Fall 2013", :start_date => Time.local(2013, 8, 10), :end_date => Time.local(2013, 12, 22))
 
 # ADMIN 
 User.create(gtusername: "svaish3", admin: true)
+User.create(gtusername: "ajariwala3", admin: true)
 
 
 # Stuff that will not change without a significant code impact
@@ -31,5 +35,6 @@ School.create(:name => "BME")
 School.create(:name => "ISyE")
 School.create(:name => "MSE")
 School.create(:name => "AE")
+School.create(:name => "COC")
 
 
