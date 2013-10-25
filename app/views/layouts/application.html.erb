@@ -55,7 +55,7 @@
               <li>Welcome <%= "#{current_user.name}" %></li>
 
               <% if not current_user.isAdmin? and not current_user.isFaculty? %>
-                <li>Your Semester: <%= "#{current_user.semester.name}" %></li>
+                <li>Capstone Semester: <%= "#{current_user.semester.name}" %></li>
                 <li>Your Section: <%= "#{current_user.section.name}" %></li>
                  <!--<li><%= link_to "Logout", home_logout_path %></li>-->
               <% end %>
