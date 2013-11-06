@@ -5,7 +5,7 @@ class ProposalsController < ApplicationController
 
   def accept
     proposal = Proposal.find(params[:id])
-    # accept the correct proposal
+    # accept the correct proposal, reject other proposals from that group
     proposal.accept!
     proposal.save!
 
@@ -14,7 +14,6 @@ class ProposalsController < ApplicationController
 
   def reject
     proposal = Proposal.find(params[:id])
-
     # reject the proposal
     proposal.reject!
     proposal.save!
