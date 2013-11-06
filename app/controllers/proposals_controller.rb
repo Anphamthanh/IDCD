@@ -6,8 +6,7 @@ class ProposalsController < ApplicationController
   def accept
     proposal = Proposal.find(params[:id])
     # accept the correct proposal, reject other proposals from that group
-    proposal.accept!
-    proposal.save!
+    proposal.acceptThisRejectOthers!
 
     redirect_to :action => "index"
   end

@@ -61,15 +61,17 @@
               <% end %>
             
 	           <hr />	
-              <li>Viewing site details for: </li>
-	            <li>
-              	<%= form_tag :controller => "semesters", action: "set_current", :method => 'post' do %>
-                  <% semesters_to_show = Semester.active 
-                    semesters_to_show = semesters_to_show  - [Semester.first] %>
-              		<%= select("current_semester", "id", semesters_to_show.collect {|p| [ p.name, p.id ] }, :selected => session[:current_semester].id) %>
-              		<!--<%= submit_tag "Submit" %>-->
-              	<% end %>
+              <!-- limiting semester drop down box to only show on projects page for students -->
+              <% if not (current_user.isStudent? and not params[:controller] == 'projects') %>
+                <li>Viewing site details for: </li>
+	              <li>
+                 <%= form_tag :controller => "semesters", action: "set_current", :method => 'post' do %>
+                    <% semesters_to_show = Semester.active 
+                      semesters_to_show = semesters_to_show  - [Semester.first] %>
+              	   	<%= select("current_semester", "id", semesters_to_show.collect {|p| [ p.name, p.id ] }, :selected => session[:current_semester].id) %>
+                	<% end %>
               </li>
+              <% end %>
 
               <h2 style="margin-top: 20px">Quick Links</h2>
 

@@ -3,7 +3,12 @@
 <div class="row-fluid" style="margin-top: 10px">
   <div class="span12">
     <% if current_user.isFaculty? %>
-      <% current_user.sections.each do |section| %>
+      <!-- Display No Data message -->
+      <% if current_user.sections.where("semester_id" => session[:current_semester]).count == 0 %>
+        <h4>No Sections exist for selected semester</h4>
+      <% end %>
+
+      <% current_user.sections.where("semester_id" => session[:current_semester]).each do |section| %>
         <h4><%= section.name %></h4>
 
         <%
