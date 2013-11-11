@@ -91,5 +91,6 @@ School.create(:name => "BME")
 School.create(:name => "ISyE")
 School.create(:name => "MSE")
 School.create(:name => "AE")
+School.create(:name => "COC")
 
 

@@ -16,6 +16,7 @@ Semester.create(:name => "Fall 2013", :start_date => Time.local(2013, 8, 10), :e
 # ADMIN 
 User.create(gtusername: "svaish3", admin: true)
 User.create(gtusername: "ajariwala3", admin: true)
+User.create(gtusername: "mtrinquero3", admin: true)
 
 
 # Stuff that will not change without a significant code impact
