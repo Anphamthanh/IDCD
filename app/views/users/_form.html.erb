@@ -25,12 +25,39 @@
   </div>
 
   <% if @user.isStudent? %>
-    <% semId = session[:current_semester].id %>
+
     <div class="control-group">
-      <%= f.label :section_id, :class => 'control-label' %>
+      <%= f.label :semester_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :section_id, Semester.find(semId).sections, :id, :name  %>
+	<%
+	  if not @user.section_id.nil? and not @user.section.semester.nil?
+	    selected_semester = @user.section.semester.id
+	  else
+	    selected_semester = 1
+	  end 
+	%>
+        <%= select("semester", "id", Semester.all.collect {|s| [s.name, s.id] }, :selected => selected_semester) %>
       </div>
+    </div>
+    
+    <% Semester.all.each do |s| %>
+      <div class="control-group section_select_group" style="display: none" id=<%= "semester_id_#{s.id}" %>>
+        <%= f.label :section_id, :class => 'control-label' %>
+        <div class="controls">
+	  <%
+	    if s.id == selected_semester and not @user.section_id.nil?
+	      selected_section = @user.section.id
+	    else
+	      selected_section = 1
+	    end 
+	  %>
+          <%= select("section_id", "for_semester_#{s.id}", Semester.find(s.id).sections.collect {|sec| [sec.name, sec.id] }, :selected => selected_section) %>
+        </div>
+      </div>
+    <% end %>
+
+    <div>
+      <h5>NOTE: Switching semesters will result in a loss of previous group affiliations</h5> 
     </div>
   <% end %>
 

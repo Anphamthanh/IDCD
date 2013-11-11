@@ -59,4 +59,21 @@ class ApplicationController < ActionController::Base
     session[:current_semester] = Semester.find(params[:selected_semester])
     redirect_to request.referer
   end
+
+  #will send artive record errors to 404 page in production
+  if config.consider_all_requests_local == false
+    rescue_from ActiveRecord::RecordNotFound do |exception|
+      render_404
+    end
+  end
+
+  def render_404
+    respond_to do |format|
+      #log_error(exception)  --- write helper to log errors in produciton ?
+      format.html { render "errors/404", :status => '404 Not Found', :layout => false }
+      format.xml  { render :nothing => true, :status => '404 Not Found' }
+    end
+    true
+  end
+
 end

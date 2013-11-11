@@ -5,24 +5,14 @@ class ProposalsController < ApplicationController
 
   def accept
     proposal = Proposal.find(params[:id])
-    other_proposals = Proposal.where(project_id: proposal.project_id)
-
-    # mark other proposals for same project as rejected
-    other_proposals.each do |p|
-      p.reject!
-      p.save
-    end 
-
-    # accept the correct proposal
-    proposal.accept!
-    proposal.save!
+    # accept the correct proposal, reject other proposals from that group
+    proposal.acceptThisRejectOthers!
 
     redirect_to :action => "index"
   end
 
   def reject
     proposal = Proposal.find(params[:id])
-
     # reject the proposal
     proposal.reject!
     proposal.save!
@@ -32,13 +22,9 @@ class ProposalsController < ApplicationController
 
   def mark_pending
     proposal = Proposal.find(params[:id])
-    all_proposals_for_project = Proposal.where(project_id: proposal.project_id)
-
-    # mark other proposals for same project as pending
-    all_proposals_for_project.each do |p|
-      p.pending!
-      p.save
-    end 
+    # make the selected groups proposal pending
+    proposal.pending!
+    proposal.save!
 
     redirect_to :action => "index"
   end

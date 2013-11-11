@@ -29,6 +29,10 @@ class GroupsController < ApplicationController
       # create new group
       group = Group.create(name: params[:group_name].titlecase)
       GroupMember.create(group_id: group.id, student_id: current_user.id, member: true)
+      
+      # add semester attribute to group, based on first group member
+      group.semester_id = current_user.section.semester.id
+      group.save
 
       redirect_to action: 'index'
     end
@@ -106,9 +110,6 @@ class GroupsController < ApplicationController
   end
 
 
-
-
-
   #get 'leave_group'
   def leave_group
     group = current_user.my_group
@@ -148,14 +149,26 @@ class GroupsController < ApplicationController
     #  return
     #end
 
-    # check if student exists
     student = Student.find_by_gtusername(params[:student_gtusername])
+    
+    # check if student exists
     if student.nil?
       flash[:notice] = "The gtusername you entered does not exist in the system. Check spellings and make sure the student has completed his/her profile"
       redirect_to action: 'index'
       return
     end
 
+    # check if the invited student is in the same semster as the group
+    if student.semester != group.semester
+      flash[:notice] = "The gtusername you entered is not in the same semester as your group"
+      redirect_to action: 'index'
+      return
+    end
+
+    # If invited student is already a member of another group, will notify requester that that person will need to leave that group in order to accept the new invite
+    if student.is_owner?
+      flash[:notice] = "Invite sent successfully. #{params[:student_gtusername]} is already a member of another group.  He/She will need to leave their current group in order to accept your invite."
+    end
     # create invite
     GroupMember.create(group_id: group.id, student_id: student.id, invited: true)
 

@@ -18,16 +18,30 @@ class Proposal < ActiveRecord::Base
 
   end
 
+  def acceptThisRejectOthers!
+  #reject all other proposals from that same group, then accept only one proposal  
+    other_proposals = Proposal.where("group_id = #{self.group_id}")
+    other_proposals.each do |p|
+      p.reject!
+      p.save!
+    end
+    self.decision = 1
+    self.save!
+  end
+
   def accept!
     self.decision = 1
+    self.save!
   end
 
   def reject!
     self.decision = -1
+    self.save!
   end
 
   def pending!
     self.decision = 0
+    self.save!
   end
 
   def status

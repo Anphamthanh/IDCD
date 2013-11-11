@@ -8,7 +8,9 @@
 
 
 # Stuff that needs to set up by an admin
+Semester.create(:name => "Just Browsing", :start_date => Time.local(2000, 1, 1), :end_date => Time.local(2050, 1, 1))
 Semester.create(:name => "Fall 2013", :start_date => Time.local(2013, 8, 10), :end_date => Time.local(2013, 12, 22))
+Semester.create(:name => "Spring 2014", :start_date => Time.local(2014, 1, 6), :end_date => Time.local(2014, 5, 12))
 
 
 Company.create(name: "Boeing", technical_name: "string", technical_designation: "string", technical_email: "string", technical_phone: "string", director_name: "string", director_designation: "string", director_email: "string", director_phone: "string")
@@ -21,14 +23,16 @@ Project.create(name: "BME-ME-ID Project", background: "background", concept: "co
 Project.create(name: "ME-ECE Project", background: "background", concept: "concept", design: "design", skills: "skills", solutions: "solutions", company_id: 1, project_status_id: 2)
 
 # SECTIONS
-Section.create(name: "L1-ece", semester_id: 1, school_id: 1)
-Section.create(name: "L2-ece", semester_id: 1, school_id: 1)
-Section.create(name: "L3-id", semester_id: 1, school_id: 2)
-Section.create(name: "L4-id", semester_id: 1, school_id: 2)
-Section.create(name: "L5-me", semester_id: 1, school_id: 3)
-Section.create(name: "L6-me", semester_id: 1, school_id: 3)
-Section.create(name: "L7-bme", semester_id: 1, school_id: 4)
-Section.create(name: "L8-bme", semester_id: 1, school_id: 4)
+Section.create(name: "Just Browsing", semester_id: 1)
+
+Section.create(name: "L1-ece", semester_id: 2, school_id: 1)
+Section.create(name: "L2-ece", semester_id: 2, school_id: 1)
+Section.create(name: "L3-id", semester_id: 2, school_id: 2)
+Section.create(name: "L4-id", semester_id: 2, school_id: 2)
+Section.create(name: "L5-me", semester_id: 2, school_id: 3)
+Section.create(name: "L6-me", semester_id: 2, school_id: 3)
+Section.create(name: "L7-bme", semester_id: 2, school_id: 4)
+Section.create(name: "L8-bme", semester_id: 2, school_id: 4)
 
 # TEST FACULTY
 Faculty.create(gtusername: "fac1-ece", admin: false, test: true, school_id: 1)
@@ -87,5 +91,6 @@ School.create(:name => "BME")
 School.create(:name => "ISyE")
 School.create(:name => "MSE")
 School.create(:name => "AE")
+School.create(:name => "COC")
 
 

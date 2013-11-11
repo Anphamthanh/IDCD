@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def tester_logout
     session.delete(:test_user)
 
-    redirect_to users_url
+    redirect_to home_url
   end
 
   def add_faculty
@@ -118,7 +118,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if current_user.isAdmin?
+    if current_user and current_user.isAdmin?
       @users = User.all
       @students = Student.all
       @faculty = Faculty.all
@@ -183,6 +183,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
+    @user.updateSection(params)
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -198,12 +200,35 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+
     if @user.is_a? Student
+      old_semester_id = @user.section.semester_id
+      new_semester_id = params[:semester][:id]
       updated_params = params[:student]
+      @user.updateSection(params)
+
+      # remove from group if the semester changed
+      if old_semester_id != new_semester_id and @user.is_owner?
+        group = @user.my_group
+        GroupMember.where(group_id: group.id, student_id: @user.id, member: true).first.destroy
+
+        # remove current_user's pending sent requests
+        #current_user.my_requests.each do |group|
+        #  GroupMember.where(group_id: group.id, student_id: current_user.id, requested: true).first.destroy
+        #end
+
+        # delete group if the group does not have an owner
+        if group.owners.count == 0
+          group.destroy
+        end
+      end
+
     elsif @user.is_a? Faculty
       updated_params = params[:faculty]
+
     else
       updated_params = params[:user]
+
     end
 
     respond_to do |format|
@@ -221,6 +246,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
   # DELETE /users/1
   # DELETE /users/1.json

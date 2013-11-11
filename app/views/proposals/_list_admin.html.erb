@@ -37,7 +37,7 @@
                     action: "accept",
                     id: proposal.id,
                     method: "get",
-                    confirm: "Are you sure? This will reject all other proposals for project \"#{Project.find(proposal.project_id).name}\"."})
+                    confirm: false})
                   %>
 
                 <% else %>
@@ -47,7 +47,7 @@
                     action: "mark_pending",
                     id: proposal.id,
                     method: "get",
-                    confirm: "Are you sure? This will mark all proposals for project \"#{Project.find(proposal.project_id).name}\" as Pending."})
+                    confirm: false})
                   %>
                 <% end %>
 
