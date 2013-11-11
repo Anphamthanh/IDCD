@@ -23,9 +23,8 @@ class ProposalsController < ApplicationController
   def mark_pending
     proposal = Proposal.find(params[:id])
     # make the selected groups proposal pending
-    proposal.pending!
-    proposal.save!
-
+    proposal.markAllPending!
+  
     redirect_to :action => "index"
   end
 
