@@ -57,6 +57,9 @@
               <% if not current_user.isAdmin? and not current_user.isFaculty? %>
                 <li>Capstone Semester: <%= "#{current_user.semester.name}" %></li>
                 <li>Your Section: <%= "#{current_user.section.name}" %></li>
+		<% if current_user.is_owner? %>
+                  <li>Your Group: <%= "#{current_user.my_group.name}" %></li>
+		<% end %>
                  <!--<li><%= link_to "Logout", home_logout_path %></li>-->
               <% end %>
             
