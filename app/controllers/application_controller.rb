@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   end
 
   #will send artive record errors to 404 page in production
-  if config.consider_all_requests_local == false
+  if Rails.env.production?
     rescue_from ActiveRecord::RecordNotFound do |exception|
       render_404
     end

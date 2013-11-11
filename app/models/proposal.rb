@@ -29,6 +29,15 @@ class Proposal < ActiveRecord::Base
     self.save!
   end
 
+  def markAllPending!
+    #mark all proposals from a group as peding if their accepted project is marked as pending
+    all_proposals = Proposal.where("group_id = #{self.group_id}")
+    all_proposals.each do |p|
+      p.pending!
+      p.save!
+    end
+  end
+  
   def accept!
     self.decision = 1
     self.save!
