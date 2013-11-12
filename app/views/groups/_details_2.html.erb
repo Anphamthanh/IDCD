@@ -1,0 +1,13 @@
+<dl class="dl-horizontal">
+
+  <dt><strong>Group Name:</strong></dt>
+  <dd><%= "#{group.name}" %></dd>
+
+  <dt><strong>Group Members:</strong></dt>
+  <dd>
+  <% group.owners.each do |member| %>
+    <li class="xbullet"><%= "#{member.name}" %></li>
+  <% end %>
+  </dd>
+
+</dl>

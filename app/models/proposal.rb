@@ -38,7 +38,28 @@ class Proposal < ActiveRecord::Base
     end
   end
   
-  def accept!
+  def accepted?
+    if self.decision == 1
+      return true
+    end
+    return false
+  end
+
+  def rejected?
+    if self.decision == -1
+      return true
+    end
+    return false
+  end
+
+  def pending?
+    if self.decision == 0
+      return true
+    end
+    return false
+  end
+
+   def accept!
     self.decision = 1
     self.save!
   end
@@ -62,7 +83,6 @@ class Proposal < ActiveRecord::Base
       return "Rejected"
     end
   end
-
 
   def self.pending
     Proposal.where(decision: 0).order("project_id, group_id")

@@ -11,11 +11,22 @@ class Project < ActiveRecord::Base
   has_many :project_schools
   has_many :schools, :through => :project_schools
   has_many :proposals
+  has_many :groups, :through => :proposals
 
   #has_many :proposals
   #has_many :approving_faculty, :through => :approvals, :source => "faculty"
 
   mount_uploader :form, ProjectFormUploader
+
+  def assignedGroups
+    assigned_groups = []
+    self.proposals.each do |p|
+      if p.accepted?
+        assigned_groups << p.group
+      end
+    end
+    return assigned_groups
+  end
 
   def group
     p = Proposal.where(project_id: self.id, decision: true)

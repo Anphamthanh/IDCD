@@ -68,135 +68,148 @@
             <!-- 
             1. Display "Assigned" if project has already been assigned
             -->
-            <% if project.group %>
+            <% if project.assignedGroups.count > 0 %>
 
-              <div class="span12 pagination-centered">
+              <div class="span6">
+                <div class="row-fluid">
 
-                <a      
-                  href="#"
-                  id="<%= "assigned_group_info_#{project.group.id}" %>"  
-                  data-trigger="hover" 
-                  data-original-title="Group Info"
-                  data-placement="bottom"
-                  rel="popover" 
-                  onclick="return false;">
-                  <span class="label label-info">Assigned</span>
-                </a>
+                  <div class="span12 pagination-centered">
 
-                <div id="<%= "assigned_group_info_#{project.group.id}_content" %>" style="display: none;">
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <%= render :partial => "groups/details", :locals => {group: project.group} %>
+                    <a      
+                      href="#"
+                      id="<%= "assigned_group_info_#{project.group.id}" %>"  
+                      data-trigger="hover" 
+                      data-original-title="Assigned Groups"
+                      data-placement="bottom"
+                      rel="popover" 
+                      onclick="return false;">
+                      <span class="label label-info">Assigned</span>
+                    </a>
+
+                    <div id="<%= "assigned_group_info_#{project.group.id}_content" %>" style="display: none;">
+                      <div class="row-fluid">
+                        <div class="span12">
+                          <% project.assignedGroups.each do |g| %> 
+                            <%= render :partial => "groups/details_2", :locals => {group: project.group} %>
+                            <hr />
+                          <% end %>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
                 </div>
-
-              </div>
-
-            <% else %>
-              <!-- 
-              FOR STUDENTS
-              ------------
-              1. Display link to edit proposal if proposal exists
-              2. Display link to submit proposal if project is available
-              -->
-              <% if current_user.isStudent? and current_user.is_owner? %>
-                <div class="span6 pagination-centered">
-                  <% submitted_proposals = Proposal.where(project_id: project.id, group_id: current_user.my_group.id) %>
-
-                  <% if submitted_proposals.count > 0 %>
-                    <a 
-                      href="<%= proposal_path(submitted_proposals[0]) %>"
-                      rel="tooltip" 
-                      data-toggle="tooltip" 
-                      data-placement="top" 
-                      title="" 
-                      data-original-title="View your Bid">
-                      <%= image_tag "proposal_submitted.png", class: "medium_icon" %>
-                    </a>
-
-                  <% elsif current_user.my_group.available_project_choices(current_user.semester.id).include? project %>
-                    <a 
-                      href="<%= new_proposal_path(project: project.id) %>"
-                      rel="tooltip" 
-                      data-toggle="tooltip" 
-                      data-placement="top" 
-                      title="" 
-                      data-original-title="Submit new Bid">
-                      <%= image_tag "can_submit_proposal.png", class: "medium_icon" %>
-                    </a>
-
-                  <% end %>
                 </div>
-              <% end %>
 
-              <!-- 
-              FOR FACULTY
-              ------------
-              Display the Approve/Reject button
-              -->
-              <% if current_user.isFaculty? %>
-                <div class="span6 pagination-centered">
-                  <% if project.schools.include? current_user.school %>
-                    <div class="btn-group">
-                      <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><%= "#{project.faculty_decision(current_user).stringify} " %><span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <% if project.faculty_decision(current_user).decision %>
-                          <li><%= link_to "Reject", faculty_reject_project_path(project, faculty_id: current_user.id) %></li>
-                        <% else %>
-                          <li><%= link_to "Approve", faculty_approve_project_path(project, faculty_id: current_user.id) %></li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
+            <% end %>
 
-              <!--
-              1. Should a count of the number of proposals submitted
-              2. On hover, if count != 0, show a list of groups that submitted proposals
-              -->
-              <div class="span6 pagination-centered">
-                <% proposal_count = project.proposals.count %>
+            <div class="span6">
+              <div class="row-fluid">
+                <!-- 
+                FOR STUDENTS
+                ------------
+                1. Display link to edit proposal if proposal exists
+                2. Display link to submit proposal if project is available
+                -->
+                <% if current_user.isStudent? and current_user.is_owner? %>
+                  <div class="span6 pagination-centered">
+                    <% submitted_proposals = Proposal.where(project_id: project.id, group_id: current_user.my_group.id) %>
 
-                <% if proposal_count == 0 %>
-                  <a 
-                    href="#"
-                    rel="tooltip" 
-                    data-toggle="tooltip" 
-                    data-placement="top" 
-                    title="" 
-                    data-original-title="No Proposals Submitted"
-                    onclick="return false;">
-                    <span class="badge"><%= proposal_count %></span>
-                  </a>
-                <% else %>
-                  <a      
-                    href="#"
-                    id="<%= "list_of_proposals_projid_#{project.id}" %>"  
-                    data-trigger="hover" 
-                    data-original-title="Groups that submitted proposals"
-                    data-placement="bottom"
-                    rel="popover" 
-                    onclick="return false;">
-                    <span class="badge"><%= proposal_count %></span>
-                  </a>
+                    <% if submitted_proposals.count > 0 %>
+                      <a 
+                        href="<%= proposal_path(submitted_proposals[0]) %>"
+                        rel="tooltip" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="" 
+                        data-original-title="View your Bid">
+                        <%= image_tag "proposal_submitted.png", class: "medium_icon" %>
+                      </a>
 
-                  <div id="<%= "list_of_proposals_projid_#{project.id}_content" %>" style="display: none;">
-                    <div class="row-fluid">
-                      <div class="span12">
-                        <ul>
-                          <% project.proposals.each do |p| %>
-                            <li class="bullet"><%= p.group.name %></li>
+                    <% elsif current_user.my_group.available_project_choices(current_user.semester.id).include? project %>
+                      <a 
+                        href="<%= new_proposal_path(project: project.id) %>"
+                        rel="tooltip" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="" 
+                        data-original-title="Submit new Bid">
+                        <%= image_tag "can_submit_proposal.png", class: "medium_icon" %>
+                      </a>
+
+                    <% end %>
+                  </div>
+                <% end %>
+
+                <!-- 
+                FOR FACULTY
+                ------------
+                Display the Approve/Reject button
+                -->
+                <% if current_user.isFaculty? %>
+                  <div class="span6 pagination-centered">
+                    <% if project.schools.include? current_user.school %>
+                      <div class="btn-group">
+                        <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><%= "#{project.faculty_decision(current_user).stringify} " %><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <% if project.faculty_decision(current_user).decision %>
+                            <li><%= link_to "Reject", faculty_reject_project_path(project, faculty_id: current_user.id) %></li>
+                          <% else %>
+                            <li><%= link_to "Approve", faculty_approve_project_path(project, faculty_id: current_user.id) %></li>
                           <% end %>
                         </ul>
                       </div>
-                    </div>
-                  </div>  
-                <% end %>
+                    <% end %>
+                  </div>
+                    <% end %>
 
+                <!--
+                1. Show count of the number of proposals submitted
+                2. On hover, if count != 0, show a list of groups that submitted proposals
+                -->
+                <div class="span6 pagination-centered">
+                  <% proposal_count = project.proposals.count %>
+
+                  <% if proposal_count == 0 %>
+                    <a 
+                      href="#"
+                      rel="tooltip" 
+                      data-toggle="tooltip" 
+                      data-placement="top" 
+                      title="" 
+                      data-original-title="No Proposals Submitted"
+                      onclick="return false;">
+                      <span class="badge"><%= proposal_count %></span>
+                    </a>
+                  <% else %>
+                    <a      
+                      href="#"
+                      id="<%= "list_of_proposals_projid_#{project.id}" %>"  
+                      data-trigger="hover" 
+                      data-original-title="Groups that submitted proposals"
+                      data-placement="bottom"
+                      rel="popover" 
+                      onclick="return false;">
+                      <span class="badge"><%= proposal_count %></span>
+                    </a>
+
+                    <div id="<%= "list_of_proposals_projid_#{project.id}_content" %>" style="display: none;">
+                      <div class="row-fluid">
+                        <div class="span12">
+                          <ul>
+                            <% project.proposals.each do |p| %>
+                              <li class="bullet"><%= p.group.name %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>  
+                  <% end %>
+
+                </div>
+            
               </div>
-            <% end %>
+            </div>
 
           </div>
         </div>
