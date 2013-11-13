@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer
   end
 
-  #will send artive record errors to 404 page in production
+  #will send artive record errors to 404 page in production, logs error in render_404
   if Rails.env.production?
     rescue_from ActiveRecord::RecordNotFound do |exception|
       render_404
@@ -69,7 +69,8 @@ class ApplicationController < ActionController::Base
 
   def render_404
     respond_to do |format|
-      #log_error(exception)  --- write helper to log errors in produciton ?
+      #logger message ... add additional informaiton?
+      Rails.logger.info "Rails 404 Redirect - RecordNotFound"
       format.html { render "errors/404", :status => '404 Not Found', :layout => false }
       format.xml  { render :nothing => true, :status => '404 Not Found' }
     end
