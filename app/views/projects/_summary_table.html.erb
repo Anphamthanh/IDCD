@@ -90,7 +90,7 @@
                       <div class="row-fluid">
                         <div class="span12">
                           <% project.assignedGroups.each do |g| %> 
-                            <%= render :partial => "groups/details_2", :locals => {group: project.group} %>
+                            <%= render :partial => "groups/details_2", :locals => {group: g} %>
                             <hr />
                           <% end %>
                         </div>
