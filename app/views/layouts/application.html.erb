@@ -144,11 +144,11 @@
         </div>
       </div>
 
-      <div>
+      <div style="display: none">
         <%= session %>
       </div>
 
-      <div>
+      <div style="display: none">
         <br>
           semester set to: <%= session[:current_semester].name %>
         <br>
@@ -156,32 +156,69 @@
 
 
       <div class="row-fluid">
-        <div class="span12">
+        <div class="span3">
+	  Test Users
+        </div>
+        <div class="span9">
           <%= form_tag controller: "users", action: "tester_login" do %>
             Login as: 
             <%= select_tag 'test_user_id', options_for_select(User.where(test: true).collect{ |u| [u.gtusername, u.id] }) %>
             <%= submit_tag %>
           <% end %>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span3">
+	  Admins
+        </div>
+        <div class="span9">
+          <%= form_tag controller: "users", action: "tester_login" do %>
+            Login as: 
+            <%= select_tag 'test_user_id', options_for_select(User.where(admin: true, test: false).collect{ |u| [u.gtusername, u.id] }) %>
+            <%= submit_tag %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span3">
+	  Registered Students
+        </div>
+        <div class="span9">
+          <%= form_tag controller: "users", action: "tester_login" do %>
+            Login as: 
+            <%= select_tag 'test_user_id', options_for_select(User.where(type: "Student", test: false).collect{ |u| [u.gtusername, u.id] }) %>
+            <%= submit_tag %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span3">
+	  Registered Faculty
+        </div>
+        <div class="span9">
+          <%= form_tag controller: "users", action: "tester_login" do %>
+            Login as: 
+            <%= select_tag 'test_user_id', options_for_select(User.where(type: "Faculty", test: false).collect{ |u| [u.gtusername, u.id] }) %>
+            <%= submit_tag %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span12">
+          Viewing site as user "<%= "#{test_user.gtusername}" %>"
+          |
           <%= link_to "Go to users page", users_path %>
         </div>
       </div>
 
-      <% if test_user %>
-
-        <div class="row-fluid">
-          <div class="span12">
-            Viewing site as user "<%= "#{test_user.gtusername}" %>"
-            |
-            <%= link_to "Exit View", tester_logout_users_path %>
-            |
-            <%= link_to "Go to users page", users_path %>
-          </div>
-        </div>
-
-      <% end %>
-
-
     </div>
+
+
+
   <% end %>
 
   <div style="padding-bottom: 30px">
