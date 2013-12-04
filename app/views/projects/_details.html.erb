@@ -24,11 +24,22 @@
           <% end %>
 
           <% if project.accepted? %>
-            <dt><strong>Majors Required:</strong></dt>
+            <dt><strong>Required Majors:</strong></dt>
             <dd>
-            <% counter = project.schools.count - 1 %>
-            <% project.schools.each do |s| %>
-              <%= "#{s.name}" %>
+            <% counter = project.requiredSchools.count - 1 %>
+            <% project.requiredSchools.each do |s| %>
+                <%= "#{s.school.name}" %>
+                <% if counter > 0 %>
+                  <%= ", " %>
+                <% end %>
+                <% counter = counter - 1 %>
+            <% end %>
+            </dd>
+            <dt><strong>Suggested Majors:</strong></dt>
+            <dd>
+            <% counter = project.suggestedSchools.count - 1 %>
+            <% project.suggestedSchools.each do |s| %>
+              <%= "#{s.school.name}" %>
               <% if counter > 0 %>
                 <%= ", " %>
               <% end %>

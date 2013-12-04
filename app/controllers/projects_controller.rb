@@ -63,11 +63,16 @@ class ProjectsController < ApplicationController
     end
 
     selectedSchools = params[:selectedSchools]
+    requiredSchools = params[:selectedRequiredSchools]
     selectedSemester = params[:selectedSemester]
 
     if selectedSchools.blank?
       flash[:error] ||= []
       flash[:error] << "Project must be assigned to at least one school."
+    end
+    if requiredSchools.blank?
+      flash[:error] ||= []
+      flash[:error] << "Project must be assigned to at least one required school."
     end
     if selectedSemester.blank?
       flash[:error] ||= []
@@ -82,6 +87,9 @@ class ProjectsController < ApplicationController
     end
 
     @project.schools << School.find(params[:selectedSchools])
+    params[:selectedRequiredSchools].each do |school_id|
+      ProjectSchool.create(project_id: @project.id, school_id: school_id, required: true)
+    end
     @project.semester_id = selectedSemester[0]
     @project.accept!
 

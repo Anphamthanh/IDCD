@@ -8,7 +8,7 @@
         <h4>Project Name</h4>
       </div>
       <div class="span5">
-        <h4>Suggested Schools</h4>
+        <h4>Available Schools</h4>
       </div>
       <div class="span3">
         <h4>Status</h4>
@@ -53,8 +53,11 @@
         <div class="span5">
           <table class="table_no_decor"><tr class="table_no_decor">
               <% School.all.each do |s| %>
-                <% if project.schools.include?(s) %>
+                <% required_school = ProjectSchool.where(project_id: project.id, school_id: s.id, required: true) %>
+                <% if required_school.exists? %>
                   <td style="width: 14%; text-align: center;"><%= "*" %></td>
+                <% elsif project.schools.include?(s) %>
+                  <td style="width: 14%; text-align: center;"><%= "-" %></td>
                 <% else %>
                   <td></td>
                 <% end %>

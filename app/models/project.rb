@@ -68,6 +68,26 @@ class Project < ActiveRecord::Base
     end 
   end
 
+  def suggestedSchools
+    suggested_schools = []
+    self.project_schools.each do |p|
+      if !p.required
+        suggested_schools << p
+      end
+    end
+    return suggested_schools
+  end
+
+  def requiredSchools
+    required_schools = []
+    self.project_schools.each do |p|
+      if p.required
+        required_schools << p
+      end
+    end
+    return required_schools
+  end
+
   def accepted?
     return true if self.project_status_id == ProjectStatus.find_by_name("Accepted").id
     return false

@@ -3,8 +3,8 @@
 
     <%= form_for project, :url => admin_accept_project_path(project), :method => "get" do |f| %>
       <div class="row-fluid">
-        <div class="span6">
-          <h5>Assign Schools</h5>
+        <div class="span4">
+          <h5>Suggested Schools</h5>
           <div class="control-group">
             <div class="controls">
               <% School.all.each do |s| %>
@@ -16,7 +16,20 @@
           </div>
         </div>
 
-        <div class="span6">
+        <div class="span4">
+          <h5>Required Schools</h5>
+          <div class="control-group">
+            <div class="controls">
+              <% School.all.each do |s| %>
+                <label class="checkbox">
+                  <%= check_box_tag 'selectedRequiredSchools[]', s.id, false, :type => "checkbox" %><%= s.name %><br />
+                </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="span4">
           <h5>Assign Semester</h5>
           <div class="control-group">
             <div class="controls">
