@@ -49,7 +49,7 @@ class Project < ActiveRecord::Base
   end
 
   def name_humanize
-    if self.submitter and self.submitter.isStudent?
+    if self.submitter and self.submitter.isStudent? and not self.submitter.isAdmin?
       return "#{self.name} (#{self.submitter.section.name})" 
     else 
       return "#{self.name}" 
