@@ -33,3 +33,4 @@ School.create(:name => "AE")
 School.create(:name => "COC")
 
 
+User.create(gtusername: "ajariwala3", admin:true)
