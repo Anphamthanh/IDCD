@@ -15,11 +15,11 @@ class Group < ActiveRecord::Base
     return false
   end
 
+  #displays available projects for group members avioding duplicates
   def available_project_choices(semester_id)
     available_projects = []
     self.students.each do |student|
       available_projects = available_projects | student.section.faculty_approved_projects(semester_id)
-      #displays available projects for group members avioding duplicates
     end
     return available_projects
   end

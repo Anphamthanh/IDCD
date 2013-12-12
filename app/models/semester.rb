@@ -10,7 +10,7 @@ class Semester < ActiveRecord::Base
   end
 
   def self.current
-    where("end_date >= ?", Date.current).order("start_date ASC").first
+    where("end_date >= ?", Date.current).order("start_date ASC").second
   end
 
 end

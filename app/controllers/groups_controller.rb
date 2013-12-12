@@ -2,6 +2,14 @@ class GroupsController < ApplicationController
 
   #post 'add_new_group'
   def add_new_group
+
+    # should not be in Just Browsing
+    if current_user.semester.id == 1
+      flash[:notice] = "You must select a semester before you can create a group. Do this from the profile page."
+      redirect_to action: 'index'
+      return
+    end
+
     # should not be owner of another group
     if current_user.is_owner?
       flash[:notice] = "You are currently a member of another group. Leave it to create your own group. [Sketchy]!!"
@@ -41,6 +49,7 @@ class GroupsController < ApplicationController
 
   #post 'send_request'
   def send_request
+
     # should not be owner of another group
     if current_user.is_owner?
       flash[:notice] = "You are currently a member of another group. Leave it to send a request to join another group. [Sketchy]!!"
@@ -158,7 +167,7 @@ class GroupsController < ApplicationController
       return
     end
 
-    # check if the invited student is in the same semster as the group
+    # check if the invited student is in the same semester as the group
     if student.semester != group.semester
       flash[:notice] = "The gtusername you entered is not in the same semester as your group"
       redirect_to action: 'index'
