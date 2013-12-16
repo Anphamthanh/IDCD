@@ -1,3 +1,9 @@
+<div class="span12 legend">
+  <p class="left" style="font-style:italic;">Suggested School:</p>
+  <div class="left" style="background-color: #ddd; width: 18px; height: 18px; text-align: center; margin: 4px;"></div>
+  <p class="left" style="font-style:italic; margin-left: 12px;">Required School:</p>
+  <div class="left" style="background-color: #ddd; width: 18px; height: 18px; text-align: center; margin: 4px;">*</div>
+</div>
 
 <div class="row-fluid">
   <div class="span12 well">
@@ -56,11 +62,11 @@
               <% School.all.each do |s| %>
                 <% required_school = ProjectSchool.where(project_id: project.id, school_id: s.id, required: true) %>
                 <% if required_school.exists? %>
-                  <td style="width: 12.4%; text-align: center; background-color: #BBB; border-left: 1px solid #666; border-right: 1px solid #666;"><%= "*" %></td>
+                  <td style="width: 12.4%; text-align: center; background-color: #ddd; border-left: 1px solid #666; border-right: 1px solid #666;"><%= "*" %></td>
                 <% elsif project.schools.include?(s) %>
-                  <td style="width: 12.4%; text-align: center; background-color: #BBB; border-left: 1px solid #666; border-right: 1px solid #666;"></td>
+                  <td style="width: 12.4%; text-align: center; background-color: #ddd; border-left: 1px solid #666; border-right: 1px solid #666;"></td>
                 <% else %>
-                  <td></td>
+                  <td style="width: 12.4%;"></td>
                 <% end %>
               <% end %>
             </tr>
