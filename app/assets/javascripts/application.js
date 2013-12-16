@@ -17,6 +17,8 @@
 
 $(document).ready(function(){
 
+	var clickNum = 0;
+
 	// Show default section dropdown
 	semester_id = $("#semester_id ").find(":selected").val();
 	$(".section_select_group#semester_id_" + semester_id).show();
@@ -37,8 +39,12 @@ $(document).ready(function(){
 
 	});
 
-	$("form #current_semester_id").change(function(){
-		$(this.form).submit();
+	$("form #current_semester_id").click(function(){
+		clickNum++;
+		if(clickNum == 2){
+			$(this.form).submit();
+			clickNum = 0;
+		}
 	});
 
 });
