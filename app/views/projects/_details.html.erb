@@ -111,19 +111,29 @@
           <% end %>
 
           <dt><strong>Background / need :</strong></dt>
-          <dd><%= markdown(project.background) %></dd>
+          <% unless project.background.nil? %>
+            <dd><%= markdown(project.background) %></dd>
+          <% end %>
 
           <dt><strong>Concept:</strong></dt>
-          <dd><%= markdown(project.concept) %></dd>
+          <% unless project.background.nil? %>
+            <dd><%= markdown(project.concept) %></dd>
+          <% end %>
 
           <dt><strong>Design considerations :</strong></dt>
-          <dd><%= markdown(project.design) %></dd>
+          <% unless project.background.nil? %>
+            <dd><%= markdown(project.design) %></dd>
+          <% end %>
 
           <dt><strong>Desired skills, schools :</strong></dt>
-          <dd><%= markdown(project.skills) %></dd>
+          <% unless project.background.nil? %>
+            <dd><%= markdown(project.skills) %></dd>
+          <% end %>
 
           <dt><strong>Prefered solution :</strong></dt>
-          <dd><%= markdown(project.solutions) %></dd>
+          <% unless project.background.nil? %>
+            <dd><%= markdown(project.solutions) %></dd>
+          <% end %>
 
           <% if current_user.isAdmin? and project.company_id %>
             <h6>Director Info</h6>
