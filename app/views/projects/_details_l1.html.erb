@@ -4,7 +4,9 @@
   <dd><%= project.submitter_humanize %></dd>
 
   <dt><strong>Background:</strong></dt>
-  <dd><%= markdown(project.background) %></dd>
+  <% unless project.background.nil? %>
+  	<dd><%= markdown(project.background) %></dd>
+  <% end %>
 
 </dl>
 
