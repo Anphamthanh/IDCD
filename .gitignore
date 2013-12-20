@@ -17,3 +17,7 @@
 *.swp
 
 .DS_Store
+
+# Ignore any Vagrant related files
+/.vagrant
+Vagrantfile

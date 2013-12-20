@@ -230,8 +230,9 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
+    @groups = Group.where(semester_id: session[:current_semester].id)
+
     if current_user.isAdmin?
-      @groups = Group.all
 
       respond_to do |format|
         format.html # index.html.erb
@@ -239,7 +240,6 @@ class GroupsController < ApplicationController
       end
 
     elsif current_user.isStudent?
-      @groups = Group.all
 
       respond_to do |format|
         format.html { render 'index_student' }
@@ -247,7 +247,6 @@ class GroupsController < ApplicationController
       end
     end
 
-    @groups = Group.all
   end
 
   # GET /groups/1
