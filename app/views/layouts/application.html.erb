@@ -73,7 +73,7 @@
                       semesters_to_show = semesters_to_show  - [Semester.first] %>
               	   	<%= select("current_semester", "id", semesters_to_show.collect {|p| [ p.name, p.id ] }, :selected => session[:current_semester].id) %>
                 	<% end %>
-              </li>
+                </li>
               <% end %>
 
               <h2 style="margin-top: 20px">Quick Links</h2>
