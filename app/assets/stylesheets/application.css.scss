@@ -209,3 +209,21 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 .center, .alignCenter { text-align: center; }
 .alignLeft { text-align: left; }
 .alignRight { text-align: right; }
+
+.legend p {
+	font-style: italic;
+	&.reqNote {
+		margin-left: 12px;
+	}
+	&.warning {
+		color: red;
+	}
+}
+
+.schoolCell {
+	background-color: #ddd; 
+	width: 18px; 
+	height: 18px; 
+	text-align: center; 
+	margin: 4px;
+}
