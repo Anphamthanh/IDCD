@@ -1,9 +1,9 @@
 <div class="span12 legend">
   <p class="left warning">Note: If you are unable to view any projects, please switch to another semester and then switch back using the dropdown on the left.</p>
   <p class="left">Suggested School:</p>
-  <div class="left schoolCell"></div>
+  <div class="left exampleCell"></div>
   <p class="left reqNote">Required School:</p>
-  <div class="left schoolCell">*</div>
+  <div class="left exampleCell">*</div>
 </div>
 
 <div class="row-fluid">
@@ -63,11 +63,11 @@
               <% School.all.each do |s| %>
                 <% required_school = ProjectSchool.where(project_id: project.id, school_id: s.id, required: true) %>
                 <% if required_school.exists? %>
-                  <td style="width: 12.4%; text-align: center; background-color: #ddd; border-left: 1px solid #666; border-right: 1px solid #666;"><%= "*" %></td>
+                  <td class="schoolCell actualCell <%= s.name %>">*</td>
                 <% elsif project.schools.include?(s) %>
-                  <td style="width: 12.4%; text-align: center; background-color: #ddd; border-left: 1px solid #666; border-right: 1px solid #666;"></td>
+                  <td class="schoolCell actualCell <%= s.name %>"></td>
                 <% else %>
-                  <td style="width: 12.4%;"></td>
+                  <td class="schoolCell"></td>
                 <% end %>
               <% end %>
             </tr>

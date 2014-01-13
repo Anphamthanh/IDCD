@@ -220,10 +220,28 @@ input, textarea, select { background: #fff; border: 1px solid #d7b350; font-fami
 	}
 }
 
-.schoolCell {
+.exampleCell {
 	background-color: #ddd; 
 	width: 18px; 
 	height: 18px; 
 	text-align: center; 
 	margin: 4px;
+}
+
+.schoolCell {
+	width: 12.4%; 
+	&.actualCell {
+		text-align: center; 
+		background-color: #ddd; 
+		border-left: 1px solid #666; 
+		border-right: 1px solid #666;
+		&.ECE { background-color: #0A7B83; color: #fff; }
+		&.ID { background-color: #2AA876; color: #fff; }
+		&.ME { background-color: #FFD265; }
+		&.BME { background-color: #F19C65; color: #fff; }
+		&.ISyE { background-color: #CE4D45; color: #fff; }
+		&.MSE { background-color: #74104B; color: #fff; }
+		&.AE { background-color: #2980B9; color: #fff; }
+		&.CSE { background-color: #AADC46; }
+	}
 }
